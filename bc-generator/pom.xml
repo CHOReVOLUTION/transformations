@@ -24,20 +24,6 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<skipTests>true</skipTests>
-		<java.version>1.8</java.version>
-		<commons-compress.version>1.12</commons-compress.version>
-		<commons-lang3.version>3.4</commons-lang3.version>
-		<commons-io.version>2.5</commons-io.version>
-		<freemarker.version>2.3.25-incubating</freemarker.version>
-		<maven-invoker.version>3.0.0</maven-invoker.version>
-		<slf4j-api.version>1.7.12</slf4j-api.version>
-		<slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
-		<wsdl4j.version>1.6.3</wsdl4j.version>
-		<eclipse.version>2.12.0</eclipse.version>
-		<shrinkwrap.version>3.0.0</shrinkwrap.version>
-		
-		<junit.version>4.12</junit.version>
 		<eu.chorevolution.modelingnotations.gidl.version>2.2.0-SNAPSHOT</eu.chorevolution.modelingnotations.gidl.version>
 	</properties>
 
