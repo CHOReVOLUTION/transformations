@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="JourneyPlannerService"
+	targetNamespace="http://it.softeco.chorevolution.smt/journeyplanner"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy"
+	xmlns:tns="http://it.softeco.chorevolution.smt/journeyplanner"
+	xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<types>
+		<xsd:schema targetNamespace="http://it.softeco.chorevolution.smt/journeyplanner">
+			<xsd:element name="allTripsRequest" type="tns:allTripsRequest" />
+			<xsd:element name="allTripsResponse" type="tns:allTripsResponse" />
+			<xsd:complexType name="allTripsRequest">
+				<xsd:sequence>
+					<xsd:element name="fromLat" type="xsd:double" />
+					<xsd:element name="fromLon" type="xsd:double" />
+					<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+						<xsd:element name="poiList" type="tns:poiType"/>
+					</xsd:sequence>
+					<xsd:element name="session" type="xsd:string" />
+					<xsd:element name="s" type="xsd:string" />
+					<xsd:element name="maxTrips" nillable="true" type="xsd:int" />
+					<xsd:element name="modes" nillable="true" type="xsd:int" />
+					<xsd:element name="startAt" nillable="true" type="xsd:string" />
+					<xsd:element name="endAt" nillable="true" type="xsd:string" />
+					<xsd:element name="mw" nillable="true" type="xsd:int" />
+					<xsd:element name="From" nillable="true" type="xsd:string" />
+					<xsd:element name="To" nillable="true" type="xsd:string" />
+					<xsd:element name="maxChanges" nillable="true" type="xsd:int" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="poiType">
+		    	<xsd:sequence>
+			    	<xsd:element name="lat" type="xsd:double"/>
+		        	<xsd:element name="lon" type="xsd:double"/>
+		        	<xsd:element name="type" type="xsd:string"/>
+		        	<xsd:element name="name" type="xsd:string"/>
+		        	<xsd:element minOccurs="0" name="poiInfo" type="tns:poiInfo"/>
+		        </xsd:sequence>
+		    </xsd:complexType>
+		    <xsd:complexType name="poiInfo">
+		    	<xsd:sequence>
+		        	<xsd:element name="address" type="tns:addressType"/>
+		    		<xsd:element name="busInfo" type="tns:busInfoType"/>
+		        	<xsd:element name="religion" type="tns:religionType"/>
+		        </xsd:sequence>
+		    </xsd:complexType> 		
+			<xsd:complexType name="addressType">
+		    	<xsd:sequence>
+		        	<xsd:element name="street" type="xsd:string"/>
+		        	<xsd:element name="houseNumber" type="xsd:string"/>
+		        	<xsd:element name="phone" type="xsd:string"/>
+		       	</xsd:sequence>
+			</xsd:complexType>	
+			<xsd:complexType name="busInfoType">
+		    	<xsd:sequence>
+		     		<xsd:element name="lines" type="xsd:string"/>
+		     		<xsd:element name="operator" type="xsd:string"/>
+		     		<xsd:element name="stopId" type="xsd:string"/>
+		    	</xsd:sequence>
+			</xsd:complexType>	
+		    <xsd:complexType name="religionType">
+		        	<xsd:sequence>
+			        	<xsd:element name="religion" type="xsd:string"/>
+			        	<xsd:element name="denomination" type="xsd:string"/>
+		        	</xsd:sequence>
+		    </xsd:complexType>		    
+			<xsd:complexType name="allTripsResponse">
+				<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+					<xsd:element name="Trips" type="tns:TripInformationsType" />
+				</xsd:sequence>
+			</xsd:complexType>	
+			<xsd:complexType name="TripInformationsType">
+				<xsd:sequence>
+					<xsd:element name="fromPoiName" type="xsd:string"/>
+					<xsd:element name="toPoiName" type="xsd:string"/>
+					<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+						<xsd:element name="segments" type="tns:SegmentType"/>
+					</xsd:sequence>
+					<xsd:element name="duration" type="xsd:int" />
+				</xsd:sequence>
+			</xsd:complexType>	
+			<xsd:complexType name="SegmentType">
+				<xsd:sequence>
+					<xsd:element name="type" type="xsd:string"/>
+					<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+						<xsd:element name="positions" type="tns:PositionType"/>
+					</xsd:sequence>
+					<xsd:element name="busDetails" type="tns:BusDetailsType"/>
+				</xsd:sequence>
+			</xsd:complexType>			
+			<xsd:complexType name="PositionType">
+				<xsd:sequence>
+					<xsd:element name="lat" type="xsd:double"/>
+					<xsd:element name="lon" type="xsd:double"/>
+				</xsd:sequence>
+			</xsd:complexType>	
+			<xsd:complexType name="BusDetailsType">
+				<xsd:sequence>
+					<xsd:element name="direction" type="xsd:string"/>
+					<xsd:element name="dropInNode" type="xsd:string"/>
+					<xsd:element name="dropOffNode" type="xsd:string"/>
+					<xsd:element name="line" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>						        
+		</xsd:schema>
+	</types>
+	<message name="allTripsRequest">
+		<part name="parameters" element="tns:allTripsRequest"/>
+	</message>
+	<message name="allTripsResponse">
+		<part name="parameters" element="tns:allTripsResponse"/>
+	</message>
+	<portType name="JourneyPlannerPT">
+		<operation name="AllTrips">
+			<input message="tns:allTripsRequest"/>
+			<output message="tns:allTripsResponse"/>
+		</operation>
+	</portType>
+	<binding name="JourneyPlannerBinding" type="tns:JourneyPlannerPT">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="AllTrips">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="JourneyPlannerService">
+		<port name="JourneyPlannerPort" binding="tns:JourneyPlannerBinding">
+			<soap:address location="http://localhost:9090/journeyplanner/journeyplanner" />
+		</port>
+	</service>
+</definitions>

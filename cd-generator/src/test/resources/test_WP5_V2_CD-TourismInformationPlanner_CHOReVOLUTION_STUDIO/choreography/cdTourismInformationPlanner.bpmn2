@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- origin at X=0.0 Y=0.0 -->
+<bpmn2:definitions xmlns="http://eu.chorevolution.smartmobilitytourism" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ext="http://org.eclipse.bpmn2/ext" xmlns:types="http://eu.chorevolution.smartmobilitytourism/types" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.4.0.Final-v20170607-1718-B1" targetNamespace="http://eu.chorevolution.smartmobilitytourism">
+  <bpmn2:import importType="http://www.w3.org/2001/XMLSchema" location="types.xsd" namespace="http://eu.chorevolution.smartmobilitytourism/types"/>
+  <bpmn2:itemDefinition id="ItemDefinition_1" structureRef="types:getTouristicGuideRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_2" structureRef="types:getMobilityInfoRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_3" structureRef="types:getTourismInfoRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_4" structureRef="types:tripsRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_5" structureRef="types:tripsResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_6" structureRef="types:parkingRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_7" structureRef="types:parkingResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_8" structureRef="types:trafficRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_9" structureRef="types:trafficResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_10" structureRef="types:latestPTRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_11" structureRef="types:latestPTResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_12" structureRef="types:weatherItemsRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_13" structureRef="types:weatherItemsResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_14" structureRef="types:poiRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_15" structureRef="types:poiResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_16" structureRef="types:latestNewsRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_17" structureRef="types:latestNewsResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_18" structureRef="types:getMobilityInfoResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_19" structureRef="types:getTourismInfoResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_20" structureRef="types:getTouristicGuideResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_47" structureRef="http://www.w3.org/2001/XMLSchema#boolean"/>
+  <bpmn2:message id="Message_2" itemRef="#ItemDefinition_1" name="getTouristicGuideRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_4" itemRef="#ItemDefinition_2" name="getMobilityInfoRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_6" itemRef="#ItemDefinition_3" name="getTourismInfoRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_8" itemRef="#ItemDefinition_4" name="tripsRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_10" itemRef="#ItemDefinition_5" name="tripsResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_12" itemRef="#ItemDefinition_6" name="parkingRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_14" itemRef="#ItemDefinition_7" name="parkingResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_16" itemRef="#ItemDefinition_8" name="trafficRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_18" itemRef="#ItemDefinition_9" name="trafficResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_23" itemRef="#ItemDefinition_10" name="latestPTRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_25" itemRef="#ItemDefinition_11" name="latestPTResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_29" itemRef="#ItemDefinition_12" name="weatherItemsRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_31" itemRef="#ItemDefinition_13" name="weatherItemsResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_33" itemRef="#ItemDefinition_14" name="poiRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_35" itemRef="#ItemDefinition_15" name="poiResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_37" itemRef="#ItemDefinition_16" name="latestNewsRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_39" itemRef="#ItemDefinition_17" name="latestNewsResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_41" itemRef="#ItemDefinition_19" name="getTourismInfoResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_43" itemRef="#ItemDefinition_18" name="getMobilityInfoResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_45" itemRef="#ItemDefinition_20" name="getTouristicGuideResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:choreography id="Choreography_1" name="SMT">
+    <bpmn2:participant id="Participant_2" name="Tourist Agent">
+      <bpmn2:extensionElements>
+        <ext:style ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_24" name="Tourism Information Planner">
+      <bpmn2:extensionElements>
+        <ext:style ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_27" name="Personal Weather Stations">
+      <bpmn2:extensionElements>
+        <ext:style ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_29" name="Poi">
+      <bpmn2:extensionElements>
+        <ext:style ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_31" name="News">
+      <bpmn2:extensionElements>
+        <ext:style ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:messageFlow id="MessageFlow_3" messageRef="#Message_6" name="Message Flow 3" sourceRef="#Participant_2" targetRef="#Participant_24"/>
+    <bpmn2:messageFlow id="MessageFlow_16" messageRef="#Message_29" name="Message Flow 16" sourceRef="#Participant_24" targetRef="#Participant_27"/>
+    <bpmn2:messageFlow id="MessageFlow_17" messageRef="#Message_31" name="Message Flow 17" sourceRef="#Participant_27" targetRef="#Participant_24"/>
+    <bpmn2:messageFlow id="MessageFlow_18" messageRef="#Message_33" name="Message Flow 18" sourceRef="#Participant_24" targetRef="#Participant_29"/>
+    <bpmn2:messageFlow id="MessageFlow_19" messageRef="#Message_35" name="Message Flow 19" sourceRef="#Participant_29" targetRef="#Participant_24"/>
+    <bpmn2:messageFlow id="MessageFlow_20" messageRef="#Message_37" name="Message Flow 20" sourceRef="#Participant_24" targetRef="#Participant_31"/>
+    <bpmn2:messageFlow id="MessageFlow_21" messageRef="#Message_39" name="Message Flow 21" sourceRef="#Participant_31" targetRef="#Participant_24"/>
+    <bpmn2:messageFlow id="MessageFlow_22" messageRef="#Message_41" name="Message Flow 22" sourceRef="#Participant_24" targetRef="#Participant_2"/>
+    <bpmn2:startEvent id="StartEvent_1" name="Triggered By Tourist">
+      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" sourceRef="StartEvent_1" targetRef="ChoreographyTask_10"/>
+    <bpmn2:choreographyTask id="ChoreographyTask_10" name="Get Tourism Information" initiatingParticipantRef="#Participant_2">
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_26</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_2</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_24</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_3</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:choreographyTask id="ChoreographyTask_11" name="Get Meteorological Information" initiatingParticipantRef="#Participant_24">
+      <bpmn2:incoming>SequenceFlow_27</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_30</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_24</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_27</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_16</bpmn2:messageFlowRef>
+      <bpmn2:messageFlowRef>#MessageFlow_17</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:choreographyTask id="ChoreographyTask_12" name="Get Poi List" initiatingParticipantRef="#Participant_24">
+      <bpmn2:incoming>SequenceFlow_28</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_31</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_24</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_29</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_18</bpmn2:messageFlowRef>
+      <bpmn2:messageFlowRef>#MessageFlow_19</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:choreographyTask id="ChoreographyTask_13" name="Get Latest News" initiatingParticipantRef="#Participant_24">
+      <bpmn2:incoming>SequenceFlow_29</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_32</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_24</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_31</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_20</bpmn2:messageFlowRef>
+      <bpmn2:messageFlowRef>#MessageFlow_21</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:choreographyTask id="ChoreographyTask_14" name="Set Tourism Information" initiatingParticipantRef="#Participant_24">
+      <bpmn2:incoming>SequenceFlow_34</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_36</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_24</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_2</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_22</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:endEvent id="EndEvent_1">
+      <bpmn2:incoming>SequenceFlow_36</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:parallelGateway id="ParallelGateway_6" gatewayDirection="Diverging">
+      <bpmn2:incoming>SequenceFlow_26</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_27</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_28</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_29</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_26" sourceRef="ChoreographyTask_10" targetRef="ParallelGateway_6"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_27" sourceRef="ParallelGateway_6" targetRef="ChoreographyTask_11"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_28" sourceRef="ParallelGateway_6" targetRef="ChoreographyTask_12"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_29" sourceRef="ParallelGateway_6" targetRef="ChoreographyTask_13"/>
+    <bpmn2:parallelGateway id="ParallelGateway_7" gatewayDirection="Converging">
+      <bpmn2:incoming>SequenceFlow_30</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_31</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_32</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_34</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_30" sourceRef="ChoreographyTask_11" targetRef="ParallelGateway_7"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_31" sourceRef="ChoreographyTask_12" targetRef="ParallelGateway_7"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_32" sourceRef="ChoreographyTask_13" targetRef="ParallelGateway_7"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_34" sourceRef="ParallelGateway_7" targetRef="ChoreographyTask_14"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_36" sourceRef="ChoreographyTask_14" targetRef="EndEvent_1"/>
+  </bpmn2:choreography>
+</bpmn2:definitions>

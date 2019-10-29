@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="cdstapp" targetNamespace="http://org.eclipse.bpmn2/default/choreography/cdstapp" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:tns="http://org.eclipse.bpmn2/default/choreography/cdstapp" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="unqualified" targetNamespace="http://org.eclipse.bpmn2/default/choreography/cdstapp" xmlns="http://org.eclipse.bpmn2/default/choreography/cdstapp" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:complexType name="getTripPlanRequest">
+        <xsd:sequence>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+            <xsd:element name="range" type="xsd:int"/>
+            <xsd:element maxOccurs="unbounded" name="tag" type="tags"/>
+            <xsd:element name="tripBy" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getPoiListRequest">
+        <xsd:sequence>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+            <xsd:element name="range" type="xsd:int"/>
+            <xsd:element maxOccurs="unbounded" name="tag" type="tags"/>
+            <xsd:element name="session" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="tags">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="worship"/>
+            <xsd:enumeration value="restaurant"/>
+            <xsd:enumeration value="school"/>
+            <xsd:enumeration value="bus"/>
+            <xsd:enumeration value="hospital"/>
+            <xsd:enumeration value="tourism"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="getPoiListResponse">
+        <xsd:sequence>
+            <xsd:element name="session" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="poi" type="poiType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="poiType">
+        <xsd:sequence>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+            <xsd:element name="type" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="poiInfo" nillable="true" type="poiInfo"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="poiInfo">
+        <xsd:sequence>
+            <xsd:element name="address" type="addressType"/>
+            <xsd:element name="busInfo" type="busInfoType"/>
+            <xsd:element name="religion" type="religionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="addressType">
+        <xsd:sequence>
+            <xsd:element name="street" type="xsd:string"/>
+            <xsd:element name="houseNumber" type="xsd:string"/>
+            <xsd:element name="phone" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="busInfoType">
+        <xsd:sequence>
+            <xsd:element name="lines" type="xsd:string"/>
+            <xsd:element name="operator" type="xsd:string"/>
+            <xsd:element name="stopId" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="religionType">
+        <xsd:sequence>
+            <xsd:element name="religion" type="xsd:string"/>
+            <xsd:element name="denomination" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getBestRouteRequest">
+        <xsd:sequence>
+            <xsd:element name="session" type="xsd:string"/>
+            <xsd:element name="tripBy" type="xsd:int"/>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+            <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+                <xsd:element name="poiList" type="poiType"/>
+            </xsd:sequence>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="trafficRequest">
+        <xsd:sequence>
+            <xsd:element name="session" type="xsd:string"/>
+            <xsd:element name="urLat" type="xsd:double"/>
+            <xsd:element name="urLon" type="xsd:double"/>
+            <xsd:element name="llLat" type="xsd:double"/>
+            <xsd:element name="llLon" type="xsd:double"/>
+            <xsd:element name="getId" nillable="true" type="xsd:boolean"/>
+            <xsd:element name="getDist" nillable="true" type="xsd:boolean"/>
+            <xsd:element name="dt" nillable="true" type="xsd:int"/>
+            <xsd:element name="cenLat" nillable="true" type="xsd:double"/>
+            <xsd:element name="cenLon" nillable="true" type="xsd:double"/>
+            <xsd:element name="maxResults" nillable="true" type="xsd:int"/>
+            <xsd:element name="s" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="trafficResponse">
+        <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+            <xsd:element name="TrafficMessage" type="TrafficMessageType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TrafficMessageType">
+        <xsd:sequence>
+            <xsd:element name="x" type="xsd:float"/>
+            <xsd:element name="y" type="xsd:float"/>
+            <xsd:element name="desc" type="xsd:string"/>
+            <xsd:element name="n" type="xsd:string"/>
+            <xsd:element name="s" type="xsd:string"/>
+            <xsd:element name="e" type="xsd:string"/>
+            <xsd:element name="l" type="xsd:string"/>
+            <xsd:element name="d" type="xsd:float"/>
+            <xsd:element name="v" type="xsd:string"/>
+            <xsd:element name="ty" type="xsd:int"/>
+            <xsd:element name="dty" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="allTripsRequest">
+        <xsd:sequence>
+            <xsd:element name="fromLat" type="xsd:double"/>
+            <xsd:element name="fromLon" type="xsd:double"/>
+            <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+                <xsd:element name="poiList" type="poiType"/>
+            </xsd:sequence>
+            <xsd:element name="session" type="xsd:string"/>
+            <xsd:element name="s" type="xsd:string"/>
+            <xsd:element name="maxTrips" nillable="true" type="xsd:int"/>
+            <xsd:element name="modes" nillable="true" type="xsd:int"/>
+            <xsd:element name="startAt" nillable="true" type="xsd:string"/>
+            <xsd:element name="endAt" nillable="true" type="xsd:string"/>
+            <xsd:element name="mw" nillable="true" type="xsd:int"/>
+            <xsd:element name="From" nillable="true" type="xsd:string"/>
+            <xsd:element name="To" nillable="true" type="xsd:string"/>
+            <xsd:element name="maxChanges" nillable="true" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="allTripsResponse">
+        <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+            <xsd:element name="Trips" type="TripInformationsType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="parkingRequest">
+        <xsd:sequence>
+            <xsd:element name="session" type="xsd:string"/>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+            <xsd:element name="range" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="parkingResponse">
+        <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+            <xsd:element name="parkings" type="OSMParkingType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OSMParkingType">
+        <xsd:sequence>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="parkingInfo" type="parkingInfoType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="parkingInfoType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="name" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="capacity" type="xsd:int"/>
+            <xsd:element minOccurs="0" name="capacityDisabled" type="xsd:int"/>
+            <xsd:element minOccurs="0" name="fee" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getInfoTransportationRequest">
+        <xsd:sequence>
+            <xsd:element name="session" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getInfoTransportationResponse">
+        <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+            <xsd:element name="InfoItem" type="InfoItemType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="InfoItemType">
+        <xsd:sequence>
+            <xsd:element name="title" type="xsd:string"/>
+            <xsd:element name="issueDate" type="xsd:string"/>
+            <xsd:element name="text" type="xsd:string"/>
+            <xsd:element name="validityDate" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="weatherInfoByAreaRequest">
+        <xsd:sequence>
+            <xsd:element name="session" type="xsd:string"/>
+            <xsd:element name="period" type="xsd:int"/>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+            <xsd:element name="tag" type="xsd:string"/>
+            <xsd:element name="radius" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="weatherInfoByAreaResponse">
+        <xsd:sequence>
+            <xsd:element name="status" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="docs" type="weatherType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="weatherType">
+        <xsd:sequence>
+            <xsd:element name="latitude" type="xsd:double"/>
+            <xsd:element name="longitude" type="xsd:double"/>
+            <xsd:element name="temperature" type="xsd:double"/>
+            <xsd:element name="pressure" type="xsd:double"/>
+            <xsd:element name="observation_time" type="xsd:string"/>
+            <xsd:element name="humidity" type="xsd:int"/>
+            <xsd:element name="creation_date" type="xsd:string"/>
+            <xsd:element name="elevation" type="xsd:double"/>
+            <xsd:element name="rain" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getInfoNewsRequest">
+        <xsd:sequence>
+            <xsd:element name="session" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getInfoNewsResponse">
+        <xsd:sequence>
+            <xsd:element name="session" type="xsd:string"/>
+            <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+                <xsd:element name="InfoItem" type="NewsInfoItemType"/>
+            </xsd:sequence>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="NewsInfoItemType">
+        <xsd:sequence>
+            <xsd:element name="title" type="xsd:string"/>
+            <xsd:element name="issueDate" type="xsd:string"/>
+            <xsd:element name="location" type="xsd:string"/>
+            <xsd:element name="validityDate" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getBestRouteResponse">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="TrafficMessage" type="TrafficMessageType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Trips" type="TripInformationsType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Parkings" type="OSMParkingType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="PublicTransportationInfos" type="InfoItemType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Weather" type="weatherType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TripInformationsType">
+        <xsd:sequence>
+            <xsd:element name="fromPoiName" type="xsd:string"/>
+            <xsd:element name="toPoiName" type="xsd:string"/>
+            <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+                <xsd:element name="segments" type="SegmentType"/>
+            </xsd:sequence>
+            <xsd:element name="duration" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SegmentType">
+        <xsd:sequence>
+            <xsd:element name="type" type="xsd:string"/>
+            <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+                <xsd:element name="positions" type="PositionType"/>
+            </xsd:sequence>
+            <xsd:element name="busDetails" type="BusDetailsType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PositionType">
+        <xsd:sequence>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BusDetailsType">
+        <xsd:sequence>
+            <xsd:element name="direction" type="xsd:string"/>
+            <xsd:element name="dropInNode" type="xsd:string"/>
+            <xsd:element name="dropOffNode" type="xsd:string"/>
+            <xsd:element name="line" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ParkingTypeDetailed">
+        <xsd:sequence>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+            <xsd:element name="capacity" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getTripPlanResponse">
+        <xsd:sequence>
+            <xsd:element name="session" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="TrafficMessage" type="TrafficMessageType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Trips" type="TripInformationsType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Parkings" type="OSMParkingType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="PublicTransportationInfos" type="InfoItemType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Weather" type="weatherType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="poi" type="poiType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="News" type="NewsInfoItemType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="startTrackingRequest"/>
+    <xsd:complexType name="startTrackingResponse"/>
+    <xsd:complexType name="getTripPlanRequestType"/>
+    <xsd:element name="getTripPlanRequestElementRequest" type="getTripPlanRequest"/>
+    <xsd:element name="getTripPlanResponseElementResponse" type="getTripPlanResponse"/>
+    <xsd:complexType name="getTripPlanResponseType">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="messageData" type="getTripPlanResponse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="getTripPlanResponseElementRequest" type="getTripPlanResponseType"/>
+    <xsd:complexType name="choreographyInstanceRequest">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="startTrackingRequestType"/>
+    <xsd:element name="startTrackingRequestElementRequest" type="startTrackingRequest"/>
+    <xsd:element name="startTrackingResponseElementResponse" type="startTrackingResponse"/>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getTripPlanResponseMessageRequest">
+    <wsdl:part name="parameters" element="tns:getTripPlanResponseElementRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTripPlanRequestMessageRequest">
+    <wsdl:part name="parameters" element="tns:getTripPlanRequestElementRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startTrackingResponseMessageResponse">
+    <wsdl:part name="parameters" element="tns:startTrackingResponseElementResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTripPlanResponseMessageResponse">
+    <wsdl:part name="parameters" element="tns:getTripPlanResponseElementResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startTrackingRequestMessageRequest">
+    <wsdl:part name="parameters" element="tns:startTrackingRequestElementRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="STAppPT">
+    <wsdl:operation name="getTripPlan">
+      <wsdl:input message="tns:getTripPlanRequestMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getTripPlanResponseMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startTracking">
+      <wsdl:input message="tns:startTrackingRequestMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:startTrackingResponseMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TouristAgentSTAppPT">
+    <wsdl:operation name="setTripPlan">
+      <wsdl:input message="tns:getTripPlanResponseMessageRequest">
+    </wsdl:input>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="STAppBinding" type="tns:STAppPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getTripPlan">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startTracking">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TouristAgentSTAppBinding" type="tns:TouristAgentSTAppPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="setTripPlan">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TouristAgentSTAppService">
+    <wsdl:port name="TouristAgentSTAppPort" binding="tns:TouristAgentSTAppBinding">
+      <soap:address location="http://localhost:8080/ode/processes/TouristAgentSTApp"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:service name="STAppService">
+    <wsdl:port name="STAppPort" binding="tns:STAppBinding">
+      <soap:address location="http://localhost:8080/ode/processes/STApp"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

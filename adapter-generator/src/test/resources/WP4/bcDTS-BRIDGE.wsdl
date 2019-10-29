@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://eu.chorevolution.urbantrafficcoordination.seada/bc/dtsbridge"
+             xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+             xmlns:wsp="http://www.w3.org/ns/ws-policy"
+             xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+             xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://eu.chorevolution.urbantrafficcoordination.seada/bc/dtsbridge"
+             name="DTS-BRIDGE">
+    <types>
+	    <xsd:schema version="1.0" targetNamespace="http://eu.chorevolution.urbantrafficcoordination.seada/bc/dtsbridge">
+	        <xsd:element name="segmentInformationRequestElementRequest" type="tns:segmentInformationRequest"/>
+	        <xsd:element name="segmentBridgeInformationResponseElementResponse" type="tns:segmentBridgeInformationResponse"/>       
+	        	<xsd:complexType name="segmentInformationRequest">
+				<xsd:sequence>
+				    <xsd:element name="waypoint0" type="tns:waypoint"/>
+				    <xsd:element name="waypoint1" type="tns:waypoint"/>
+				</xsd:sequence>
+			</xsd:complexType>	
+			<xsd:complexType name="waypoint">
+			    <xsd:sequence>
+			        <xsd:element name="lat" type="xsd:double"/>
+			        <xsd:element name="lon" type="xsd:double"/>
+			    </xsd:sequence> 
+			</xsd:complexType>
+			<xsd:complexType name="segmentBridgeInformationResponse">
+				<xsd:sequence>
+				    <xsd:element name="waypoint0" type="tns:waypoint"/>
+				    <xsd:element name="waypoint1" type="tns:waypoint"/>
+				    <xsd:element name="bridgeStatus" type="xsd:boolean"/>
+				    <xsd:element name="type" type="xsd:string"/>	
+					<xsd:element name="closureStatus" type="tns:closureStatus"/>
+					<xsd:element name="nextClosure" type="tns:nextClosure"/>			    	    
+				</xsd:sequence>
+			</xsd:complexType>			    
+	        <xsd:complexType name="closureStatus">
+	            <xsd:sequence>
+	                <xsd:element name="isClosed" type="xsd:boolean"/>
+	                <xsd:element name="opensAtTimeMillis" type="xsd:long"/>
+	            </xsd:sequence>
+	        </xsd:complexType>       
+	        <xsd:complexType name="nextClosure">
+	            <xsd:sequence>
+	                <xsd:element name="fromMillis" type="xsd:long"/>
+	                <xsd:element name="toMillis" type="xsd:long"/>
+	            </xsd:sequence>
+	        </xsd:complexType>  
+	    </xsd:schema>
+    </types>   
+    <message name="segmentInformationRequest">
+        <part name="parameters" element="tns:segmentInformationRequestElementRequest"/>
+    </message>
+    <message name="segmentBridgeInformationResponse">
+        <part name="parameters" element="tns:segmentBridgeInformationResponseElementResponse"/>
+    </message>
+    <portType name="DTS-BRIDGEPT">
+        <operation name="bridgeStatusInformation">
+            <input message="tns:segmentInformationRequest"/>
+            <output message="tns:segmentBridgeInformationResponse"/>
+        </operation>
+    </portType> 
+    <binding name="DTS-BRIDGEBinding" type="tns:DTS-BRIDGEPT">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
+	      <operation name="bridgeStatusInformation">
+	          <soap:operation soapAction=""/>
+		      <input>
+	              <soap:body use="literal"/>
+		      </input>
+		      <output>
+	              <soap:body use="literal"/>
+		      </output>
+	      </operation>
+    </binding>
+    <service name="DTS-BRIDGEService">
+      <port name="DTS-BRIDGEPort" binding="tns:DTS-BRIDGEBinding">
+          <soap:address location="http://localhost:9090/bcDTS-BRIDGE/bcDTS-BRIDGE"></soap:address>
+      </port>
+    </service>
+</definitions>

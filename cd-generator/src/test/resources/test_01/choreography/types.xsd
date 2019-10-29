@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright 2015 The CHOReVOLUTION project Licensed under the Apache License, 
+	Version 2.0 (the "License"); you may not use this file except in compliance 
+	with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+<xsd:schema xmlns="http://eu.chorevolution.smartmobilitytourism/types" xmlns:tns="http://eu.chorevolution.smartmobilitytourism/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://eu.chorevolution.smartmobilitytourism/types"> 
+
+	<xsd:complexType name="getTripPlanRequest">
+		<xsd:sequence>
+			<xsd:element name="lat" type="xsd:double"/>
+			<xsd:element name="lon" type="xsd:double"/>
+			<xsd:element name="range" type="xsd:int"/>
+			<xsd:element name="tag" type="xsd:string"/>
+			<xsd:element name="tripBy" type="xsd:int"/>			
+		</xsd:sequence>
+	</xsd:complexType>
+	 
+	<xsd:complexType name="getPoiListRequest">
+  		<xsd:sequence> 		
+  			<xsd:element name="lat" type="xsd:double"/>
+  			<xsd:element name="lon" type="xsd:double"/>
+  			<xsd:element name="range" type="xsd:int"/>
+  			<xsd:element name="tag" type="tns:tags"/>
+  			<xsd:element name="session" type="xsd:string"/>
+  		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="tags">
+		<xsd:restriction base="xsd:string">
+    		<xsd:enumeration value="worship"/>
+    		<xsd:enumeration value="restaurant"/>
+    		<xsd:enumeration value="school"/>
+		   	<xsd:enumeration value="bus"/>
+		   	<xsd:enumeration value="hospital"/>
+		   	<xsd:enumeration value="tourism"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+   	<xsd:complexType name="getPoiListResponse">
+    	<xsd:sequence>
+        	<xsd:element name="session" type="xsd:string"/>
+        	<xsd:element maxOccurs="unbounded" minOccurs="0" name="poi" type="tns:poiType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+	<xsd:complexType name="poiType">
+    	<xsd:sequence>
+	    	<xsd:element name="lat" type="xsd:double"/>
+        	<xsd:element name="lon" type="xsd:double"/>
+        	<xsd:element name="type" type="xsd:string"/>
+        	<xsd:element name="name" type="xsd:string"/>
+        	<xsd:element minOccurs="0" name="poiInfo" nillable="true" type="tns:poiInfo"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="poiInfo">
+    	<xsd:sequence>
+        	<xsd:element name="address" type="tns:addressType"/>
+    		<xsd:element name="busInfo" type="tns:busInfoType"/>
+        	<xsd:element name="religion" type="tns:religionType"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+
+	<xsd:complexType name="addressType">
+    	<xsd:sequence>
+        	<xsd:element name="street" type="xsd:string"/>
+        	<xsd:element name="houseNumber" type="xsd:string"/>
+        	<xsd:element name="phone" type="xsd:string"/>
+       	</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="busInfoType">
+    	<xsd:sequence>
+     		<xsd:element name="lines" type="xsd:string"/>
+     		<xsd:element name="operator" type="xsd:string"/>
+     		<xsd:element name="stopId" type="xsd:string"/>
+    	</xsd:sequence>
+	</xsd:complexType>
+	
+    <xsd:complexType name="religionType">
+        	<xsd:sequence>
+	        	<xsd:element name="religion" type="xsd:string"/>
+	        	<xsd:element name="denomination" type="xsd:string"/>
+        	</xsd:sequence>
+    </xsd:complexType>	
+
+	<xsd:complexType name="getTripPlanResponse">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="Trips" type="tns:TripInformationsType"/>
+        	<xsd:element maxOccurs="unbounded" minOccurs="0" name="poi" type="tns:poiType"/>	
+		</xsd:sequence>	
+	</xsd:complexType>	
+
+	<xsd:complexType name="TripInformationsType">
+		<xsd:sequence>
+			<xsd:element name="fromPoiName" type="xsd:string"/>
+			<xsd:element name="toPoiName" type="xsd:string"/>
+			<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+				<xsd:element name="segments" type="tns:SegmentType"/>
+			</xsd:sequence>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="SegmentType">
+		<xsd:sequence>
+			<xsd:element name="type" type="xsd:string"/>
+			<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+				<xsd:element name="positions" type="tns:PositionType"/>
+			</xsd:sequence>
+			<xsd:element name="busDetails" type="tns:BusDetailsType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="PositionType">
+		<xsd:sequence>
+			<xsd:element name="lat" type="xsd:double"/>
+			<xsd:element name="lon" type="xsd:double"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="BusDetailsType">
+		<xsd:sequence>
+			<xsd:element name="direction" type="xsd:string"/>
+			<xsd:element name="dropInNode" type="xsd:string"/>
+			<xsd:element name="dropOffNode" type="xsd:string"/>
+			<xsd:element name="line" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+
+
+		
+</xsd:schema>

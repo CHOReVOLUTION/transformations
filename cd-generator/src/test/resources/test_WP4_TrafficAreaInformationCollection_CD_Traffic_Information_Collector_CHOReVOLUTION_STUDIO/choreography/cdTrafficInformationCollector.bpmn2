@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- origin at X=0.0 Y=0.0 -->
+<bpmn2:definitions xmlns="http://eu.chorevolution.urbantrafficcoordination.trafficinformationcollection" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmn2_1="http://www.bpmn2.org/bpmn2" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ext="http://org.eclipse.bpmn2/ext" xmlns:types="http://eu.chorevolution.urbantrafficcoordination.trafficinformationcollection/types" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.3.2.Final-v20161020-1541-B59" targetNamespace="http://eu.chorevolution.urbantrafficcoordination.trafficinformationcollection">
+  <bpmn2:import importType="http://www.w3.org/2001/XMLSchema" location="types.xsd" namespace="http://eu.chorevolution.urbantrafficcoordination.trafficinformationcollection/types"/>
+  <bpmn2:itemDefinition id="ItemDefinition_1" structureRef="types:areaSegmentsRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_2" structureRef="types:areaSegmentsResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_3" structureRef="types:segmentTrafficInformationRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_4" structureRef="types:segmentInformationRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_5" structureRef="types:segmentAccidentInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_6" structureRef="types:segmentBridgeInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_7" structureRef="types:segmentCongestionInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_8" structureRef="types:segmentWeatherInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_9" structureRef="types:segmentTrafficInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_10" structureRef="types:areaTrafficInformation"/>
+  <bpmn2:itemDefinition id="ItemDefinition_11" structureRef="types:areaOfInterestRequest"/>
+  <bpmn2:message id="Message_2" itemRef="#ItemDefinition_1" name="areaSegmentsRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_4" itemRef="#ItemDefinition_2" name="areaSegmentsResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_6" itemRef="#ItemDefinition_10" name="areaTrafficInformation">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_3" itemRef="#ItemDefinition_3" name="segmentTrafficInformationRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_7" itemRef="#ItemDefinition_9" name="segmentTrafficInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_9" itemRef="#ItemDefinition_4" name="segmentInformationRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_14" itemRef="#ItemDefinition_5" name="segmentAccidentInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_16" itemRef="#ItemDefinition_6" name="segmentBridgeInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_18" itemRef="#ItemDefinition_7" name="segmentCongestionInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_20" itemRef="#ItemDefinition_8" name="segmentWeatherInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_5" itemRef="#ItemDefinition_11" name="areaOfInterestRequest">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:choreography id="Choreography_1" name="TrafficAreaInformationCollection">
+    <bpmn2:participant id="Participant_1" name="SEADA-TRAFFIC">
+      <bpmn2:extensionElements>
+        <ext:style ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_23" name="Traffic Information Collector">
+      <bpmn2:extensionElements>
+        <ext:style ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:messageFlow id="MessageFlow_14" messageRef="#Message_5" name="Message Flow 14" sourceRef="#Participant_23" targetRef="#Participant_1"/>
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" sourceRef="StartEvent_1" targetRef="ChoreographyTask_9"/>
+    <bpmn2:endEvent id="EndEvent_1">
+      <bpmn2:incoming>SequenceFlow_18</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:intermediateCatchEvent id="IntermediateCatchEvent_1">
+      <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_18</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_2"/>
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_18" sourceRef="IntermediateCatchEvent_1" targetRef="EndEvent_1"/>
+    <bpmn2:choreographyTask id="ChoreographyTask_9" name="Set Area Of Interest" initiatingParticipantRef="#Participant_23">
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_23</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_1</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_14</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" sourceRef="ChoreographyTask_9" targetRef="IntermediateCatchEvent_1"/>
+  </bpmn2:choreography>
+</bpmn2:definitions>

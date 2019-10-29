@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://eu.chorevolution.gettingstarted/services/paymentsystem"
+             xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+             xmlns:wsp="http://www.w3.org/ns/ws-policy"
+             xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+             xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://eu.chorevolution.gettingstarted/services/paymentsystem"
+             name="PaymentSystemService">
+    <types>
+    <xsd:schema version="1.0" targetNamespace="http://eu.chorevolution.gettingstarted/services/paymentsystem">
+        <xsd:element name="paymentInformationElementRequest" type="tns:paymentInformation"/>
+	  	<xsd:complexType name="paymentInformation">
+	  		<xsd:sequence>
+	           <xsd:element name="clientInfo" type="tns:clientDetails"/>             
+	           <xsd:element name="totalAmount" type="xsd:double"/>                     			
+	  		</xsd:sequence>  		
+	  	</xsd:complexType>
+	    <xsd:complexType name="clientDetails">
+	        <xsd:sequence>
+	            <xsd:element name="id" type="xsd:int"/>
+	            <xsd:element name="name" type="xsd:string"/>
+	            <xsd:element name="surname" type="xsd:string"/>    
+	            <xsd:element name="email" type="xsd:string"/>              
+	            <xsd:element name="phone" type="xsd:string"/>                    
+	            <xsd:element name="address" type="tns:addressDetails"/>          
+	            <xsd:element name="credit_card" type="tns:creditCardDetails"/>            
+	        </xsd:sequence>
+	    </xsd:complexType>	
+	    <xsd:complexType name="addressDetails">
+	        <xsd:sequence>
+	            <xsd:element name="city" type="xsd:string"/>       
+	            <xsd:element name="street" type="xsd:string"/>
+	            <xsd:element name="postcode" type="xsd:int"/>            
+	        </xsd:sequence>
+	    </xsd:complexType>
+	    <xsd:complexType name="creditCardDetails">
+	        <xsd:sequence>
+	            <xsd:element name="number" type="xsd:int"/>       
+	            <xsd:element name="paymentCircuit" type="tns:circuitType"/>           
+	        </xsd:sequence>
+	    </xsd:complexType>	
+		<xsd:simpleType name="circuitType">
+			<xsd:restriction base="xsd:string">
+	    		<xsd:enumeration value="mastercard"/>		
+	    		<xsd:enumeration value="vpay"/>
+	    		<xsd:enumeration value="maestro"/>
+	      		<xsd:enumeration value="americanexpress"/>
+	    		<xsd:enumeration value="visa"/>      		  		
+			</xsd:restriction>
+		</xsd:simpleType>	    	      	   			    	    	   		   	 			   	            	   		       
+    </xsd:schema>
+    </types>    
+    <message name="paymentInformationMessageRequest">
+        <part name="parameters" element="tns:paymentInformationElementRequest"/>
+    </message>   
+    <portType name="PaymentSystemPT">    
+        <operation name="payment">
+            <input wsam:Action="http://eu.chorevolution.gettingstarted/paymentsystem/paymentInformation" message="tns:paymentInformationMessageRequest"/>
+        </operation> 		 			
+    </portType> 
+    <binding name="PaymentSystemBinding" type="tns:PaymentSystemPT">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>   
+	    <operation name="payment">
+	    	<soap:operation soapAction=""/>
+	        <input>
+	        	<soap:body use="literal"/>
+	      	</input>
+	    </operation> 	    
+    </binding>
+    <service name="PaymentSystemService">
+      <port name="PaymentSystemPort" binding="tns:PaymentSystemBinding">
+          <soap:address location="http://localhost:9090/PaymentSystem/PaymentSystem"></soap:address>
+      </port>
+    </service>
+</definitions>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://eu.chorevolution.urbantrafficcoordination.seada/services/dtsareatraffic"
+             xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+             xmlns:wsp="http://www.w3.org/ns/ws-policy"
+             xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+             xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://eu.chorevolution.urbantrafficcoordination.seada/services/dtsareatraffic"
+             name="DTS-AREA-TRAFFIC">
+    <types>
+	    <xsd:schema version="1.0" targetNamespace="http://eu.chorevolution.urbantrafficcoordination.seada/services/dtsareatraffic">
+	        <xsd:element name="areaSegmentsRequestElementRequest" type="tns:areaSegmentsRequest"/>
+	        <xsd:element name="areaSegmentsResponseElementResponse" type="tns:areaSegmentsResponse"/> 
+	        <xsd:element name="areaTrafficInformationElementRequest" type="tns:areaTrafficInformation"/>	
+	        <xsd:element name="trafficRouteInformationRequestElementRequest" type="tns:trafficRouteInformationRequest"/>
+	        <xsd:element name="trafficRouteInformationResponseElementResponse" type="tns:trafficRouteInformationResponse"/>	        	                        
+			<xsd:complexType name="areaSegmentsRequest">
+				<xsd:sequence>  
+				   	<xsd:element name="origin" type="tns:waypoint"/>
+				   	<xsd:element name="destination" type="tns:waypoint"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="areaSegmentsResponse">
+			    <xsd:sequence maxOccurs="unbounded" minOccurs="1">
+			        <xsd:element name="areaSegments" type="tns:routeSegment"/>
+			    </xsd:sequence>
+			</xsd:complexType>							
+		    <xsd:complexType name="routeSegment">
+				<xsd:sequence>
+				    <xsd:element name="waypoint0" type="tns:waypoint"/>
+				    <xsd:element name="waypoint1" type="tns:waypoint"/>
+					<xsd:element name="instruction" type="xsd:string"/>
+					<xsd:element name="time" type="xsd:int"/>
+					<xsd:element name="distance" type="xsd:int"/>
+					<xsd:element name="polyline" type="xsd:string"/>
+				</xsd:sequence>
+		    </xsd:complexType>	
+		    <xsd:complexType name="waypoint">
+		        <xsd:sequence>
+		            <xsd:element name="lat" type="xsd:double"/>
+		            <xsd:element name="lon" type="xsd:double"/>
+		        </xsd:sequence> 
+		    </xsd:complexType>			    
+			<xsd:complexType name="areaTrafficInformation">
+				<xsd:sequence  maxOccurs="unbounded" minOccurs="1">
+				    <xsd:element name="areaSegmentsTrafficInfo" type="tns:routeSegmentInfo"/>
+				</xsd:sequence>
+			</xsd:complexType>				
+		    <xsd:complexType name="routeSegmentInfo">
+				<xsd:sequence>
+					<xsd:element name="id" type="xsd:int"/>
+				    <xsd:element name="routeSegment" type="tns:routeSegment"/>
+				    <xsd:element name="bridgeStatus" type="xsd:int"/>
+				    <xsd:element name="weatherInfo" type="tns:weatherCondition"/>
+				    <xsd:element name="situationInfo" type="xsd:string"/>
+					<xsd:element name="ecoValue" type="xsd:double"/>
+					<xsd:element name="congestion" type="xsd:double"/>	
+					<xsd:element name="speed" type="xsd:double"/>	
+					<xsd:element name="updatedAt" type="xsd:string"/>	
+				    <xsd:element name="type" type="xsd:string"/>		    
+				</xsd:sequence>
+		    </xsd:complexType>
+			<xsd:complexType name="weatherCondition">
+			    <xsd:sequence>
+			        <xsd:element name="roadTemperature" type="xsd:double"/>
+			        <xsd:element name="airTemperature" type="xsd:double"/>   
+			        <xsd:element name="airRelativeHumidity" type="xsd:double"/>
+			        <xsd:element name="windForce" type="xsd:double"/>
+			    </xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="trafficRouteInformationRequest"> 
+				<xsd:sequence maxOccurs="unbounded" minOccurs="1">
+				    <xsd:element name="routes" type="tns:route"/>
+				</xsd:sequence>
+			</xsd:complexType>	
+		    <xsd:complexType name="route">
+				<xsd:sequence>
+				    <xsd:element name="id" type="xsd:int"/>
+					<xsd:element name="provider" type="xsd:string"/>
+					<xsd:element name="origin" type="tns:waypoint"/>
+				    <xsd:element name="destination" type="tns:waypoint"/>
+					<xsd:element name="routePolyline" type="xsd:string"/>
+					<xsd:sequence maxOccurs="unbounded" minOccurs="1">
+				        <xsd:element name="routeSegments" type="tns:routeSegment"/>
+				    </xsd:sequence>
+				</xsd:sequence>
+		    </xsd:complexType>	
+			<xsd:complexType name="trafficRouteInformationResponse"> 
+				<xsd:sequence maxOccurs="unbounded" minOccurs="1">
+				    <xsd:element name="routesInfo" type="tns:routeInfo"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		    <xsd:complexType name="routeInfo">
+				<xsd:sequence>
+				    <xsd:element name="id" type="xsd:int"/>
+					<xsd:element name="provider" type="xsd:string"/>
+					<xsd:element name="origin" type="tns:waypoint"/>
+				    <xsd:element name="destination" type="tns:waypoint"/>
+					<xsd:element name="routePolyline" type="xsd:string"/>
+					<xsd:sequence maxOccurs="unbounded" minOccurs="1">
+				        <xsd:element name="routeSegmentInfo" type="tns:routeSegmentInfo"/>
+				    </xsd:sequence>
+				</xsd:sequence>
+		    </xsd:complexType>						    	    												    								    			            		    	    		                
+	    </xsd:schema>
+    </types>
+    <message name="areaSegmentsRequest">
+        <part name="parameters" element="tns:areaSegmentsRequestElementRequest"/>
+    </message>
+    <message name="areaSegmentsResponse">
+        <part name="parameters" element="tns:areaSegmentsResponseElementResponse"/>
+    </message>
+    <message name="areaTrafficInformation">
+        <part name="parameters" element="tns:areaTrafficInformationElementRequest"/>
+    </message> 
+    <message name="trafficRouteInformationRequest">
+        <part name="parameters" element="tns:trafficRouteInformationRequestElementRequest"/>
+    </message>
+    <message name="trafficRouteInformationResponse">
+        <part name="parameters" element="tns:trafficRouteInformationResponseElementResponse"/>
+    </message>           
+    <portType name="DTS-AREA-TRAFFICPT">
+        <operation name="getAreaSegments">
+            <input message="tns:areaSegmentsRequest"/>
+            <output message="tns:areaSegmentsResponse"/>
+        </operation>
+        <operation name="setTrafficAreaInformation">
+            <input message="tns:areaTrafficInformation"/>
+        </operation>  
+        <operation name="getTrafficRouteInformation">
+            <input message="tns:trafficRouteInformationRequest"/>
+            <output message="tns:trafficRouteInformationResponse"/>
+        </operation>              
+    </portType> 
+    <binding name="DTS-AREA-TRAFFICBinding" type="tns:DTS-AREA-TRAFFICPT">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
+	      <operation name="getAreaSegments">
+	          <soap:operation soapAction=""/>
+		      <input>
+	              <soap:body use="literal"/>
+		      </input>
+		      <output>
+	              <soap:body use="literal"/>
+		      </output>
+	      </operation>
+	      <operation name="setTrafficAreaInformation">
+	          <soap:operation soapAction=""/>
+		      <input>
+	              <soap:body use="literal"/>
+		      </input>
+	      </operation>
+	      <operation name="getTrafficRouteInformation">
+	          <soap:operation soapAction=""/>
+		      <input>
+	              <soap:body use="literal"/>
+		      </input>
+		      <output>
+	              <soap:body use="literal"/>
+		      </output>
+	      </operation>	      	      
+    </binding>
+    <service name="DTS-AREA-TRAFFICService">
+      <port name="DTS-AREA-TRAFFICPort" binding="tns:DTS-AREA-TRAFFICBinding">
+          <soap:address location="http://localhost:9090/DTS-AREA-TRAFFIC/DTS-AREA-TRAFFIC"></soap:address>
+      </port>
+    </service>
+</definitions>

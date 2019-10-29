@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gidl:GIDLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gidl="http://eu.chorevolution/modelingnotations/gidl" hostAddress="http://jinx.viktoria.chalmers.se:3000/" protocol="REST">
+  <hasInterfaces role="provider">
+    <hasOperations name="waypointWeatherInformation" type="two_way_sync" qos="reliable">
+      <hasScope name="waypointWeatherInformation" verb="POST" uri="waypointWeatherInformation"/>
+      <inputData name="request" context="body">
+        <hasDataType xsi:type="gidl:ComplexType" name="inputDataType" occurences="one">
+			<hasDataType xsi:type="gidl:ComplexType" name="waypoint0" occurences="one">
+				<hasDataType xsi:type="gidl:SimpleType" name="lat" occurences="one" type="string"/>
+				<hasDataType xsi:type="gidl:SimpleType" name="lon" occurences="one" type="string"/>
+			</hasDataType>
+		    <hasDataType xsi:type="gidl:ComplexType" name="waypoint1" occurences="one">
+				<hasDataType xsi:type="gidl:SimpleType" name="lat" occurences="one" type="string"/>
+				<hasDataType xsi:type="gidl:SimpleType" name="lon" occurences="one" type="string"/>
+			</hasDataType>
+        </hasDataType>
+      </inputData>
+      <outputData name="response" context="body">
+		<hasDataType xsi:type="gidl:ComplexType" name="outputDataType" occurences="one">
+			<hasDataType xsi:type="gidl:ComplexType" name="waypoint0" occurences="one">
+				<hasDataType xsi:type="gidl:SimpleType" name="lat" occurences="one" type="string"/>
+				<hasDataType xsi:type="gidl:SimpleType" name="lon" occurences="one" type="string"/>
+			</hasDataType>
+			<hasDataType xsi:type="gidl:ComplexType" name="waypoint1" occurences="one">
+				<hasDataType xsi:type="gidl:SimpleType" name="lat" occurences="one" type="string"/>
+				<hasDataType xsi:type="gidl:SimpleType" name="lon" occurences="one" type="string"/>
+			</hasDataType>
+			<hasDataType xsi:type="gidl:ComplexType" name="weatherInfo" occurences="one">
+				<hasDataType xsi:type="gidl:SimpleType" name="roadTemperature" occurences="one" type="string"/>
+				<hasDataType xsi:type="gidl:SimpleType" name="airTemperature" occurences="one" type="string"/>
+				<hasDataType xsi:type="gidl:SimpleType" name="airRelativeHumidity" occurences="one" type="string"/>
+				<hasDataType xsi:type="gidl:SimpleType" name="windForce" occurences="one" type="string"/>
+			</hasDataType>
+			<hasDataType xsi:type="gidl:SimpleType" name="type" occurences="one" type="string"/>
+		</hasDataType>
+      </outputData>    
+	</hasOperations>
+  </hasInterfaces>
+</gidl:GIDLModel>

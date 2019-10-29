@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="personalweatherstations"
+	targetNamespace="http://it.softeco.chorevolution.smt/personalweatherstations"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy"
+	xmlns:tns="http://it.softeco.chorevolution.smt/personalweatherstations"
+	xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+	<types>
+		<xsd:schema
+			targetNamespace="http://it.softeco.chorevolution.smt/personalweatherstations">
+			<xsd:element name="weatherItemsRequest" type="tns:weatherItemsRequest" />
+			<xsd:element name="weatherItemsResponse" type="tns:weatherItemsResponse" />
+			<xsd:complexType name="weatherItemsRequest">
+				<xsd:sequence>
+					<xsd:element name="upperRightLat" type="xsd:double" />
+					<xsd:element name="upperRightLon" type="xsd:double" />
+					<xsd:element name="lowerLeftLat" type="xsd:double" />
+					<xsd:element name="lowerLeftLon" type="xsd:double" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="weatherItemsResponse">
+				<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+					<xsd:element name="weatherStations" type="tns:WeatherType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="WeatherType">
+				<xsd:sequence>
+					<xsd:element name="temperature" type="xsd:float" />
+					<xsd:element name="humidity" type="xsd:int" />
+					<xsd:element name="lat" type="xsd:double" />
+					<xsd:element name="lon" type="xsd:double" />
+					<xsd:element name="pressure" type="xsd:float" />
+					<xsd:element name="windSpeed" type="xsd:float" />
+					<xsd:element name="rain" type="xsd:float" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</types>
+	<message name="weatherItemsRequest">
+		<part name="parameters" element="tns:weatherItemsRequest">
+		</part>
+	</message>
+	<message name="weatherItemsResponse">
+		<part name="parameters" element="tns:weatherItemsResponse">
+		</part>
+	</message>
+	<portType name="PersonalWeatherStationsPT">
+		<operation name="getMeteorologicalInformation">
+			<input message="tns:weatherItemsRequest">
+			</input>
+			<output message="tns:weatherItemsResponse">
+			</output>
+		</operation>
+	</portType>
+	<binding name="PersonalWeatherStationsBinding" type="tns:PersonalWeatherStationsPT">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="getMeteorologicalInformation">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="PersonalWeatherStationsService">
+		<port name="PersonalWeatherStationsPort" binding="tns:PersonalWeatherStationsBinding">
+			<soap:address location="http://localhost:9090/personalweatherstations/personalweatherstations" />
+		</port>
+	</service>
+</definitions>

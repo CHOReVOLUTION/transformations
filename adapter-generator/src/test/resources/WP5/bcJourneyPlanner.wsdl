@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="bcJourneyPlanner"
+	targetNamespace="http://eu.chorevolution.bc/bcJourneyPlanner"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy"
+	xmlns:tns="http://eu.chorevolution.bc/bcJourneyPlanner"
+	xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+
+	<types>
+		<xsd:schema targetNamespace="http://eu.chorevolution.bc/bcJourneyPlanner">
+			<xsd:element name="JourneyPlanningService" type="tns:JourneyPlanningService" />
+			<xsd:element name="JourneyPlanningServiceResponse" type="tns:JourneyPlanningServiceResponse" />
+
+			<xsd:complexType name="ps">
+				<xsd:sequence>
+					<xsd:element name="b" type="xsd:int"  />
+					<xsd:element name="d" type="xsd:int"  />
+					<xsd:element name="f" type="xsd:string"  />
+					<xsd:element name="m" type="xsd:int"  />
+					<xsd:element name="mc" type="xsd:boolean"  />
+					<xsd:element name="rtc" type="xsd:int"  />
+					<xsd:element name="x" type="xsd:double"  />
+					<xsd:element name="y" type="xsd:double"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="t">
+				<xsd:sequence>
+					<xsd:element name="n" type="xsd:string"  />
+					<xsd:element name="x" type="xsd:double"  />
+					<xsd:element name="y" type="xsd:double"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="vts">
+				<xsd:sequence>
+					<xsd:element name="u" type="xsd:string"  />
+					<xsd:element name="p" type="xsd:string"  />
+					<xsd:element name="d" type="xsd:string"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="f">
+				<xsd:sequence>
+					<xsd:element name="n" type="xsd:string"  />
+					<xsd:element name="x" type="xsd:double"  />
+					<xsd:element name="y" type="xsd:double"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="v">
+				<xsd:sequence>
+					<xsd:element name="d" type="xsd:string"  />
+					<xsd:element name="e" type="xsd:string"  />
+					<xsd:element name="eid" type="xsd:string"  />
+					<xsd:element name="et" type="xsd:int"  />
+					<xsd:element name="l" type="xsd:string"  />
+					<xsd:element name="s" type="xsd:string"  />
+					<xsd:element name="sid" type="xsd:string"  />
+					<xsd:element name="st" type="xsd:int"  />
+					<xsd:element name="t" type="xsd:string"  />
+					<xsd:element name="vss" type="xsd:string"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="JourneyPlanningServiceResponse">
+				<xsd:sequence>
+					<xsd:element name="outputDataType" type="tns:outputDataType"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="segs">
+				<xsd:sequence>
+					<xsd:element name="d" type="xsd:int"  />
+					<xsd:element name="du" type="xsd:int"  />
+					<xsd:element name="po" type="tns:po"  />
+					<xsd:element name="ps" type="tns:ps"  maxOccurs="unbounded"/>
+					<xsd:element name="t" type="xsd:int"  />
+					<xsd:element name="v" type="tns:v"  />
+					<xsd:element name="vts" type="tns:vts"  maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="JourneyPlanningService">
+				<xsd:sequence>
+					<xsd:element name="inputDataType" type="tns:inputDataType"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="outputDataType">
+				<xsd:sequence>
+					<xsd:element name="f" type="tns:f"  />
+					<xsd:element name="id" type="xsd:string"  />
+					<xsd:element name="t" type="tns:t"  />
+					<xsd:element name="ts" type="tns:ts"  maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="inputDataType">
+				<xsd:sequence>
+					<xsd:element name="fromLat" type="xsd:double"  />
+					<xsd:element name="fromLon" type="xsd:double"  />
+					<xsd:element name="toLat" type="xsd:double"  />
+					<xsd:element name="toLon" type="xsd:double"  />
+					<xsd:element name="modes" type="xsd:int"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="po">
+				<xsd:sequence>
+					<xsd:element name="c" type="xsd:string"  />
+					<xsd:element name="ep" type="xsd:string"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ts">
+				<xsd:sequence>
+					<xsd:element name="co" type="xsd:int"  />
+					<xsd:element name="d" type="xsd:int"  />
+					<xsd:element name="du" type="xsd:int"  />
+					<xsd:element name="dwf" type="xsd:boolean"  />
+					<xsd:element name="e" type="xsd:int"  />
+					<xsd:element name="m" type="xsd:int"  />
+					<xsd:element name="s" type="xsd:int"  />
+					<xsd:element name="segs" type="tns:segs"  maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+		</xsd:schema>
+	</types>
+	<message name="JourneyPlanningService">
+		<part name="parameters" element="tns:JourneyPlanningService">
+		</part>
+	</message>
+	<message name="JourneyPlanningServiceResponse">
+		<part name="parameters" element="tns:JourneyPlanningServiceResponse">
+		</part>
+	</message>
+	<portType name="bcJourneyPlannerPT">
+		<operation name="JourneyPlanningService">
+			<input message="tns:JourneyPlanningService">
+			</input>
+			<output message="tns:JourneyPlanningServiceResponse">
+			</output>
+		</operation>
+	</portType>
+	<binding name="bcJourneyPlannerBinding" type="tns:bcJourneyPlannerPT">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="JourneyPlanningService">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="bcJourneyPlannerService">
+		<port name="bcJourneyPlannerPort" binding="tns:bcJourneyPlannerBinding">
+			<soap:address location="http://localhost:9090/bcJourneyPlanner/bcJourneyPlanner" />
+		</port>
+	</service>
+</definitions>

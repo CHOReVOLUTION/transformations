@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="bcParking"
+	targetNamespace="http://eu.chorevolution.bc/bcParking"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy"
+	xmlns:tns="http://eu.chorevolution.bc/bcParking"
+	xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+
+	<types>
+		<xsd:schema targetNamespace="http://eu.chorevolution.bc/bcParking">
+			<xsd:element name="park" type="tns:park" />
+			<xsd:element name="parkResponse" type="tns:parkResponse" />
+
+			<xsd:complexType name="parkResponse">
+				<xsd:sequence>
+					<xsd:element name="outputDataType" type="tns:outputDataType"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="outputDataType">
+				<xsd:sequence>
+					<xsd:element name="c" type="xsd:int"  />
+					<xsd:element name="objs" type="tns:objs"  maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="park">
+				<xsd:sequence>
+					<xsd:element name="inputDataType" type="tns:inputDataType"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="inputDataType">
+				<xsd:sequence>
+					<xsd:element name="llLat" type="xsd:double"  />
+					<xsd:element name="llLon" type="xsd:double"  />
+					<xsd:element name="urLat" type="xsd:double"  />
+					<xsd:element name="urLon" type="xsd:double"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="objs">
+				<xsd:sequence>
+					<xsd:element name="c" type="xsd:int"  />
+					<xsd:element name="cp" type="xsd:int"  />
+					<xsd:element name="d" type="xsd:int"  />
+					<xsd:element name="dc" type="xsd:int"  />
+					<xsd:element name="dt" type="xsd:boolean"  />
+					<xsd:element name="id" type="xsd:string"  />
+					<xsd:element name="n" type="xsd:string"  />
+					<xsd:element name="op" type="xsd:string"  />
+					<xsd:element name="rc" type="xsd:int"  />
+					<xsd:element name="st" type="xsd:int"  />
+					<xsd:element name="t" type="xsd:boolean"  />
+					<xsd:element name="ta" type="xsd:string"  />
+					<xsd:element name="ty" type="xsd:int"  />
+					<xsd:element name="v" type="xsd:boolean"  />
+					<xsd:element name="x" type="xsd:double"  />
+					<xsd:element name="y" type="xsd:double"  />
+				</xsd:sequence>
+			</xsd:complexType>
+
+		</xsd:schema>
+	</types>
+	<message name="park">
+		<part name="parameters" element="tns:park">
+		</part>
+	</message>
+	<message name="parkResponse">
+		<part name="parameters" element="tns:parkResponse">
+		</part>
+	</message>
+	<portType name="bcParkingPT">
+		<operation name="park">
+			<input message="tns:park">
+			</input>
+			<output message="tns:parkResponse">
+			</output>
+		</operation>
+	</portType>
+	<binding name="bcParkingBinding" type="tns:bcParkingPT">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="park">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="bcParkingService">
+		<port name="bcParkingPort" binding="tns:bcParkingBinding">
+			<soap:address location="http://localhost:9090/bcParking/bcParking" />
+		</port>
+	</service>
+</definitions>

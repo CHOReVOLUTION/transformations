@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="bcPublicTransportation"
+	targetNamespace="http://eu.chorevolution.bc/bcPublicTransportation"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy"
+	xmlns:tns="http://eu.chorevolution.bc/bcPublicTransportation"
+	xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+
+	<types>
+		<xsd:schema targetNamespace="http://eu.chorevolution.bc/bcPublicTransportation">
+			<xsd:element name="publicTransportation" type="tns:publicTransportation" />
+			<xsd:element name="publicTransportationResponse" type="tns:publicTransportationResponse" />
+
+			<xsd:complexType name="publicTransportation">
+				<xsd:sequence>
+					<xsd:element name="inputDataType" type="tns:inputDataType"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="outputDataType">
+				<xsd:sequence>
+					<xsd:element name="c" type="xsd:string"  />
+					<xsd:element name="did" type="xsd:int"  />
+					<xsd:element name="id" type="xsd:int"  />
+					<xsd:element name="mod" type="xsd:int"  />
+					<xsd:element name="start" type="xsd:string"  />
+					<xsd:element name="t" type="xsd:string"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="publicTransportationResponse">
+				<xsd:sequence>
+					<xsd:element name="outputDataType" type="tns:outputDataType"  maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="inputDataType">
+				<xsd:sequence>
+					<xsd:element name="lat" type="xsd:double"  />
+					<xsd:element name="lon" type="xsd:double"  />
+				</xsd:sequence>
+			</xsd:complexType>
+
+		</xsd:schema>
+	</types>
+	<message name="publicTransportation">
+		<part name="parameters" element="tns:publicTransportation">
+		</part>
+	</message>
+	<message name="publicTransportationResponse">
+		<part name="parameters" element="tns:publicTransportationResponse">
+		</part>
+	</message>
+	<portType name="bcPublicTransportationPT">
+		<operation name="publicTransportation">
+			<input message="tns:publicTransportation">
+			</input>
+			<output message="tns:publicTransportationResponse">
+			</output>
+		</operation>
+	</portType>
+	<binding name="bcPublicTransportationBinding" type="tns:bcPublicTransportationPT">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="publicTransportation">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="bcPublicTransportationService">
+		<port name="bcPublicTransportationPort" binding="tns:bcPublicTransportationBinding">
+			<soap:address location="http://localhost:9090/bcPublicTransportation/bcPublicTransportation" />
+		</port>
+	</service>
+</definitions>

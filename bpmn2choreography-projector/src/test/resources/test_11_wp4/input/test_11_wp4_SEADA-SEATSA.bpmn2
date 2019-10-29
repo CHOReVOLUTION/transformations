@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- origin at X=0.0 Y=0.0 -->
+<!--
+Copyright 2015 The CHOReVOLUTION project
+ 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://eu.chorevolution.urbantrafficcoordination.seada" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ext="http://org.eclipse.bpmn2/ext" xmlns:types="http://eu.chorevolution.urbantrafficcoordination.seada/types" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.3.2.Final-v20161020-1541-B59" targetNamespace="http://eu.chorevolution.urbantrafficcoordination.seada">
+  <bpmn2:import importType="http://www.w3.org/2001/XMLSchema" location="types.xsd" namespace="http://eu.chorevolution.urbantrafficcoordination.seada/types"/>
+  <bpmn2:itemDefinition id="ItemDefinition_1" structureRef="types:ecoRoutesRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_2" structureRef="types:ecoRoutesResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_3" structureRef="types:routesRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_4" structureRef="types:routesSuggestion"/>
+  <bpmn2:itemDefinition id="ItemDefinition_5" structureRef="types:ecoSpeedRoutesInformationRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_6" structureRef="types:ecoSpeedRoutesInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_7" structureRef="types:trafficRouteInformationRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_8" structureRef="types:trafficRouteInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_9" structureRef="types:congestionInformationRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_10" structureRef="types:congestionInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_11" structureRef="types:bridgeStatusInformationRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_12" structureRef="types:bridgeStatusInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_13" structureRef="types:originAccidentInformationRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_14" structureRef="types:originAccidentInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_15" structureRef="types:originWeatherInformationRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_16" structureRef="types:originWeatherInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_17" structureRef="types:destinationAccidentInformationRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_18" structureRef="types:destinationAccidentInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_19" structureRef="types:destinationWeatherInformationRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_20" structureRef="types:destinationWeatherInformationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_21" structureRef="types:ecoSpeedRouteInformationRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_22" structureRef="types:ecoSpeedRouteInformationResponse"/>
+  <bpmn2:message id="Message_2" itemRef="#ItemDefinition_1" name="ecoRoutesRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_4" itemRef="#ItemDefinition_2" name="ecoRoutesResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_3" itemRef="#ItemDefinition_3" name="routesRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_7" itemRef="#ItemDefinition_4" name="routesSuggestion">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_9" itemRef="#ItemDefinition_4" name="routesSuggestion">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_5" itemRef="#ItemDefinition_5" name="ecoSpeedRoutesInformationRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_8" itemRef="#ItemDefinition_6" name="ecoSpeedRoutesInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_12" itemRef="#ItemDefinition_7" name="trafficRouteInformationRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_14" itemRef="#ItemDefinition_8" name="trafficRouteInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_6" itemRef="#ItemDefinition_9" name="congestionInformationRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_11" itemRef="#ItemDefinition_10" name="congestionInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_15" itemRef="#ItemDefinition_11" name="bridgeStatusInformationRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_17" itemRef="#ItemDefinition_12" name="bridgeStatusInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_19" itemRef="#ItemDefinition_13" name="originAccidentInformationRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_21" itemRef="#ItemDefinition_14" name="originAccidentInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_24" itemRef="#ItemDefinition_15" name="originWeatherInformationRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_26" itemRef="#ItemDefinition_16" name="originWeatherInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_10" itemRef="#ItemDefinition_21" name="ecoSpeedRouteInformationRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_16" itemRef="#ItemDefinition_22" name="ecoSpeedRouteInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_13" itemRef="#ItemDefinition_17" name="destinationAccidentInformationRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_20" itemRef="#ItemDefinition_18" name="destinationAccidentInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_23" itemRef="#ItemDefinition_19" name="destinationWeatherInformationRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_27" itemRef="#ItemDefinition_20" name="destinationWeatherInformationResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:choreography id="Choreography_1" name="SEADA">
+    <bpmn2:participant id="Participant_1" name="ND">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,9.0,-,-" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_2" name="SEADA-SEARP">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,9.0,-,-" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_23" name="SEADA-SEATSA">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,9.0,-,-" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_8" name="SEADA-TRAFFIC">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,9.0,-,-" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:messageFlow id="MessageFlow_19" messageRef="#Message_5" name="Message Flow 19" sourceRef="#Participant_1" targetRef="#Participant_23"/>
+    <bpmn2:messageFlow id="MessageFlow_11" messageRef="#Message_4" name="Message Flow 11" sourceRef="#Participant_2" targetRef="#Participant_1"/>
+    <bpmn2:messageFlow id="MessageFlow_12" messageRef="#Message_4" name="Message Flow 12" sourceRef="#Participant_2" targetRef="#Participant_1"/>
+    <bpmn2:messageFlow id="MessageFlow_22" messageRef="#Message_8" name="Message Flow 22" sourceRef="#Participant_2" targetRef="#Participant_1"/>
+    <bpmn2:messageFlow id="MessageFlow_23" messageRef="#Message_8" name="Message Flow 23" sourceRef="#Participant_23" targetRef="#Participant_1"/>
+    <bpmn2:messageFlow id="MessageFlow_24" messageRef="#Message_10" name="Message Flow 24" sourceRef="#Participant_1" targetRef="#Participant_23"/>
+    <bpmn2:messageFlow id="MessageFlow_25" messageRef="#Message_16" name="Message Flow 25" sourceRef="#Participant_23" targetRef="#Participant_1"/>
+    <bpmn2:startEvent id="StartEvent_1" name="Triggered By The Driver">
+      <bpmn2:outgoing>SequenceFlow_26</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:endEvent id="EndEvent_1">
+      <bpmn2:incoming>SequenceFlow_34</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:subChoreography id="SubChoreography_5" name="Eco Speed Routes Information Collection" initiatingParticipantRef="#Participant_2">
+      <bpmn2:incoming>SequenceFlow_26</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_30</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_35</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_28</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_2</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_23</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_8</bpmn2:participantRef>
+    </bpmn2:subChoreography>
+    <bpmn2:sequenceFlow id="SequenceFlow_26" sourceRef="StartEvent_1" targetRef="SubChoreography_5"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_28" sourceRef="SubChoreography_5" targetRef="EventBasedGateway_1"/>
+    <bpmn2:eventBasedGateway id="EventBasedGateway_1" gatewayDirection="Diverging">
+      <bpmn2:incoming>SequenceFlow_28</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_30</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_32</bpmn2:outgoing>
+    </bpmn2:eventBasedGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_30" name="route not accepted" sourceRef="EventBasedGateway_1" targetRef="SubChoreography_5"/>
+    <bpmn2:subChoreography id="SubChoreography_6" name="Eco Friendly Route Information Collection" initiatingParticipantRef="#Participant_23">
+      <bpmn2:incoming>SequenceFlow_24</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_23</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_8</bpmn2:participantRef>
+    </bpmn2:subChoreography>
+    <bpmn2:sequenceFlow id="SequenceFlow_32" name="route accepted" sourceRef="EventBasedGateway_1" targetRef="ChoreographyTask_13"/>
+    <bpmn2:eventBasedGateway id="EventBasedGateway_2" gatewayDirection="Diverging">
+      <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_34</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_35</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_37</bpmn2:outgoing>
+    </bpmn2:eventBasedGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_34" name="destination reached" sourceRef="EventBasedGateway_2" targetRef="EndEvent_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_35" name="new route needed" sourceRef="EventBasedGateway_2" targetRef="SubChoreography_5"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_37" sourceRef="EventBasedGateway_2" targetRef="ChoreographyTask_13"/>
+    <bpmn2:choreographyTask id="ChoreographyTask_13" name="Get Eco Speed Route Information" initiatingParticipantRef="#Participant_1">
+      <bpmn2:incoming>SequenceFlow_32</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_37</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_24</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_1</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_23</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_24</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_24" sourceRef="ChoreographyTask_13" targetRef="SubChoreography_6"/>
+    <bpmn2:choreographyTask id="ChoreographyTask_7" name="Set Eco Speed Route Information" initiatingParticipantRef="#Participant_23">
+      <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_23</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_1</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_25</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_4" sourceRef="ChoreographyTask_7" targetRef="EventBasedGateway_2"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_5" sourceRef="SubChoreography_6" targetRef="ChoreographyTask_7"/>
+  </bpmn2:choreography>
+  <bpmn2:choreography id="Choreography_2" name="Eco Speed Routes Information Collection">
+    <bpmn2:messageFlow id="MessageFlow_7" messageRef="#Message_5" name="Message Flow 7" sourceRef="#Participant_2" targetRef="#Participant_23"/>
+    <bpmn2:messageFlow id="MessageFlow_8" messageRef="#Message_8" name="Message Flow 8" sourceRef="#Participant_23" targetRef="#Participant_2"/>
+    <bpmn2:startEvent id="StartEvent_2">
+      <bpmn2:outgoing>SequenceFlow_17</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:endEvent id="EndEvent_2">
+      <bpmn2:incoming>SequenceFlow_20</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:choreographyTask id="ChoreographyTask_10" name="Get Eco Speed Routes Information" initiatingParticipantRef="#Participant_2">
+      <bpmn2:incoming>SequenceFlow_17</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_18</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_2</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_23</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_7</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:subChoreography id="SubChoreography_4" name="Eco Friendly Route Information Collection" initiatingParticipantRef="#Participant_23" loopType="Standard">
+      <bpmn2:incoming>SequenceFlow_18</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_19</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_23</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_8</bpmn2:participantRef>
+    </bpmn2:subChoreography>
+    <bpmn2:choreographyTask id="ChoreographyTask_11" name="Set Eco Speed Routes Information" initiatingParticipantRef="#Participant_23">
+      <bpmn2:incoming>SequenceFlow_19</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_20</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_23</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_2</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_8</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_17" sourceRef="StartEvent_2" targetRef="ChoreographyTask_10"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_18" sourceRef="ChoreographyTask_10" targetRef="SubChoreography_4"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_19" sourceRef="SubChoreography_4" targetRef="ChoreographyTask_11"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_20" sourceRef="ChoreographyTask_11" targetRef="EndEvent_2"/>
+  </bpmn2:choreography>
+  <bpmn2:choreography id="Choreography_3" name="Eco Friendly Route Information Collection">
+    <bpmn2:messageFlow id="MessageFlow_9" messageRef="#Message_12" name="Message Flow 9" sourceRef="#Participant_23" targetRef="#Participant_8"/>
+    <bpmn2:messageFlow id="MessageFlow_10" messageRef="#Message_14" name="Message Flow 10" sourceRef="#Participant_8" targetRef="#Participant_23"/>
+    <bpmn2:startEvent id="StartEvent_3">
+      <bpmn2:outgoing>SequenceFlow_13</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:endEvent id="EndEvent_3">
+      <bpmn2:incoming>SequenceFlow_16</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:choreographyTask id="ChoreographyTask_8" name="Get Route Traffic Information" initiatingParticipantRef="#Participant_23">
+      <bpmn2:incoming>SequenceFlow_13</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_40</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_23</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_8</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_9</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:choreographyTask id="ChoreographyTask_9" name="Set Route Traffic Information" initiatingParticipantRef="#Participant_8">
+      <bpmn2:incoming>SequenceFlow_40</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_16</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_8</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_23</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_10</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_13" sourceRef="StartEvent_3" targetRef="ChoreographyTask_8"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_16" sourceRef="ChoreographyTask_9" targetRef="EndEvent_3"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_40" sourceRef="ChoreographyTask_8" targetRef="ChoreographyTask_9"/>
+  </bpmn2:choreography>
+</bpmn2:definitions>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="TrafficInformationService" 
+             targetNamespace="http://it.softeco.chorevolution.smt/trafficinformation"  
+             xmlns="http://schemas.xmlsoap.org/wsdl/" 
+             xmlns:wsp="http://www.w3.org/ns/ws-policy" 
+             xmlns:tns="http://it.softeco.chorevolution.smt/trafficinformation" 
+             xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" 
+             xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" 
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+             xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <types>
+    <xsd:schema targetNamespace="http://it.softeco.chorevolution.smt/trafficinformation">
+	  	<xsd:element name="trafficRequest" type="tns:trafficRequest"/>
+	  	<xsd:element name="trafficResponse" type="tns:trafficResponse"/>      
+      <xsd:complexType name="trafficRequest">
+	      <xsd:sequence>
+      	  <xsd:element name="session" type="xsd:string"/>
+      	  <xsd:element name="urLat" type="xsd:double"/>
+      	  <xsd:element name="urLon" type="xsd:double"/>
+      	  <xsd:element name="llLat" type="xsd:double"/>
+      	  <xsd:element name="llLon" type="xsd:double"/>
+      	  <xsd:element name="getId" nillable="true" type="xsd:boolean"/>
+      	  <xsd:element name="getDist" nillable="true" type="xsd:boolean"/>
+      	  <xsd:element name="dt" nillable="true" type="xsd:int"/>
+      	  <xsd:element name="cenLat" nillable="true" type="xsd:double"/>
+      	  <xsd:element name="cenLon" nillable="true" type="xsd:double"/>
+      	  <xsd:element name="maxResults" nillable="true" type="xsd:int"/>
+      	  <xsd:element name="s" type="xsd:string"/>
+      	</xsd:sequence>
+	    </xsd:complexType>   
+      <xsd:complexType name="trafficResponse">
+      	<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+      		<xsd:element name="TrafficMessage" type="tns:TrafficMessageType"/>
+      	</xsd:sequence>
+      </xsd:complexType>  
+      <xsd:complexType name="TrafficMessageType">
+        <xsd:sequence>
+          <xsd:element name="x" type="xsd:float"/>
+          <xsd:element name="y" type="xsd:float"/>
+          <xsd:element name="desc" type="xsd:string"/>
+          <xsd:element name="n" type="xsd:string"/>
+          <xsd:element name="s" type="xsd:string"/>
+          <xsd:element name="e" type="xsd:string"/>
+          <xsd:element name="l" type="xsd:string"/>
+          <xsd:element name="d" type="xsd:float"/>
+          <xsd:element name="v" type="xsd:string"/>
+          <xsd:element name="ty" type="xsd:int"/>
+          <xsd:element name="dty" type="xsd:int"/>
+        </xsd:sequence>
+      </xsd:complexType>         
+    </xsd:schema>
+  </types>
+  <message name="trafficRequest">
+    <part name="parameters" element="tns:trafficRequest">
+    </part>
+  </message>
+  <message name="trafficResponse">
+    <part name="parameters" element="tns:trafficResponse">
+    </part>
+  </message>
+  <portType name="TrafficInformationPT">
+    <operation name="traffic">
+      <input message="tns:trafficRequest" wsam:Action="http://it.softeco.chorevolution.smt/trafficinformation/trafficRequest">
+    </input>
+      <output message="tns:trafficResponse" wsam:Action="http://it.softeco.chorevolution.smt/trafficinformation/trafficResponse">
+    </output>
+    </operation>
+  </portType>
+  <binding name="TrafficInformationBinding" type="tns:TrafficInformationPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="traffic">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="TrafficInformationService">
+    <port name="TrafficInformationPort" binding="tns:TrafficInformationBinding">
+      <soap:address location="http://localhost:9090/trafficinformation/trafficinformation"/>
+    </port>
+  </service>
+</definitions>

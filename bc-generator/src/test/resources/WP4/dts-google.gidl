@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gidl:GIDLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gidl="http://eu.chorevolution/modelingnotations/gidl" hostAddress="https://maps.googleapis.com/" protocol="REST">
+  <hasInterfaces role="provider">
+    <hasOperations name="google" type="two_way_sync" qos="reliable">
+      <hasScope name="google" verb="GET" uri="maps/api/directions/json"/>
+      <inputData name="request" context="query" media="json">
+		  <hasDataType xsi:type="gidl:ComplexType" name="inputDataType" minOccurs="one" maxOccurs="one">
+			<hasDataType xsi:type="gidl:SimpleType" name="key" minOccurs="one" maxOccurs="one" type="string"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="alternatives" minOccurs="one" maxOccurs="one" type="string"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="origin" minOccurs="one" maxOccurs="one" type="string"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="destination" minOccurs="one" maxOccurs="one" type="string"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="mode" minOccurs="one" maxOccurs="one" type="string"/>
+		 </hasDataType>
+      </inputData>
+      <outputData name="response" context="body" media="json">
+		<hasDataType xsi:type="gidl:ComplexType" name="outputDataType" minOccurs="one" maxOccurs="one">
+		<hasDataType xsi:type="gidl:ComplexType" name="geocoded_waypoints" minOccurs="one" maxOccurs="unbounded">
+			<hasDataType xsi:type="gidl:SimpleType" name="geocoder_status" minOccurs="one" maxOccurs="one" type="string"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="place_id" minOccurs="one" maxOccurs="one" type="string"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="types" minOccurs="one" maxOccurs="unbounded" type="string"/>
+		</hasDataType>
+		<hasDataType xsi:type="gidl:ComplexType" name="routes" minOccurs="one" maxOccurs="unbounded">
+			<hasDataType xsi:type="gidl:ComplexType" name="bounds" minOccurs="one" maxOccurs="one">
+				<hasDataType xsi:type="gidl:ComplexType" name="northeast" minOccurs="one" maxOccurs="one">
+					<hasDataType xsi:type="gidl:SimpleType" name="lat" minOccurs="one" maxOccurs="one" type="double"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="lng" minOccurs="one" maxOccurs="one" type="double"/>
+				</hasDataType>
+				<hasDataType xsi:type="gidl:ComplexType" name="southwest" minOccurs="one" maxOccurs="one">
+					<hasDataType xsi:type="gidl:SimpleType" name="lat" minOccurs="one" maxOccurs="one" type="double"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="lng" minOccurs="one" maxOccurs="one" type="double"/>
+				</hasDataType>
+			</hasDataType>	
+			<hasDataType xsi:type="gidl:SimpleType" name="copyrights" minOccurs="one" maxOccurs="one" type="string"/>
+			<hasDataType xsi:type="gidl:ComplexType" name="legs" minOccurs="one" maxOccurs="unbounded">
+				<hasDataType xsi:type="gidl:ComplexType" name="distance" minOccurs="one" maxOccurs="one">
+					<hasDataType xsi:type="gidl:SimpleType" name="text" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="value" minOccurs="one" maxOccurs="one" type="integer"/>
+				</hasDataType>
+				<hasDataType xsi:type="gidl:ComplexType" name="duration" minOccurs="one" maxOccurs="one">
+					<hasDataType xsi:type="gidl:SimpleType" name="text" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="value" minOccurs="one" maxOccurs="one" type="integer"/>
+				</hasDataType>
+				<hasDataType xsi:type="gidl:SimpleType" name="end_address" minOccurs="one" maxOccurs="one" type="string"/>
+				<hasDataType xsi:type="gidl:ComplexType" name="end_location" minOccurs="one" maxOccurs="one">
+					<hasDataType xsi:type="gidl:SimpleType" name="lat" minOccurs="one" maxOccurs="one" type="double"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="lng" minOccurs="one" maxOccurs="one" type="double"/>
+				</hasDataType>
+				<hasDataType xsi:type="gidl:SimpleType" name="start_address" minOccurs="one" maxOccurs="one" type="string"/>
+				<hasDataType xsi:type="gidl:ComplexType" name="start_location" minOccurs="one" maxOccurs="one">
+					<hasDataType xsi:type="gidl:SimpleType" name="lat" minOccurs="one" maxOccurs="one" type="double"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="lng" minOccurs="one" maxOccurs="one" type="double"/>
+				</hasDataType>
+				<hasDataType xsi:type="gidl:ComplexType" name="steps" minOccurs="one" maxOccurs="unbounded">
+					<hasDataType xsi:type="gidl:ComplexType" name="distance" minOccurs="one" maxOccurs="one">
+						<hasDataType xsi:type="gidl:SimpleType" name="text" minOccurs="one" maxOccurs="one" type="string"/>
+						<hasDataType xsi:type="gidl:SimpleType" name="value" minOccurs="one" maxOccurs="one" type="integer"/>
+					</hasDataType>
+					<hasDataType xsi:type="gidl:ComplexType" name="duration" minOccurs="one" maxOccurs="one">
+						<hasDataType xsi:type="gidl:SimpleType" name="text" minOccurs="one" maxOccurs="one" type="string"/>
+						<hasDataType xsi:type="gidl:SimpleType" name="value" minOccurs="one" maxOccurs="one" type="integer"/>
+					</hasDataType>
+					<hasDataType xsi:type="gidl:ComplexType" name="end_location" minOccurs="one" maxOccurs="one">
+						<hasDataType xsi:type="gidl:SimpleType" name="lat" minOccurs="one" maxOccurs="one" type="double"/>
+						<hasDataType xsi:type="gidl:SimpleType" name="lng" minOccurs="one" maxOccurs="one" type="double"/>
+					</hasDataType>
+					<hasDataType xsi:type="gidl:SimpleType" name="html_instructions" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="maneuver" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:ComplexType" name="polyline" minOccurs="one" maxOccurs="one">
+						<hasDataType xsi:type="gidl:SimpleType" name="points" minOccurs="one" maxOccurs="one" type="string"/>
+					</hasDataType>
+					<hasDataType xsi:type="gidl:ComplexType" name="start_location" minOccurs="one" maxOccurs="one">
+						<hasDataType xsi:type="gidl:SimpleType" name="lat" minOccurs="one" maxOccurs="one" type="double"/>
+						<hasDataType xsi:type="gidl:SimpleType" name="lng" minOccurs="one" maxOccurs="one" type="double"/>
+					</hasDataType>
+					<hasDataType xsi:type="gidl:SimpleType" name="travel_mode" minOccurs="one" maxOccurs="one" type="string"/>
+				</hasDataType>
+				<hasDataType xsi:type="gidl:SimpleType" name="traffic_speed_entry" minOccurs="one" maxOccurs="unbounded" type="string" />
+				<hasDataType xsi:type="gidl:SimpleType" name="via_waypoint" minOccurs="one" maxOccurs="unbounded" type="string"/>
+			</hasDataType>
+			<hasDataType xsi:type="gidl:ComplexType" name="overview_polyline" minOccurs="one" maxOccurs="one">
+				<hasDataType xsi:type="gidl:SimpleType" name="points" minOccurs="one" maxOccurs="one" type="string"/>
+			</hasDataType>
+			<hasDataType xsi:type="gidl:SimpleType" name="summary" minOccurs="one" maxOccurs="one" type="string"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="warnings" minOccurs="one" maxOccurs="unbounded" type="string"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="waypoint_order" minOccurs="one" maxOccurs="unbounded" type="integer"/>
+		</hasDataType>	
+		<hasDataType xsi:type="gidl:SimpleType" name="status" minOccurs="one" maxOccurs="one" type="string"/>
+		</hasDataType>
+      </outputData>
+    </hasOperations>
+  </hasInterfaces>
+</gidl:GIDLModel>
+
+

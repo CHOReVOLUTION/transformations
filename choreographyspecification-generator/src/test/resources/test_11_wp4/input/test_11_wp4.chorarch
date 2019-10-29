@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ASCII"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+ 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<chorarch:ChorArchModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:chorarch="http://eu.chorevolution/modelingnotations/chorarch">
+  <components xsi:type="chorarch:WebServiceComponent" name="DTS-HERE" uri="http://localhost:8080/DTS-HERE/DTS-HERE/">
+    <roles>DTS-HERE</roles>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.13/@interfaces.0"/>
+  </components>
+  <components xsi:type="chorarch:WebServiceComponent" name="DTS-ACCIDENTS" uri="http://localhost:8080/DTS-ACCIDENTS/DTS-ACCIDENTS/">
+    <roles>DTS-ACCIDENTS</roles>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.14/@interfaces.0"/>
+  </components>
+  <components xsi:type="chorarch:WebServiceComponent" name="DTS-BRIDGE" uri="http://localhost:8080/DTS-BRIDGE/DTS-BRIDGE/">
+    <roles>DTS-BRIDGE</roles>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.15/@interfaces.0"/>
+  </components>
+  <components xsi:type="chorarch:WebServiceComponent" name="DTS-CONGESTION" uri="http://localhost:8080/DTS-CONGESTION/DTS-CONGESTION/">
+    <roles>DTS-CONGESTION</roles>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.16/@interfaces.0"/>
+  </components>
+  <components xsi:type="chorarch:WebServiceComponent" name="DTS-WEATHER" uri="http://localhost:8080/DTS-WEATHER/DTS-WEATHER/">
+    <roles>DTS-WEATHER</roles>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.17/@interfaces.0"/>
+  </components>
+  <components xsi:type="chorarch:WebServiceComponent" name="DTS-GOOGLE" uri="http://localhost:8080/DTS-GOOGLE/DTS-GOOGLE/">
+    <roles>DTS-GOOGLE</roles>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.18/@interfaces.0"/>
+  </components>
+  <components xsi:type="chorarch:ProsumerCoordinationDelegate" name="cdND" location="http://localhost:8080/cdND.tar.gz">
+    <roles>ND</roles>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.19/@interfaces.0"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.9/@interfaces.3"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.9/@interfaces.4"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.8/@interfaces.1"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.8/@interfaces.2"/>
+  </components>
+  <components xsi:type="chorarch:ProsumerCoordinationDelegate" name="cdSEADA-TRAFFIC" location="http://localhost:8080/cdSEADA-TRAFFIC.tar.gz">
+    <roles>SEADA-TRAFFIC</roles>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.10/@interfaces.0"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.16/@interfaces.1"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.15/@interfaces.1"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.14/@interfaces.1"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.17/@interfaces.1"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.8/@interfaces.5"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.8/@interfaces.6"/>
+  </components>
+  <components xsi:type="chorarch:ProsumerCoordinationDelegate" name="cdSEADA-SEATSA" location="http://localhost:8080/cdSEADA-SEATSA.tar.gz">
+    <roles>SEADA-SEATSA</roles>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.11/@interfaces.0"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.6/@interfaces.3"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.6/@interfaces.4"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.9/@interfaces.5"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.9/@interfaces.6"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.7/@interfaces.5"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.7/@interfaces.6"/>
+  </components>
+  <components xsi:type="chorarch:ProsumerCoordinationDelegate" name="cdSEADA-SEARP" location="http://localhost:8080/cdSEADA-SEARP.tar.gz">
+    <roles>SEADA-SEARP</roles>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.12/@interfaces.0"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.18/@interfaces.1"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.13/@interfaces.1"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.6/@interfaces.1"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.6/@interfaces.2"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.8/@interfaces.3"/>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.8/@interfaces.4"/>
+  </components>
+  <components xsi:type="chorarch:ConsumerCoordinationDelegate" name="SEADA-TRAFFIC" location="http://localhost:8080/SEADA-TRAFFIC.war">
+    <roles>SEADA-TRAFFIC</roles>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.7/@interfaces.0"/>
+  </components>
+  <components xsi:type="chorarch:ConsumerCoordinationDelegate" name="SEADA-SEATSA" location="http://localhost:8080/SEADA-SEATSA.war">
+    <roles>SEADA-SEATSA</roles>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.8/@interfaces.0"/>
+  </components>
+  <components xsi:type="chorarch:ConsumerCoordinationDelegate" name="SEADA-SEARP" location="http://localhost:8080/SEADA-SEARP.war">
+    <roles>SEADA-SEARP</roles>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.9/@interfaces.0"/>
+  </components>
+  <components xsi:type="chorarch:BindingComponent" name="bcDTS-HERE" location="http://localhost:8080/bcDTS-HERE.war">
+    <roles>DTS-HERE</roles>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.0/@interfaces.0"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.9/@interfaces.2"/>
+  </components>
+  <components xsi:type="chorarch:BindingComponent" name="bcDTS-ACCIDENTS" location="http://localhost:8080/bcDTS-ACCIDENTS.war">
+    <roles>DTS-ACCIDENTS</roles>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.1/@interfaces.0"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.7/@interfaces.3"/>
+  </components>
+  <components xsi:type="chorarch:BindingComponent" name="bcDTS-BRIDGE" location="http://localhost:8080/bcDTS-BRIDGE.war">
+    <roles>DTS-BRIDGE</roles>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.2/@interfaces.0"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.7/@interfaces.2"/>
+  </components>
+  <components xsi:type="chorarch:BindingComponent" name="bcDTS-CONGESTION" location="http://localhost:8080/bcDTS-CONGESTION.war">
+    <roles>DTS-CONGESTION</roles>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.3/@interfaces.0"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.7/@interfaces.1"/>
+  </components>
+  <components xsi:type="chorarch:BindingComponent" name="bcDTS-WEATHER" location="http://localhost:8080/bcDTS-WEATHER.war">
+    <roles>DTS-WEATHER</roles>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.4/@interfaces.0"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.7/@interfaces.4"/>
+  </components>
+  <components xsi:type="chorarch:BindingComponent" name="bcDTS-GOOGLE" location="http://localhost:8080/bcDTS-GOOGLE.war">
+    <roles>DTS-GOOGLE</roles>
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.5/@interfaces.0"/>
+    <interfaces xsi:type="chorarch:ProviderInterface" serviceProvided="//@components.9/@interfaces.1"/>
+  </components>
+  <components xsi:type="chorarch:ClientAppComponent" name="ND">
+    <interfaces xsi:type="chorarch:ConsumerInterface" serviceRequired="//@components.6/@interfaces.0"/>
+  </components>
+</chorarch:ChorArchModel>

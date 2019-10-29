@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ASCII"?>
+<adapter:AdapterModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adapter="http://eu.chorevolution/modelingnotations/adapter">
+  <hasChoreographyTasks name="GetPublicTransportationInfo">
+    <hasChoreographyMessages name="latestPTRequest">
+      <hasChoreographyDataItem xsi:type="adapter:ChoreographyComplexItem" name="latestPTRequest" minOccurs="one" maxOccurs="one" typeName="latestPTRequest">
+        <hasChoreographyDataItems xsi:type="adapter:ChoreographySimpleItem" name="type" maxOccurs="one"/>
+      </hasChoreographyDataItem>
+    </hasChoreographyMessages>
+    <hasChoreographyMessages name="latestPTResponse" type="return">
+      <hasChoreographyDataItem xsi:type="adapter:ChoreographyComplexItem" name="latestPTResponse" minOccurs="one" maxOccurs="one" typeName="latestPTResponse">
+        <hasChoreographyDataItems xsi:type="adapter:ChoreographyComplexItem" name="publicTransportNews" maxOccurs="unbounded" typeName="NewsType">
+          <hasChoreographyDataItems xsi:type="adapter:ChoreographySimpleItem" name="name" minOccurs="one" maxOccurs="one"/>
+          <hasChoreographyDataItems xsi:type="adapter:ChoreographySimpleItem" name="description" minOccurs="one" maxOccurs="one"/>
+          <hasChoreographyDataItems xsi:type="adapter:ChoreographySimpleItem" name="startDate" minOccurs="one" maxOccurs="one" type="dateTime"/>
+          <hasChoreographyDataItems xsi:type="adapter:ChoreographySimpleItem" name="endDate" minOccurs="one" maxOccurs="one" type="dateTime"/>
+        </hasChoreographyDataItems>
+      </hasChoreographyDataItem>
+    </hasChoreographyMessages>
+  </hasChoreographyTasks>
+  <hasOperations name="publicTransportation">
+    <hasMessages name="request">
+      <hasMessageDataItem xsi:type="adapter:ComplexItem" name="publicTransportation" minOccurs="one" maxOccurs="one">
+        <hasDataItems xsi:type="adapter:ComplexItem" name="inputDataType" minOccurs="one" maxOccurs="one">
+          <hasDataItems xsi:type="adapter:SimpleItem" name="lat" minOccurs="one" maxOccurs="one" type="double"/>
+          <hasDataItems xsi:type="adapter:SimpleItem" name="lon" minOccurs="one" maxOccurs="one" type="double"/>
+        </hasDataItems>
+      </hasMessageDataItem>
+    </hasMessages>
+    <hasMessages name="response" type="output">
+      <hasMessageDataItem xsi:type="adapter:ComplexItem" name="publicTransportationResponse" minOccurs="one" maxOccurs="one">
+        <hasDataItems xsi:type="adapter:ComplexItem" name="outputDataType" minOccurs="one" maxOccurs="unbounded">
+          <hasDataItems xsi:type="adapter:SimpleItem" name="c" minOccurs="one" maxOccurs="one"/>
+          <hasDataItems xsi:type="adapter:SimpleItem" name="did" minOccurs="one" maxOccurs="one" type="integer"/>
+          <hasDataItems xsi:type="adapter:SimpleItem" name="id" minOccurs="one" maxOccurs="one" type="integer"/>
+          <hasDataItems xsi:type="adapter:SimpleItem" name="mod" minOccurs="one" maxOccurs="one" type="integer"/>
+          <hasDataItems xsi:type="adapter:SimpleItem" name="start" minOccurs="one" maxOccurs="one" type="date"/>
+          <hasDataItems xsi:type="adapter:SimpleItem" name="t" minOccurs="one" maxOccurs="one"/>
+        </hasDataItems>
+      </hasMessageDataItem>
+    </hasMessages>
+  </hasOperations>
+  <hasOperationsRelations>
+    <hasMessagesRelations choreographyMessage="//@hasChoreographyTasks.0/@hasChoreographyMessages.0" message="//@hasOperations.0/@hasMessages.0">
+      <hasDataItemsRelations choreographyDataItem="//@hasChoreographyTasks.0/@hasChoreographyMessages.0/@hasChoreographyDataItem" dataItem="//@hasOperations.0/@hasMessages.0/@hasMessageDataItem/@hasDataItems.0"/>
+      <hasDataItemsRelations dataItem="//@hasOperations.0/@hasMessages.0/@hasMessageDataItem/@hasDataItems.0/@hasDataItems.0" transformationRule="&quot;44.47&quot;"/>
+      <hasDataItemsRelations dataItem="//@hasOperations.0/@hasMessages.0/@hasMessageDataItem/@hasDataItems.0/@hasDataItems.1" transformationRule="&quot;9.08&quot;"/>
+    </hasMessagesRelations>
+    <hasMessagesRelations choreographyMessage="//@hasChoreographyTasks.0/@hasChoreographyMessages.1" message="//@hasOperations.0/@hasMessages.1">
+      <hasDataItemsRelations choreographyDataItem="//@hasChoreographyTasks.0/@hasChoreographyMessages.1/@hasChoreographyDataItem" dataItem="//@hasOperations.0/@hasMessages.1/@hasMessageDataItem"/>
+      <hasDataItemsRelations choreographyDataItem="//@hasChoreographyTasks.0/@hasChoreographyMessages.1/@hasChoreographyDataItem/@hasChoreographyDataItems.0" dataItem="//@hasOperations.0/@hasMessages.1/@hasMessageDataItem/@hasDataItems.0"/>
+      <hasDataItemsRelations choreographyDataItem="//@hasChoreographyTasks.0/@hasChoreographyMessages.1/@hasChoreographyDataItem/@hasChoreographyDataItems.0/@hasChoreographyDataItems.0" dataItem="//@hasOperations.0/@hasMessages.1/@hasMessageDataItem/@hasDataItems.0/@hasDataItems.5"/>
+      <hasDataItemsRelations choreographyDataItem="//@hasChoreographyTasks.0/@hasChoreographyMessages.1/@hasChoreographyDataItem/@hasChoreographyDataItems.0/@hasChoreographyDataItems.1" dataItem="//@hasOperations.0/@hasMessages.1/@hasMessageDataItem/@hasDataItems.0/@hasDataItems.0"/>
+      <hasDataItemsRelations choreographyDataItem="//@hasChoreographyTasks.0/@hasChoreographyMessages.1/@hasChoreographyDataItem/@hasChoreographyDataItems.0/@hasChoreographyDataItems.2" dataItem="//@hasOperations.0/@hasMessages.1/@hasMessageDataItem/@hasDataItems.0/@hasDataItems.4" transformationRule="parseDate(outputDataType.start, &quot;'/Date('S'\\+0100)/'&quot;)"/>
+      <hasDataItemsRelations choreographyDataItem="//@hasChoreographyTasks.0/@hasChoreographyMessages.1/@hasChoreographyDataItem/@hasChoreographyDataItems.0/@hasChoreographyDataItems.3" dataItem="//@hasOperations.0/@hasMessages.1/@hasMessageDataItem/@hasDataItems.0/@hasDataItems.4" transformationRule="parseDate(outputDataType.start, &quot;'/Date('S'\\+0100)/'&quot;)"/>
+    </hasMessagesRelations>
+  </hasOperationsRelations>
+</adapter:AdapterModel>

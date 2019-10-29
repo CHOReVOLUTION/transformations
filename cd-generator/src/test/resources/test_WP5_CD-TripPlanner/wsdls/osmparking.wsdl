@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="OSMParkingService"
+	targetNamespace="http://it.softeco.chorevolution.smt/osmparking" 
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsp="http://www.w3.org/ns/ws-policy" 
+	xmlns:tns="http://it.softeco.chorevolution.smt/osmparking"
+	xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+	<types>
+		<xsd:schema targetNamespace="http://it.softeco.chorevolution.smt/osmparking">
+			<xsd:element name="parkingRequest" type="tns:parkingRequest" />
+			<xsd:element name="parkingResponse" type="tns:parkingResponse" />
+			<xsd:complexType name="parkingRequest">
+				<xsd:sequence>
+					<xsd:element name="session" type="xsd:string" />
+					<xsd:element name="lat" type="xsd:double" />
+					<xsd:element name="lon" type="xsd:double" />
+					<xsd:element name="range" type="xsd:int" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="parkingResponse">
+				<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+					<xsd:element name="parkings" type="tns:OSMParkingType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="OSMParkingType">
+				<xsd:sequence>
+					<xsd:element name="lat" type="xsd:double" />
+					<xsd:element name="lon" type="xsd:double" />
+					<xsd:element name="parkingInfo" minOccurs="0"
+						type="tns:parkingInfoType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="parkingInfoType">
+				<xsd:sequence>
+					<xsd:element name="name" minOccurs="0" type="xsd:string" />
+					<xsd:element name="capacity" minOccurs="0" type="xsd:int" />
+					<xsd:element name="capacityDisabled" minOccurs="0"
+						type="xsd:int" />
+					<xsd:element name="fee" minOccurs="0" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</types>
+	<message name="parkingRequest">
+		<part name="parameters" element="tns:parkingRequest">
+		</part>
+	</message>
+	<message name="parkingResponse">
+		<part name="parameters" element="tns:parkingResponse">
+		</part>
+	</message>
+	<portType name="OSMParkingPT">
+		<operation name="parking">
+			<input message="tns:parkingRequest"
+				wsam:Action="http://it.softeco.chorevolution.smt/osmparking/parkingRequest">
+			</input>
+			<output message="tns:parkingResponse"
+				wsam:Action="http://it.softeco.chorevolution.smt/osmparking/parkingResponse">
+			</output>
+		</operation>
+	</portType>
+	<binding name="OSMParkingBinding" type="tns:OSMParkingPT">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="parking">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="OSMParkingService">
+		<port name="OSMParkingPort" binding="tns:OSMParkingBinding">
+			<soap:address location="http://localhost:9090/osmparking/osmparking" />
+		</port>
+	</service>
+</definitions>

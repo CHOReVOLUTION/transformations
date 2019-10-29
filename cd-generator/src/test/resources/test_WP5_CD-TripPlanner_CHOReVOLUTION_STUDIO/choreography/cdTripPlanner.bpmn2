@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- origin at X=0.0 Y=0.0 -->
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://org.eclipse.bpmn2/default/choreography" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ext="http://org.eclipse.bpmn2/ext" xmlns:ns="http://eu.chorevolution.smartmobilitytourism/types" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.3.2.Final-v20161020-1541-B59" targetNamespace="http://org.eclipse.bpmn2/default/choreography">
+  <bpmn2:import importType="http://www.w3.org/2001/XMLSchema" location="types.xsd" namespace="http://eu.chorevolution.smartmobilitytourism/types"/>
+  <bpmn2:itemDefinition id="ItemDefinition_1" structureRef="ns:getTripPlanRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_2" structureRef="ns:getPoiListRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_3" structureRef="ns:getPoiListResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_4" structureRef="ns:getBestRouteRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_5" structureRef="ns:trafficRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_6" structureRef="ns:trafficResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_7" structureRef="ns:allTripsRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_8" structureRef="ns:allTripsResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_9" structureRef="ns:parkingRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_10" structureRef="ns:parkingResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_11" structureRef="ns:getInfoTransportationRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_12" structureRef="ns:getInfoTransportationResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_13" structureRef="ns:weatherInfoByAreaRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_14" structureRef="ns:weatherInfoByAreaResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_15" structureRef="ns:getInfoNewsRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_16" structureRef="ns:getInfoNewsResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_17" structureRef="ns:getBestRouteResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_18" structureRef="ns:getTripPlanResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_19" structureRef="ns:startTrackingRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_20" structureRef="ns:startTrackingResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_3240" structureRef="http://www.w3.org/2001/XMLSchema#boolean"/>
+  <bpmn2:message id="Message_2" itemRef="#ItemDefinition_1" name="getTripPlanRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_3" itemRef="#ItemDefinition_2" name="getPoiListRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_5" itemRef="#ItemDefinition_3" name="getPoiListResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_7" itemRef="#ItemDefinition_4" name="getBestRouteRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_9" itemRef="#ItemDefinition_5" name="trafficRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_11" itemRef="#ItemDefinition_6" name="trafficResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_4" itemRef="#ItemDefinition_7" name="allTripsRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_8" itemRef="#ItemDefinition_8" name="allTripsResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_12" itemRef="#ItemDefinition_9" name="parkingRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_14" itemRef="#ItemDefinition_10" name="parkingResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_16" itemRef="#ItemDefinition_7" name="allTripsRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_18" itemRef="#ItemDefinition_8" name="allTripsResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_20" itemRef="#ItemDefinition_11" name="getInfoTransportationRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_22" itemRef="#ItemDefinition_12" name="getInfoTransportationResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_10" itemRef="#ItemDefinition_7" name="allTripsRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_17" itemRef="#ItemDefinition_8" name="allTripsResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_21" itemRef="#ItemDefinition_13" name="weatherInfoByAreaRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_24" itemRef="#ItemDefinition_14" name="weatherInfoByAreaResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_26" itemRef="#ItemDefinition_15" name="getInfoNewsRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_28" itemRef="#ItemDefinition_16" name="getInfoNewsResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_6" itemRef="#ItemDefinition_17" name="getBestRouteResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_15" itemRef="#ItemDefinition_18" name="getTripPlanResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_23" itemRef="#ItemDefinition_19" name="startTrackingRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_27" itemRef="#ItemDefinition_20" name="startTrackingResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:choreography id="Choreography_1" name="Default Choreography">
+    <bpmn2:participant id="Participant_2" name="Tourist Agent">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_6" name="Trip Planner">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_10" name="Traffic Information">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_12" name="Journey Planner">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_13" name="OSM Parking">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_17" name="Public Transportation">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_21" name="Weather">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:messageFlow id="MessageFlow_4" messageRef="#Message_7" name="Message Flow 4" sourceRef="#Participant_2" targetRef="#Participant_6"/>
+    <bpmn2:messageFlow id="MessageFlow_5" messageRef="#Message_9" name="Message Flow 5" sourceRef="#Participant_6" targetRef="#Participant_10"/>
+    <bpmn2:messageFlow id="MessageFlow_6" messageRef="#Message_11" name="Message Flow 6" sourceRef="#Participant_10" targetRef="#Participant_6"/>
+    <bpmn2:messageFlow id="MessageFlow_7" messageRef="#Message_4" name="Message Flow 7" sourceRef="#Participant_6" targetRef="#Participant_12"/>
+    <bpmn2:messageFlow id="MessageFlow_8" messageRef="#Message_8" name="Message Flow 8" sourceRef="#Participant_12" targetRef="#Participant_6"/>
+    <bpmn2:messageFlow id="MessageFlow_9" messageRef="#Message_12" name="Message Flow 9" sourceRef="#Participant_6" targetRef="#Participant_13"/>
+    <bpmn2:messageFlow id="MessageFlow_10" messageRef="#Message_14" name="Message Flow 10" sourceRef="#Participant_13" targetRef="#Participant_6"/>
+    <bpmn2:messageFlow id="MessageFlow_11" messageRef="#Message_16" name="Message Flow 11" sourceRef="#Participant_6" targetRef="#Participant_12"/>
+    <bpmn2:messageFlow id="MessageFlow_12" messageRef="#Message_18" name="Message Flow 12" sourceRef="#Participant_12" targetRef="#Participant_6"/>
+    <bpmn2:messageFlow id="MessageFlow_13" messageRef="#Message_20" name="Message Flow 13" sourceRef="#Participant_6" targetRef="#Participant_17"/>
+    <bpmn2:messageFlow id="MessageFlow_14" messageRef="#Message_22" name="Message Flow 14" sourceRef="#Participant_17" targetRef="#Participant_6"/>
+    <bpmn2:messageFlow id="MessageFlow_16" messageRef="#Message_10" name="Message Flow 16" sourceRef="#Participant_6" targetRef="#Participant_12"/>
+    <bpmn2:messageFlow id="MessageFlow_17" messageRef="#Message_17" name="Message Flow 17" sourceRef="#Participant_12" targetRef="#Participant_6"/>
+    <bpmn2:messageFlow id="MessageFlow_18" messageRef="#Message_21" name="Message Flow 18" sourceRef="#Participant_6" targetRef="#Participant_21"/>
+    <bpmn2:messageFlow id="MessageFlow_19" messageRef="#Message_24" name="Message Flow 19" sourceRef="#Participant_21" targetRef="#Participant_6"/>
+    <bpmn2:messageFlow id="MessageFlow_15" messageRef="#Message_6" name="Message Flow 15" sourceRef="#Participant_6" targetRef="#Participant_2"/>
+    <bpmn2:startEvent id="StartEvent_1" name="Triggered By Tourist">
+      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" sourceRef="StartEvent_1" targetRef="ChoreographyTask_3"/>
+    <bpmn2:choreographyTask id="ChoreographyTask_3" name="Get Best Route" initiatingParticipantRef="#Participant_2">
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_34</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_2</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_6</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_4</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_1" gatewayDirection="Diverging">
+      <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:parallelGateway id="ParallelGateway_2" gatewayDirection="Diverging">
+      <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_10</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_11</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_12</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:choreographyTask id="ChoreographyTask_4" name="Traffic" initiatingParticipantRef="#Participant_6">
+      <bpmn2:incoming>SequenceFlow_10</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_13</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_6</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_10</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_5</bpmn2:messageFlowRef>
+      <bpmn2:messageFlowRef>#MessageFlow_6</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:choreographyTask id="ChoreographyTask_5" name="All Trips" initiatingParticipantRef="#Participant_6">
+      <bpmn2:incoming>SequenceFlow_11</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_14</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_6</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_12</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_7</bpmn2:messageFlowRef>
+      <bpmn2:messageFlowRef>#MessageFlow_8</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:choreographyTask id="ChoreographyTask_6" name="Parking" initiatingParticipantRef="#Participant_6">
+      <bpmn2:incoming>SequenceFlow_12</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_15</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_6</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_13</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_9</bpmn2:messageFlowRef>
+      <bpmn2:messageFlowRef>#MessageFlow_10</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:parallelGateway id="ParallelGateway_3" gatewayDirection="Diverging">
+      <bpmn2:incoming>SequenceFlow_7</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_16</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_17</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:choreographyTask id="ChoreographyTask_7" name="All Trips" initiatingParticipantRef="#Participant_6">
+      <bpmn2:incoming>SequenceFlow_16</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_18</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_6</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_12</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_11</bpmn2:messageFlowRef>
+      <bpmn2:messageFlowRef>#MessageFlow_12</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:choreographyTask id="ChoreographyTask_8" name="Get Info" initiatingParticipantRef="#Participant_6">
+      <bpmn2:incoming>SequenceFlow_17</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_19</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_6</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_17</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_13</bpmn2:messageFlowRef>
+      <bpmn2:messageFlowRef>#MessageFlow_14</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:parallelGateway id="ParallelGateway_4" gatewayDirection="Diverging">
+      <bpmn2:incoming>SequenceFlow_8</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_20</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_21</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:choreographyTask id="ChoreographyTask_9" name="All Trips" initiatingParticipantRef="#Participant_6">
+      <bpmn2:incoming>SequenceFlow_20</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_22</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_6</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_12</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_16</bpmn2:messageFlowRef>
+      <bpmn2:messageFlowRef>#MessageFlow_17</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:choreographyTask id="ChoreographyTask_10" name="Weather Info By Area" initiatingParticipantRef="#Participant_6">
+      <bpmn2:incoming>SequenceFlow_21</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_23</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_6</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_21</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_18</bpmn2:messageFlowRef>
+      <bpmn2:messageFlowRef>#MessageFlow_19</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:parallelGateway id="ParallelGateway_5" gatewayDirection="Converging">
+      <bpmn2:incoming>SequenceFlow_13</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_14</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_15</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_24</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:parallelGateway id="ParallelGateway_6" gatewayDirection="Converging">
+      <bpmn2:incoming>SequenceFlow_18</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_19</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_25</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:parallelGateway id="ParallelGateway_7" gatewayDirection="Converging">
+      <bpmn2:incoming>SequenceFlow_22</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_23</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_26</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_2" gatewayDirection="Converging">
+      <bpmn2:incoming>SequenceFlow_24</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_25</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_26</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_27</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:choreographyTask id="ChoreographyTask_12" name="Set Best Route" initiatingParticipantRef="#Participant_6">
+      <bpmn2:incoming>SequenceFlow_27</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_28</bpmn2:outgoing>
+      <bpmn2:participantRef>#Participant_6</bpmn2:participantRef>
+      <bpmn2:participantRef>#Participant_2</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>#MessageFlow_15</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:endEvent id="EndEvent_1">
+      <bpmn2:incoming>SequenceFlow_32</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_4" sourceRef="ChoreographyTask_3" targetRef="ExclusiveGateway_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_6" name="By Car" sourceRef="ExclusiveGateway_1" targetRef="ParallelGateway_2">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_2" evaluatesToTypeRef="#ItemDefinition_3240" language="http://www.w3.org/1999/XPath">getBestRouteRequest/tripBy=8</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="SequenceFlow_7" name="By Public Transportation" sourceRef="ExclusiveGateway_1" targetRef="ParallelGateway_3">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_3" evaluatesToTypeRef="#ItemDefinition_3240" language="http://www.w3.org/1999/XPath">getBestRouteRequest/tripBy=4</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="SequenceFlow_8" name="By Walking" sourceRef="ExclusiveGateway_1" targetRef="ParallelGateway_4">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_1" evaluatesToTypeRef="#ItemDefinition_3240" language="http://www.w3.org/1999/XPath">getBestRouteRequest/tripBy=1</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="SequenceFlow_10" sourceRef="ParallelGateway_2" targetRef="ChoreographyTask_4"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_11" sourceRef="ParallelGateway_2" targetRef="ChoreographyTask_5"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_12" sourceRef="ParallelGateway_2" targetRef="ChoreographyTask_6"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_13" sourceRef="ChoreographyTask_4" targetRef="ParallelGateway_5"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_14" sourceRef="ChoreographyTask_5" targetRef="ParallelGateway_5"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_15" sourceRef="ChoreographyTask_6" targetRef="ParallelGateway_5"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_16" sourceRef="ParallelGateway_3" targetRef="ChoreographyTask_7"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_17" sourceRef="ParallelGateway_3" targetRef="ChoreographyTask_8"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_18" sourceRef="ChoreographyTask_7" targetRef="ParallelGateway_6"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_19" sourceRef="ChoreographyTask_8" targetRef="ParallelGateway_6"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_20" sourceRef="ParallelGateway_4" targetRef="ChoreographyTask_9"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_21" sourceRef="ParallelGateway_4" targetRef="ChoreographyTask_10"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_22" sourceRef="ChoreographyTask_9" targetRef="ParallelGateway_7"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_23" sourceRef="ChoreographyTask_10" targetRef="ParallelGateway_7"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_24" sourceRef="ParallelGateway_5" targetRef="ExclusiveGateway_2"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_25" sourceRef="ParallelGateway_6" targetRef="ExclusiveGateway_2"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_26" sourceRef="ParallelGateway_7" targetRef="ExclusiveGateway_2"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_27" sourceRef="ExclusiveGateway_2" targetRef="ChoreographyTask_12"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_28" sourceRef="ChoreographyTask_12" targetRef="_uYookAlcEeeYJYaCuzFLaA"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_32" name="Yes" sourceRef="_uYookAlcEeeYJYaCuzFLaA" targetRef="EndEvent_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_34" name="No" sourceRef="_uYookAlcEeeYJYaCuzFLaA" targetRef="ChoreographyTask_3"/>
+    <bpmn2:eventBasedGateway id="_uYookAlcEeeYJYaCuzFLaA" name="Trip Accepted?" gatewayDirection="Diverging">
+      <bpmn2:incoming>SequenceFlow_28</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_32</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_34</bpmn2:outgoing>
+    </bpmn2:eventBasedGateway>
+  </bpmn2:choreography>
+</bpmn2:definitions>

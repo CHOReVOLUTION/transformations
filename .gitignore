@@ -1,0 +1,12 @@
+# Eclipse Projects Files
+.settings
+.classpath
+.project
+# Target Folder
+target/
+# Bin Folder
+bin/
+# Logs Folder
+logs/
+# Output Test Case Folder
+output/

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gidl:GIDLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gidl="http://eu.chorevolution/modelingnotations/gidl" hostAddress="https://route.cit.api.here.com/" protocol="REST">
+  <hasInterfaces role="provider">
+    <hasOperations name="routesRequest" type="two_way_sync" qos="reliable">
+      <hasScope name="routesRequest" verb="GET" uri="routing/7.2/calculateroute.json"/>
+      <inputData name="request" context="query" media="json">
+        <hasDataType xsi:type="gidl:ComplexType" name="routesRequest" minOccurs="one" maxOccurs="one">
+          <hasDataType xsi:type="gidl:ComplexType" name="origin" minOccurs="one" maxOccurs="one">
+            <hasDataType xsi:type="gidl:SimpleType" name="lat" minOccurs="one" maxOccurs="one" type="double"/>
+            <hasDataType xsi:type="gidl:SimpleType" name="lon" minOccurs="one" maxOccurs="one" type="double"/>
+          </hasDataType>
+          <hasDataType xsi:type="gidl:ComplexType" name="destination" minOccurs="one" maxOccurs="one">
+            <hasDataType xsi:type="gidl:SimpleType" name="lat" minOccurs="one" maxOccurs="one" type="double"/>
+            <hasDataType xsi:type="gidl:SimpleType" name="lon" minOccurs="one" maxOccurs="one" type="double"/>
+          </hasDataType>
+        </hasDataType>
+      </inputData>
+      <outputData name="response" context="body" media="json">
+        <hasDataType xsi:type="gidl:ComplexType" name="routesSuggestion" maxOccurs="one" minOccurs="one">
+          <hasDataType xsi:type="gidl:ComplexType" name="routes" maxOccurs="one" minOccurs="one">
+            <hasDataType xsi:type="gidl:ComplexType" name="origin" maxOccurs="one" minOccurs="one">
+              <hasDataType xsi:type="gidl:SimpleType" name="lat" maxOccurs="one" minOccurs="one" type="double"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="lon" maxOccurs="one" minOccurs="one" type="double"/>
+            </hasDataType>
+            <hasDataType xsi:type="gidl:ComplexType" name="destination" maxOccurs="one" minOccurs="one">
+              <hasDataType xsi:type="gidl:SimpleType" name="lat" maxOccurs="one" minOccurs="one" type="double"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="lon" maxOccurs="one" minOccurs="one" type="double"/>
+            </hasDataType>
+            <hasDataType xsi:type="gidl:SimpleType" name="routePolyline" maxOccurs="one" minOccurs="one" type="string"/>
+            <hasDataType xsi:type="gidl:ComplexType" name="routeSegments" maxOccurs="one" minOccurs="one">
+              <hasDataType xsi:type="gidl:ComplexType" name="waypoint0" maxOccurs="one" minOccurs="one">
+                <hasDataType xsi:type="gidl:SimpleType" name="lat" maxOccurs="one" minOccurs="one" type="double"/>
+                <hasDataType xsi:type="gidl:SimpleType" name="lon" maxOccurs="one" minOccurs="one" type="double"/>
+              </hasDataType>
+              <hasDataType xsi:type="gidl:ComplexType" name="waypoint1" maxOccurs="one" minOccurs="one">
+                <hasDataType xsi:type="gidl:SimpleType" name="lat" maxOccurs="one" minOccurs="one" type="double"/>
+                <hasDataType xsi:type="gidl:SimpleType" name="lon" maxOccurs="one" minOccurs="one" type="double"/>
+              </hasDataType>
+              <hasDataType xsi:type="gidl:SimpleType" name="instruction" maxOccurs="one" minOccurs="one" type="string"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="time" maxOccurs="one" minOccurs="one" type="integer"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="distance" maxOccurs="one" minOccurs="one" type="integer"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="polyline" maxOccurs="one" minOccurs="one" type="string"/>
+            </hasDataType>
+          </hasDataType>
+        </hasDataType>
+      </outputData>
+    </hasOperations>
+  </hasInterfaces>
+</gidl:GIDLModel>

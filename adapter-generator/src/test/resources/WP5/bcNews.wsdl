@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="bcNews"
+	targetNamespace="http://eu.chorevolution.bc/bcNews"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy"
+	xmlns:tns="http://eu.chorevolution.bc/bcNews"
+	xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+
+	<types>
+		<xsd:schema targetNamespace="http://eu.chorevolution.bc/bcNews">
+			<xsd:element name="NewsService" type="tns:NewsService" />
+			<xsd:element name="NewsServiceResponse" type="tns:NewsServiceResponse" />
+
+			<xsd:complexType name="NewsService">
+				<xsd:sequence>
+					<xsd:element name="inputDataType" type="tns:inputDataType"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="NewsServiceResponse">
+				<xsd:sequence>
+					<xsd:element name="outputDataType" type="tns:outputDataType"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="outputDataType">
+				<xsd:sequence>
+					<xsd:element name="c" type="xsd:int"  />
+					<xsd:element name="objs" type="tns:objs"  maxOccurs="unbounded"/>
+					<xsd:element name="pi" type="xsd:int"  />
+					<xsd:element name="ps" type="xsd:int"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="inputDataType">
+				<xsd:sequence>
+					<xsd:element name="lat" type="xsd:double"  />
+					<xsd:element name="lon" type="xsd:double"  />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="objs">
+				<xsd:sequence>
+					<xsd:element name="a" type="xsd:string"  />
+					<xsd:element name="c" type="xsd:string"  />
+					<xsd:element name="cr" type="xsd:string"  />
+					<xsd:element name="did" type="xsd:int"  />
+					<xsd:element name="end" type="xsd:string"  />
+					<xsd:element name="id" type="xsd:int"  />
+					<xsd:element name="mod" type="xsd:int"  />
+					<xsd:element name="start" type="xsd:string"  />
+					<xsd:element name="t" type="xsd:string"  />
+				</xsd:sequence>
+			</xsd:complexType>
+
+		</xsd:schema>
+	</types>
+	<message name="NewsService">
+		<part name="parameters" element="tns:NewsService">
+		</part>
+	</message>
+	<message name="NewsServiceResponse">
+		<part name="parameters" element="tns:NewsServiceResponse">
+		</part>
+	</message>
+	<portType name="bcNewsPT">
+		<operation name="NewsService">
+			<input message="tns:NewsService">
+			</input>
+			<output message="tns:NewsServiceResponse">
+			</output>
+		</operation>
+	</portType>
+	<binding name="bcNewsBinding" type="tns:bcNewsPT">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="NewsService">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="bcNewsService">
+		<port name="bcNewsPort" binding="tns:bcNewsBinding">
+			<soap:address location="http://localhost:9090/bcNews/bcNews" />
+		</port>
+	</service>
+</definitions>

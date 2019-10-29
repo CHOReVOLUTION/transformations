@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- origin at X=0.0 Y=0.0 -->
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://eu.chorevolution.smartmobilitytourism" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmn2_1="http://www.bpmn2.org/bpmn2" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ext="http://org.eclipse.bpmn2/ext" xmlns:types="http://eu.chorevolution.smartmobilitytourism/types" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.3.2.Final-v20161020-1541-B59" targetNamespace="http://eu.chorevolution.smartmobilitytourism">
+  <bpmn2:import importType="http://www.w3.org/2001/XMLSchema" location="types.xsd" namespace="http://eu.chorevolution.smartmobilitytourism/types"/>
+  <bpmn2:itemDefinition id="ItemDefinition_1" isCollection="false" structureRef="types:getTouristicGuideRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_2" isCollection="false" structureRef="types:getMobilityInfoRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_3" isCollection="false" structureRef="types:getTourismInfoRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_4" isCollection="false" structureRef="types:tripsRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_5" isCollection="false" structureRef="types:tripsResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_6" isCollection="false" structureRef="types:parkingRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_7" isCollection="false" structureRef="types:parkingResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_8" isCollection="false" structureRef="types:trafficRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_9" isCollection="false" structureRef="types:trafficResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_10" isCollection="false" structureRef="types:latestPTRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_11" isCollection="false" structureRef="types:latestPTResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_12" isCollection="false" structureRef="types:weatherItemsRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_13" isCollection="false" structureRef="types:weatherItemsResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_14" isCollection="false" structureRef="types:poiRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_15" isCollection="false" structureRef="types:poiResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_16" isCollection="false" structureRef="types:latestNewsRequest"/>
+  <bpmn2:itemDefinition id="ItemDefinition_17" isCollection="false" structureRef="types:latestNewsResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_18" isCollection="false" structureRef="types:getMobilityInfoResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_19" isCollection="false" structureRef="types:getTourismInfoResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_20" isCollection="false" structureRef="types:getTouristicGuideResponse"/>
+  <bpmn2:itemDefinition id="ItemDefinition_47" isCollection="false" structureRef="http://www.w3.org/2001/XMLSchema#boolean"/>
+  <bpmn2:message id="Message_2" itemRef="ItemDefinition_1" name="getTouristicGuideRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_4" itemRef="ItemDefinition_2" name="getMobilityInfoRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_6" itemRef="ItemDefinition_3" name="getTourismInfoRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_8" itemRef="ItemDefinition_4" name="tripsRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_10" itemRef="ItemDefinition_5" name="tripsResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_12" itemRef="ItemDefinition_6" name="parkingRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_14" itemRef="ItemDefinition_7" name="parkingResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_16" itemRef="ItemDefinition_8" name="trafficRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_18" itemRef="ItemDefinition_9" name="trafficResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_23" itemRef="ItemDefinition_10" name="latestPTRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_25" itemRef="ItemDefinition_11" name="latestPTResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_29" itemRef="ItemDefinition_12" name="weatherItemsRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_31" itemRef="ItemDefinition_13" name="weatherItemsResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_33" itemRef="ItemDefinition_14" name="poiRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_35" itemRef="ItemDefinition_15" name="poiResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_37" itemRef="ItemDefinition_16" name="latestNewsRequest">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_39" itemRef="ItemDefinition_17" name="latestNewsResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_41" itemRef="ItemDefinition_19" name="getTourismInfoResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_43" itemRef="ItemDefinition_18" name="getMobilityInfoResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_45" itemRef="ItemDefinition_20" name="getTouristicGuideResponse">
+    <bpmn2:extensionElements>
+      <ext:style xsi:type="xs:anyType"/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:choreography id="Choreography_1" name="SMT">
+    <bpmn2:participant id="Participant_1" name="STApp">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_2" name="Tourist Agent">
+      <bpmn2:extensionElements>
+        <ext:style xsi:type="xs:anyType" ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,13.0,-,B" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:messageFlow id="MessageFlow_1" messageRef="Message_2" name="Message Flow 1" sourceRef="Participant_1" targetRef="Participant_2"/>
+    <bpmn2:messageFlow id="MessageFlow_24" messageRef="Message_45" name="Message Flow 24" sourceRef="Participant_2" targetRef="Participant_1"/>
+    <bpmn2:choreographyTask id="ChoreographyTask_1" name="Get Tourist Guide" initiatingParticipantRef="Participant_1" loopType="Standard">
+      <bpmn2:extensionElements>
+        <bpmn2_1:item name="loopconditionalexpression" type="CDATA">
+          <bpmn2_1:value><![CDATA[]]></bpmn2_1:value>
+        </bpmn2_1:item>
+        <bpmn2_1:item name="loopnumericexpression" type="CDATA">
+          <bpmn2_1:value><![CDATA[ getTouristicGuideRequest/toLon ]]></bpmn2_1:value>
+        </bpmn2_1:item>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
+      <bpmn2:participantRef>Participant_1</bpmn2:participantRef>
+      <bpmn2:participantRef>Participant_2</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>MessageFlow_1</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:startEvent id="StartEvent_1" name="Triggered By Tourist">
+      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" sourceRef="StartEvent_1" targetRef="ChoreographyTask_1"/>
+    <bpmn2:choreographyTask id="ChoreographyTask_15" name="Set Tourist Guide" initiatingParticipantRef="Participant_2">
+      <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_38</bpmn2:outgoing>
+      <bpmn2:participantRef>Participant_2</bpmn2:participantRef>
+      <bpmn2:participantRef>Participant_1</bpmn2:participantRef>
+      <bpmn2:messageFlowRef>MessageFlow_24</bpmn2:messageFlowRef>
+    </bpmn2:choreographyTask>
+    <bpmn2:endEvent id="EndEvent_1">
+      <bpmn2:incoming>SequenceFlow_38</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" sourceRef="ChoreographyTask_1" targetRef="ChoreographyTask_15"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_38" sourceRef="ChoreographyTask_15" targetRef="EndEvent_1"/>
+  </bpmn2:choreography>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_Choreography_1" bpmnElement="Choreography_1">
+      <bpmndi:BPMNShape id="BPMNShape_ChoreographyTask_1" bpmnElement="ChoreographyTask_1">
+        <dc:Bounds height="250.0" width="250.0" x="136.0" y="50.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_1">
+          <dc:Bounds height="11.0" width="73.0" x="224.0" y="169.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Participant_1" bpmnElement="Participant_1" choreographyActivityShape="BPMNShape_ChoreographyTask_2" isHorizontal="true" participantBandKind="bottom_non_initiating">
+        <dc:Bounds height="500.0" width="150.0" x="0.0" y="0.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Participant_2" bpmnElement="Participant_2" choreographyActivityShape="BPMNShape_ChoreographyTask_2" isHorizontal="true">
+        <dc:Bounds height="500.0" width="150.0" x="0.0" y="510.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="StartEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="50.0" y="157.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_2">
+          <dc:Bounds height="22.0" width="61.0" x="38.0" y="193.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ChoreographyTask_2" bpmnElement="ChoreographyTask_15">
+        <dc:Bounds height="250.0" width="250.0" x="436.0" y="50.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_3">
+          <dc:Bounds height="11.0" width="72.0" x="525.0" y="169.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="EndEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="736.0" y="157.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_4"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Participant_17" bpmnElement="Participant_1" choreographyActivityShape="BPMNShape_ChoreographyTask_1" isHorizontal="true" isMessageVisible="true">
+        <dc:Bounds height="20.0" width="250.0" x="136.0" y="50.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_8">
+          <dc:Bounds height="11.0" width="27.0" x="247.0" y="54.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Participant_18" bpmnElement="Participant_2" choreographyActivityShape="BPMNShape_ChoreographyTask_1" isHorizontal="true" participantBandKind="bottom_non_initiating">
+        <dc:Bounds height="20.0" width="250.0" x="136.0" y="280.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_9">
+          <dc:Bounds height="11.0" width="55.0" x="233.0" y="284.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Participant_21" bpmnElement="Participant_2" choreographyActivityShape="BPMNShape_ChoreographyTask_2" isHorizontal="true" isMessageVisible="true">
+        <dc:Bounds height="20.0" width="250.0" x="436.0" y="50.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_10">
+          <dc:Bounds height="11.0" width="55.0" x="533.0" y="54.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Participant_22" bpmnElement="Participant_1" choreographyActivityShape="BPMNShape_ChoreographyTask_2" isHorizontal="true" participantBandKind="bottom_non_initiating">
+        <dc:Bounds height="20.0" width="250.0" x="436.0" y="280.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_11">
+          <dc:Bounds height="11.0" width="27.0" x="547.0" y="284.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="BPMNShape_StartEvent_1" targetElement="BPMNShape_ChoreographyTask_1">
+        <di:waypoint xsi:type="dc:Point" x="86.0" y="175.0"/>
+        <di:waypoint xsi:type="dc:Point" x="111.0" y="175.0"/>
+        <di:waypoint xsi:type="dc:Point" x="136.0" y="175.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="BPMNShape_ChoreographyTask_1" targetElement="BPMNShape_ChoreographyTask_2">
+        <di:waypoint xsi:type="dc:Point" x="386.0" y="175.0"/>
+        <di:waypoint xsi:type="dc:Point" x="411.0" y="175.0"/>
+        <di:waypoint xsi:type="dc:Point" x="436.0" y="175.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_6"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_38" sourceElement="BPMNShape_ChoreographyTask_2" targetElement="BPMNShape_EndEvent_1">
+        <di:waypoint xsi:type="dc:Point" x="686.0" y="175.0"/>
+        <di:waypoint xsi:type="dc:Point" x="711.0" y="175.0"/>
+        <di:waypoint xsi:type="dc:Point" x="736.0" y="175.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_7"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

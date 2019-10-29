@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="PoiService" 
+			 targetNamespace="http://it.softeco.chorevolution.smt/poi" 
+			 xmlns="http://schemas.xmlsoap.org/wsdl/" 
+			 xmlns:wsp="http://www.w3.org/ns/ws-policy" 
+			 xmlns:tns="http://it.softeco.chorevolution.smt/poi" 
+			 xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" 
+			 xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" 
+			 xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+			 xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <types>
+    <xsd:schema targetNamespace="http://it.softeco.chorevolution.smt/poi">
+	
+	  	<xsd:element name="getPoiListRequest" type="tns:getPoiListRequest"/>
+	  	<xsd:element name="getPoiListResponse" type="tns:getPoiListResponse"/>
+        <xsd:complexType name="getPoiListRequest">
+	      		<xsd:sequence>
+	      			<xsd:element name="lat" type="xsd:double"/>
+	      			<xsd:element name="lon" type="xsd:double"/>
+	      			<xsd:element name="range" type="xsd:int"/>
+	      			<xsd:element name="tag" type="tns:tags"/>
+	      			<xsd:element name="session" type="xsd:string"/>
+	      		</xsd:sequence>
+	    </xsd:complexType>
+        <xsd:complexType name="getPoiListResponse">
+        	<xsd:sequence>
+        		<xsd:element name="session" type="xsd:string"/>
+        		<xsd:element maxOccurs="unbounded" minOccurs="0" name="poi" type="tns:poiType"/>
+        	</xsd:sequence>
+        </xsd:complexType>
+		<xsd:simpleType name="tags">
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="worship" />
+				<xsd:enumeration value="restaurant" />
+				<xsd:enumeration value="school" />
+				<xsd:enumeration value="bus" />
+				<xsd:enumeration value="hospital" />
+				<xsd:enumeration value="tourism" />
+			</xsd:restriction>
+		</xsd:simpleType>
+		<xsd:complexType name="poiType">
+			<xsd:sequence>
+				<xsd:element name="lat" type="xsd:double" />
+				<xsd:element name="lon" type="xsd:double" />
+				<xsd:element name="type" type="xsd:string" />
+				<xsd:element name="name" type="xsd:string" />
+				<xsd:element minOccurs="0" name="poiInfo" type="tns:poiInfo" />
+			</xsd:sequence>
+		</xsd:complexType>
+		<xsd:complexType name="poiInfo">
+			<xsd:sequence>
+				<xsd:element name="address" type="tns:addressType" />
+				<xsd:element name="busInfo" type="tns:busInfoType" />
+				<xsd:element name="religion" type="tns:religionType" />
+			</xsd:sequence>
+		</xsd:complexType>
+		<xsd:complexType name="addressType">
+			<xsd:sequence>
+				<xsd:element name="street" type="xsd:string" />
+				<xsd:element name="houseNumber" type="xsd:string" />
+				<xsd:element name="phone" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+		<xsd:complexType name="busInfoType">
+			<xsd:sequence>
+				<xsd:element name="lines" type="xsd:string" />
+				<xsd:element name="operator" type="xsd:string" />
+				<xsd:element name="stopId" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+		<xsd:complexType name="religionType">
+			<xsd:sequence>
+				<xsd:element name="religion" type="xsd:string" />
+				<xsd:element name="denomination" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:schema>
+  </types>
+  <message name="getPoiListRequest">
+    <part name="parameters" element="tns:getPoiListRequest">
+    </part>
+  </message>
+  <message name="getPoiListResponse">
+    <part name="parameters" element="tns:getPoiListResponse">
+    </part>
+  </message>
+  <portType name="PoiPT">
+    <operation name="getPoiList">
+      <input message="tns:getPoiListRequest" wsam:Action="http://it.softeco.chorevolution.smt/poi/getPoiListRequest">
+    </input>
+      <output message="tns:getPoiListResponse" wsam:Action="http://it.softeco.chorevolution.smt/poi/getPoiListResponse">
+    </output>
+    </operation>
+  </portType>
+  <binding name="PoiBinding" type="tns:PoiPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getPoiList">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="PoiService">
+    <port name="PoiPort" binding="tns:PoiBinding">
+      <soap:address location="http://localhost:9090/poi/poi"/>
+    </port>
+  </service>
+</definitions>

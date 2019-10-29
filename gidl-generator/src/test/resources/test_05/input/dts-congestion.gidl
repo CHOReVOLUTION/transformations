@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<gidl:GIDLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gidl="http://eu.chorevolution/modelingnotations/gidl" hostAddress="http://jinx.viktoria.chalmers.se:3004/" protocol="REST">
+  <hasInterfaces role="provider">
+    <hasOperations name="routeCongestionInformation" type="two_way_sync" qos="reliable">
+      <hasScope name="routeCongestionInformation" verb="POST" uri="routeCongestionInformation"/>
+	  <inputData name="request" context="body">
+        <hasDataType xsi:type="gidl:ComplexType" name="congestionStatusRequest" occurences="one">
+          <hasDataType xsi:type="gidl:ComplexType" name="routeSegments" occurences="unbounded">
+            <hasDataType xsi:type="gidl:ComplexType" name="start" occurences="one">
+              <hasDataType xsi:type="gidl:SimpleType" name="lat" occurences="one" type="string"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="lon" occurences="one" type="string"/>
+            </hasDataType>
+            <hasDataType xsi:type="gidl:ComplexType" name="end" occurences="one">
+              <hasDataType xsi:type="gidl:SimpleType" name="lat" occurences="one" type="string"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="lon" occurences="one" type="string"/>
+            </hasDataType>
+          </hasDataType>
+        </hasDataType>
+      </inputData>
+      <outputData name="response" context="body">
+        <hasDataType xsi:type="gidl:ComplexType" name="congestionStatusResponse" occurences="one">
+          <hasDataType xsi:type="gidl:ComplexType" name="routeSegmentsCongestionStatus" occurences="unbounded">
+            <hasDataType xsi:type="gidl:ComplexType" name="routeSegmentCongestionStatus" occurences="one">
+              <hasDataType xsi:type="gidl:ComplexType" name="routeSegment" occurences="one">
+                <hasDataType xsi:type="gidl:ComplexType" name="strart" occurences="one">
+                  <hasDataType xsi:type="gidl:SimpleType" name="lat" occurences="one" type="string"/>
+                  <hasDataType xsi:type="gidl:SimpleType" name="lon" occurences="one" type="string"/>
+                </hasDataType>
+                <hasDataType xsi:type="gidl:ComplexType" name="end" occurences="one">
+                  <hasDataType xsi:type="gidl:SimpleType" name="lat" occurences="one" type="string"/>
+                  <hasDataType xsi:type="gidl:SimpleType" name="lon" occurences="one" type="string"/>
+                </hasDataType>
+              </hasDataType>
+              <hasDataType xsi:type="gidl:SimpleType" name="congestionLevel" occurences="one" type="string"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="speed" occurences="one" type="string"/>
+            </hasDataType>
+          </hasDataType>
+        </hasDataType>
+      </outputData>
+    </hasOperations>
+  </hasInterfaces>
+</gidl:GIDLModel>

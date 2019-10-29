@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://eu.chorevolution.urbantrafficcoordination.seada/seadaseatsa" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="seadaseatsa" targetNamespace="http://eu.chorevolution.urbantrafficcoordination.seada/seadaseatsa">
+  <wsdl:types>
+    <xsd:schema xmlns="http://eu.chorevolution.urbantrafficcoordination.seada/seadaseatsa" elementFormDefault="unqualified" targetNamespace="http://eu.chorevolution.urbantrafficcoordination.seada/seadaseatsa">
+    <xsd:complexType name="ecoRoutesRequest">
+        <xsd:sequence>
+            <xsd:element name="origin" type="waypoint"/>
+            <xsd:element name="destination" type="waypoint"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="waypoint">
+        <xsd:sequence>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="routesRequest">
+        <xsd:sequence>
+            <xsd:element name="origin" type="waypoint"/>
+            <xsd:element name="destination" type="waypoint"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="routesSuggestion">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="routes" type="route"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="route">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:sequence maxOccurs="unbounded">
+                <xsd:element name="waypoints" type="waypointInfo"/>
+            </xsd:sequence>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="waypointInfo">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="waypoint" type="waypoint"/>
+            <xsd:element name="instruction" type="xsd:string"/>
+            <xsd:element name="type" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRoutesInformationRequest">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="routes" type="route"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRoutesInformationResponse">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="ecoSpeedRoutesInformation" type="ecoSpeedRouteInformation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRouteInformation">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="ecoSpeedRouteSegmentsInformation" type="ecoSpeedRouteSegmentInformation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRouteSegmentInformation">
+        <xsd:sequence>
+            <xsd:element name="routeSegment" type="routeSegment"/>
+            <xsd:element name="congestionLevel" type="xsd:int"/>
+            <xsd:element name="weatherCondition" type="weatherCondition"/>
+            <xsd:element name="extraDataWaypoints" type="extraDataWaypoints"/>
+            <xsd:element name="ecoLevel" type="xsd:int"/>
+            <xsd:element name="ecoSpeed" type="xsd:int"/>
+            <xsd:element name="estimatedEmission" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="trafficRouteInformationRequest">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="routeSegments" type="routeSegment"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="trafficRouteInformationResponse">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="trafficRouteInformation" type="trafficRouteSegmentInformation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="trafficRouteSegmentInformation">
+        <xsd:sequence>
+            <xsd:element name="routeSegment" type="routeSegment"/>
+            <xsd:element name="congestionLevel" type="xsd:int"/>
+            <xsd:element name="weatherCondition" type="weatherCondition"/>
+            <xsd:element name="extraDataWaypoints" type="extraDataWaypoints"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="extraDataWaypoints">
+        <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+            <xsd:element name="extraDataWaypointsInformation" type="extraDataWaypoint"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="extraDataWaypoint">
+        <xsd:sequence>
+            <xsd:element name="latitude" type="xsd:double"/>
+            <xsd:element name="longitude" type="xsd:double"/>
+            <xsd:element name="situationType" type="situationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="situationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ferry"/>
+            <xsd:enumeration value="obstacle"/>
+            <xsd:enumeration value="accident"/>
+            <xsd:enumeration value="restriction"/>
+            <xsd:enumeration value="trafficinfo"/>
+            <xsd:enumeration value="roadworks"/>
+            <xsd:enumeration value="roadconditions"/>
+            <xsd:enumeration value="other"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="weatherCondition">
+        <xsd:sequence>
+            <xsd:element name="roadTemperature" type="xsd:double"/>
+            <xsd:element name="airTemperature" type="xsd:double"/>
+            <xsd:element name="airRelativeHumidity" type="xsd:double"/>
+            <xsd:element name="windForce" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="routeSegment">
+        <xsd:sequence>
+            <xsd:element name="start" type="waypoint"/>
+            <xsd:element name="end" type="waypoint"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="congestionStatusRequest">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="routeSegments" type="routeSegmentData"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="routeSegmentData">
+        <xsd:sequence>
+            <xsd:element name="routeSegment" type="routeSegment"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="congestionStatusResponse">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="routeSegmentsCongestionStatus" type="routeSegmentCongestionStatusData"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="routeSegmentCongestionStatusData">
+        <xsd:sequence>
+            <xsd:element name="routeSegmentCongestionStatus" type="routeSegmentCongestionStatus"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="routeSegmentCongestionStatus">
+        <xsd:sequence>
+            <xsd:element name="routeSegment" type="routeSegment"/>
+            <xsd:element name="congestionLevel" type="xsd:int"/>
+            <xsd:element name="speed" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="bridgeStatusInformationRequest">
+        <xsd:sequence>
+            <xsd:element name="origin" type="waypoint"/>
+            <xsd:element name="destination" type="waypoint"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="bridgeStatusInformationResponse">
+        <xsd:sequence>
+            <xsd:element name="closureStatus" type="closureStatus"/>
+            <xsd:element name="nextClosure" type="nextClosure"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="closureStatus">
+        <xsd:sequence>
+            <xsd:element name="isClosed" type="xsd:boolean"/>
+            <xsd:element name="opensAtTimeMillis" type="xsd:long"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="nextClosure">
+        <xsd:sequence>
+            <xsd:element name="fromMillis" type="xsd:long"/>
+            <xsd:element name="toMillis" type="xsd:long"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="accidentInformationRequest">
+        <xsd:sequence>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="accidentInformationResponse">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="accidents" type="accidentInformationData"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="accidentInformationData">
+        <xsd:sequence>
+            <xsd:element name="accidentInformation" type="accidentInformation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="accidentInformation">
+        <xsd:sequence>
+            <xsd:element name="longitude" type="xsd:double"/>
+            <xsd:element name="latitude" type="xsd:double"/>
+            <xsd:element name="messageCodeValue" type="xsd:string"/>
+            <xsd:element name="messageTypeValue" type="xsd:string"/>
+            <xsd:element name="severityCode" type="xsd:string"/>
+            <xsd:element name="description" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="weatherInformationRequest">
+        <xsd:sequence>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="weatherInformationResponse">
+        <xsd:sequence>
+            <xsd:element name="roadTemperature" type="xsd:double"/>
+            <xsd:element name="airTemperature" type="xsd:double"/>
+            <xsd:element name="airRelativeHumidity" type="xsd:double"/>
+            <xsd:element name="windForce" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoRoutesResponse">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="ecoSpeedRoutesInformation" type="ecoSpeedRouteInformation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRouteInformationRequest">
+        <xsd:sequence>
+            <xsd:element name="route" type="route"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRouteInformationResponse">
+        <xsd:sequence>
+            <xsd:element name="ecoSpeedRouteInformation" type="ecoSpeedRouteInformation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRouteInformationRequestType">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="inputMessageName" type="xsd:string"/>
+            <xsd:element name="inputMessageData" type="ecoSpeedRouteInformationRequest"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ecoSpeedRouteInformationRequestElementRequest" type="ecoSpeedRouteInformationRequestType"/>
+    <xsd:element name="ecoSpeedRouteInformationRequestElementResponse" type="ecoSpeedRouteInformationRequestReturnType"/>
+    <xsd:complexType name="ecoSpeedRouteInformationRequestReturnType">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:complexType name="choreographyInstanceRequest">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="sendRequestType">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="inputMessageName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sendEcoSpeedRouteInformationResponseElementRequest" type="sendRequestType"/>
+    <xsd:complexType name="ecoSpeedRouteInformationResponseReturnType">
+        <xsd:sequence>
+            <xsd:element name="inputMessageData" type="ecoSpeedRouteInformationResponse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sendEcoSpeedRouteInformationResponseElementResponse" type="ecoSpeedRouteInformationResponseReturnType"/>
+    <xsd:complexType name="ecoSpeedRoutesInformationRequestType">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="inputMessageName" type="xsd:string"/>
+            <xsd:element name="inputMessageData" type="ecoSpeedRoutesInformationRequest"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ecoSpeedRoutesInformationRequestElementRequest" type="ecoSpeedRoutesInformationRequestType"/>
+    <xsd:element name="ecoSpeedRoutesInformationRequestElementResponse" type="ecoSpeedRoutesInformationRequestReturnType"/>
+    <xsd:complexType name="ecoSpeedRoutesInformationRequestReturnType">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:element name="sendEcoSpeedRoutesInformationResponseElementRequest" type="sendRequestType"/>
+    <xsd:complexType name="ecoSpeedRoutesInformationResponseReturnType">
+        <xsd:sequence>
+            <xsd:element name="inputMessageData" type="ecoSpeedRoutesInformationResponse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sendEcoSpeedRoutesInformationResponseElementResponse" type="ecoSpeedRoutesInformationResponseReturnType"/>
+    <xsd:complexType name="sendRequestTypeWithLoop">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="inputMessageName" type="xsd:string"/>
+            <xsd:element name="loopIndexes" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sendTrafficRouteInformationRequestElementRequest" type="sendRequestTypeWithLoop"/>
+    <xsd:complexType name="trafficRouteInformationRequestReturnType">
+        <xsd:sequence>
+            <xsd:element name="inputMessageData" type="trafficRouteInformationRequest"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sendTrafficRouteInformationRequestElementResponse" type="trafficRouteInformationRequestReturnType"/>
+    <xsd:complexType name="trafficRouteInformationResponseType">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="inputMessageName" type="xsd:string"/>
+            <xsd:element name="inputMessageData" type="trafficRouteInformationResponse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="trafficRouteInformationResponseElementRequest" type="trafficRouteInformationResponseType"/>
+    <xsd:element name="trafficRouteInformationResponseElementResponse" type="trafficRouteInformationResponseReturnType"/>
+    <xsd:complexType name="trafficRouteInformationResponseReturnType">
+        <xsd:sequence/>
+    </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="trafficRouteInformationResponseMessageResponse">
+    <wsdl:part element="tns:trafficRouteInformationResponseElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendEcoSpeedRouteInformationResponseMessageRequest">
+    <wsdl:part element="tns:sendEcoSpeedRouteInformationResponseElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ecoSpeedRouteInformationRequestMessageResponse">
+    <wsdl:part element="tns:ecoSpeedRouteInformationRequestElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendEcoSpeedRoutesInformationResponseMessageRequest">
+    <wsdl:part element="tns:sendEcoSpeedRoutesInformationResponseElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendEcoSpeedRoutesInformationResponseMessageResponse">
+    <wsdl:part element="tns:sendEcoSpeedRoutesInformationResponseElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendTrafficRouteInformationRequestMessageRequest">
+    <wsdl:part element="tns:sendTrafficRouteInformationRequestElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ecoSpeedRouteInformationRequestMessageRequest">
+    <wsdl:part element="tns:ecoSpeedRouteInformationRequestElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="trafficRouteInformationResponseMessageRequest">
+    <wsdl:part element="tns:trafficRouteInformationResponseElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ecoSpeedRoutesInformationRequestMessageResponse">
+    <wsdl:part element="tns:ecoSpeedRoutesInformationRequestElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ecoSpeedRoutesInformationRequestMessageRequest">
+    <wsdl:part element="tns:ecoSpeedRoutesInformationRequestElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendTrafficRouteInformationRequestMessageResponse">
+    <wsdl:part element="tns:sendTrafficRouteInformationRequestElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendEcoSpeedRouteInformationResponseMessageResponse">
+    <wsdl:part element="tns:sendEcoSpeedRouteInformationResponseElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SEADA-SEATSAPT">
+    <wsdl:operation name="getEcoSpeedRouteInformation">
+      <wsdl:input message="tns:ecoSpeedRouteInformationRequestMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:ecoSpeedRouteInformationRequestMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendEcoSpeedRouteInformationResponse">
+      <wsdl:input message="tns:sendEcoSpeedRouteInformationResponseMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendEcoSpeedRouteInformationResponseMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEcoSpeedRoutesInformation">
+      <wsdl:input message="tns:ecoSpeedRoutesInformationRequestMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:ecoSpeedRoutesInformationRequestMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendEcoSpeedRoutesInformationResponse">
+      <wsdl:input message="tns:sendEcoSpeedRoutesInformationResponseMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendEcoSpeedRoutesInformationResponseMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendTrafficRouteInformationRequest">
+      <wsdl:input message="tns:sendTrafficRouteInformationRequestMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendTrafficRouteInformationRequestMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setRouteTrafficInformation">
+      <wsdl:input message="tns:trafficRouteInformationResponseMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:trafficRouteInformationResponseMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SEADA-SEATSABinding" type="tns:SEADA-SEATSAPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getEcoSpeedRouteInformation">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendEcoSpeedRouteInformationResponse">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEcoSpeedRoutesInformation">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendEcoSpeedRoutesInformationResponse">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendTrafficRouteInformationRequest">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setRouteTrafficInformation">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SEADA-SEATSAService">
+    <wsdl:port binding="tns:SEADA-SEATSABinding" name="SEADA-SEATSAPort">
+      <soap:address location="http://localhost:9090/SEADA-SEATSA/SEADA-SEATSA"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

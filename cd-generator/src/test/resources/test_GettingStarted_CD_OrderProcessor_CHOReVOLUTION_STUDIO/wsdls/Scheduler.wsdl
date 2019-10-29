@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://eu.chorevolution.gettingstarted/services/scheduler"
+             xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+             xmlns:wsp="http://www.w3.org/ns/ws-policy"
+             xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+             xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://eu.chorevolution.gettingstarted/services/scheduler"
+             name="SchedulerService">
+    <types>
+    <xsd:schema version="1.0" targetNamespace="http://eu.chorevolution.gettingstarted/services/scheduler">
+        <xsd:element name="scheduleRequestElementRequest" type="tns:scheduleRequest"/>
+        <xsd:element name="scheduleResponseElementResponse" type="tns:scheduleResponse"/>
+	   	<xsd:complexType name="scheduleRequest">
+	       <xsd:sequence> 	
+			    <xsd:element name="orderID" type="xsd:string"/>    		
+			    <xsd:sequence maxOccurs="unbounded" minOccurs="1">
+			       <xsd:element name="productsSchedule" type="tns:productScheduleDetails"/>
+			    </xsd:sequence>  
+			    <xsd:element name="address" type="tns:addressDetails"/>	                           
+			</xsd:sequence>			  	
+	   	</xsd:complexType>        
+	    <xsd:complexType name="productScheduleDetails">
+	        <xsd:sequence>
+	            <xsd:element name="id" type="xsd:int"/>
+	            <xsd:element name="quantity" type="xsd:int"/>
+	        </xsd:sequence>
+	    </xsd:complexType>  
+	    <xsd:complexType name="addressDetails">
+	        <xsd:sequence>
+	            <xsd:element name="city" type="xsd:string"/>       
+	            <xsd:element name="street" type="xsd:string"/>
+	            <xsd:element name="postcode" type="xsd:int"/>            
+	        </xsd:sequence>
+	    </xsd:complexType>	
+	  	<xsd:complexType name="scheduleResponse">
+	       <xsd:sequence>
+			   <xsd:element name="orderID" type="xsd:string"/>          
+	           <xsd:element name="scheduleDetails" type="tns:scheduleDetails"/>
+	       </xsd:sequence>  	
+	   	</xsd:complexType>
+	  	<xsd:complexType name="scheduleDetails">
+	     	<xsd:sequence>	
+	           <xsd:element name="address" type="tns:addressDetails"/>	
+	           <xsd:element name="departureDate" type="xsd:date"/>	  
+	           <xsd:element name="arrivalDate" type="xsd:date"/>	                                      
+		    </xsd:sequence>  		
+	   	</xsd:complexType>		   		    	     		   			    	    	   		   	 			   	            	   		       
+    </xsd:schema>
+    </types>    
+    <message name="scheduleRequestMessageRequest">
+        <part name="parameters" element="tns:scheduleRequestElementRequest"/>
+    </message>
+    <message name="scheduleResponseMessageResponse">
+        <part name="parameters" element="tns:scheduleResponseElementResponse"/>
+    </message>       
+    <portType name="SchedulerPT">    
+        <operation name="organizeSchedule">
+            <input wsam:Action="http://eu.chorevolution.gettingstarted/scheduler/scheduleRequest" message="tns:scheduleRequestMessageRequest"/>
+            <output wsam:Action="http://eu.chorevolution.gettingstarted/scheduler/scheduleResponse" message="tns:scheduleResponseMessageResponse"/>
+        </operation> 		 			
+    </portType> 
+    <binding name="SchedulerBinding" type="tns:SchedulerPT">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>   
+	    <operation name="organizeSchedule">
+	    	<soap:operation soapAction=""/>
+	        <input>
+	        	<soap:body use="literal"/>
+	      	</input>
+	        <output>
+	        	<soap:body use="literal"/>
+	      	</output>
+	    </operation> 	    
+    </binding>
+    <service name="SchedulerService">
+      <port name="SchedulerPort" binding="tns:SchedulerBinding">
+          <soap:address location="http://localhost:9090/Scheduler/Scheduler"></soap:address>
+      </port>
+    </service>
+</definitions>

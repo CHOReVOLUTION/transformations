@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<gidl:GIDLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gidl="http://eu.chorevolution/modelingnotations/gidl" hostAddress="http://93.62.202.227/" protocol="REST">
+  <hasInterfaces role="provider">
+    <hasOperations name="GetTripsInformation" type="two_way_sync" qos="reliable">
+      <hasScope name="GetTripsInformation" verb="GET" uri="mes/get_metadata_in_area?collection={collection}&amp;amp;period={period}&amp;amp;lat={lat}&amp;amp;lon={lon}&amp;amp;tag={tag}&amp;amp;radius={radius}"/>
+      <inputData name="request" context="body">
+        <hasDataType xsi:type="gidl:ComplexType" name="RequestRoot" occurences="one">
+          <hasDataType xsi:type="gidl:SimpleType" name="fromLat" occurences="one" type="double"/>
+          <hasDataType xsi:type="gidl:SimpleType" name="fromLon" occurences="one" type="double"/>
+          <hasDataType xsi:type="gidl:SimpleType" name="toLat" occurences="one" type="double"/>
+          <hasDataType xsi:type="gidl:SimpleType" name="toLon" occurences="one" type="double"/>
+          <hasDataType xsi:type="gidl:ComplexType" name="transportMode" occurences="one">
+            <hasDataType xsi:type="gidl:SimpleType" name="modes" occurences="one" type="string"/>
+          </hasDataType>
+          <hasDataType xsi:type="gidl:SimpleType" name="startAt" occurences="one" type="date"/>
+          <hasDataType xsi:type="gidl:SimpleType" name="endAt" occurences="one" type="integer"/>
+        </hasDataType>
+      </inputData>
+      <outputData name="response" context="body">
+        <hasDataType xsi:type="gidl:ComplexType" name="ResponseRoot" occurences="one">
+          <hasDataType xsi:type="gidl:SimpleType" name="from" occurences="one" type="string"/>
+          <hasDataType xsi:type="gidl:SimpleType" name="to" occurences="one" type="string"/>
+          <hasDataType xsi:type="gidl:ComplexType" name="trips" occurences="one">
+            <hasDataType xsi:type="gidl:SimpleType" name="distance" occurences="one" type="integer"/>
+            <hasDataType xsi:type="gidl:SimpleType" name="duration" occurences="one" type="integer"/>
+            <hasDataType xsi:type="gidl:ComplexType" name="segments" occurences="one">
+              <hasDataType xsi:type="gidl:SimpleType" name="distance" occurences="one" type="integer"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="duration" occurences="one" type="integer"/>
+              <hasDataType xsi:type="gidl:ComplexType" name="transportType" occurences="unbounded">
+                <hasDataType xsi:type="gidl:SimpleType" name="modes" occurences="one" type="string"/>
+              </hasDataType>
+              <hasDataType xsi:type="gidl:SimpleType" name="manoeuvres" occurences="unbounded" type="string"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="dropInNode" occurences="unbounded" type="string"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="dropOffNode" occurences="unbounded" type="string"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="line" occurences="one" type="string"/>
+              <hasDataType xsi:type="gidl:SimpleType" name="vehiculeDirection" occurences="one" type="string"/>
+            </hasDataType>
+          </hasDataType>
+        </hasDataType>
+      </outputData>
+    </hasOperations>
+  </hasInterfaces>
+</gidl:GIDLModel>

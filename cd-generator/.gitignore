@@ -1,0 +1,9 @@
+# Eclipse Projects Files
+.settings/
+.classpath
+.project
+logs/
+out_war/
+# Target Directory
+target/
+

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gidl:GIDLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gidl="http://eu.chorevolution/modelingnotations/gidl" hostAddress="http://ge-srv.e-mixer.com/" protocol="REST">
+  <hasInterfaces role="provider">
+    <hasOperations name="JourneyPlanningService" type="two_way_sync" qos="reliable">
+      <hasScope name="JourneyPlanningService" verb="GET" uri="Rest/JourneyPlanningService.svc/trips"/>
+      <inputData name="request" context="query" media="json">
+		 <hasDataType xsi:type="gidl:ComplexType" name="inputDataType" minOccurs="one" maxOccurs="one">
+          <hasDataType xsi:type="gidl:SimpleType" name="fromLat" minOccurs="one" maxOccurs="one" type="double"/>
+          <hasDataType xsi:type="gidl:SimpleType" name="fromLon" minOccurs="one" maxOccurs="one" type="double"/>
+          <hasDataType xsi:type="gidl:SimpleType" name="toLat" minOccurs="one" maxOccurs="one" type="double"/>
+          <hasDataType xsi:type="gidl:SimpleType" name="toLon" minOccurs="one" maxOccurs="one" type="double"/>
+          <hasDataType xsi:type="gidl:SimpleType" name="modes" minOccurs="one" maxOccurs="one" type="integer"/>
+          </hasDataType>
+      </inputData>
+      <outputData name="response" context="body" media="json">
+        <hasDataType xsi:type="gidl:ComplexType" name="outputDataType" minOccurs="one" maxOccurs="one">
+          <hasDataType xsi:type="gidl:ComplexType" name="f" minOccurs="one" maxOccurs="one">
+			<hasDataType xsi:type="gidl:SimpleType" name="n" minOccurs="one" maxOccurs="one" type="string"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="x" minOccurs="one" maxOccurs="one" type="double"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="y" minOccurs="one" maxOccurs="one" type="double"/>
+		 </hasDataType>
+		 <hasDataType xsi:type="gidl:SimpleType" name="id" minOccurs="one" maxOccurs="one" type="string"/>
+		 <hasDataType xsi:type="gidl:ComplexType" name="t" minOccurs="one" maxOccurs="one">
+			<hasDataType xsi:type="gidl:SimpleType" name="n" minOccurs="one" maxOccurs="one" type="string"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="x" minOccurs="one" maxOccurs="one" type="double"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="y" minOccurs="one" maxOccurs="one" type="double"/>
+		 </hasDataType>
+		 <hasDataType xsi:type="gidl:ComplexType" name="ts" minOccurs="one" maxOccurs="unbounded">
+			<hasDataType xsi:type="gidl:SimpleType" name="co" minOccurs="one" maxOccurs="one" type="integer"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="d" minOccurs="one" maxOccurs="one" type="integer"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="du" minOccurs="one" maxOccurs="one" type="integer"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="dwf" minOccurs="one" maxOccurs="one" type="boolean"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="e" minOccurs="one" maxOccurs="one" type="integer"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="m" minOccurs="one" maxOccurs="one" type="integer"/>
+			<hasDataType xsi:type="gidl:SimpleType" name="s" minOccurs="one" maxOccurs="one" type="integer"/>
+			<hasDataType xsi:type="gidl:ComplexType" name="segs" minOccurs="one" maxOccurs="unbounded">
+				<hasDataType xsi:type="gidl:SimpleType" name="d" minOccurs="one" maxOccurs="one" type="integer"/>
+				<hasDataType xsi:type="gidl:SimpleType" name="du" minOccurs="one" maxOccurs="one" type="integer"/>
+				<hasDataType xsi:type="gidl:ComplexType" name="po" minOccurs="one" maxOccurs="one">
+					<hasDataType xsi:type="gidl:SimpleType" name="c" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="ep" minOccurs="one" maxOccurs="one" type="string"/>
+				</hasDataType>
+				<hasDataType xsi:type="gidl:ComplexType" name="ps" minOccurs="one" maxOccurs="unbounded">
+					<hasDataType xsi:type="gidl:SimpleType" name="b" minOccurs="one" maxOccurs="one" type="integer"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="d" minOccurs="one" maxOccurs="one" type="integer"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="f" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="m" minOccurs="one" maxOccurs="one" type="integer"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="mc" minOccurs="one" maxOccurs="one" type="boolean"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="rtc" minOccurs="one" maxOccurs="one" type="integer"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="x" minOccurs="one" maxOccurs="one" type="double"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="y" minOccurs="one" maxOccurs="one" type="double"/>
+				</hasDataType>
+				<hasDataType xsi:type="gidl:SimpleType" name="t" minOccurs="one" maxOccurs="one" type="integer"/>
+				<hasDataType xsi:type="gidl:ComplexType" name="v" minOccurs="one" maxOccurs="one">
+					<hasDataType xsi:type="gidl:SimpleType" name="d" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="e" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="eid" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="et" minOccurs="one" maxOccurs="one" type="integer"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="l" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="s" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="sid" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="st" minOccurs="one" maxOccurs="one" type="integer"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="t" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="vss" minOccurs="one" maxOccurs="one" type="string"/>
+				</hasDataType>
+				<hasDataType xsi:type="gidl:ComplexType" name="vts" minOccurs="one" maxOccurs="unbounded">	
+					<hasDataType xsi:type="gidl:SimpleType" name="u" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="p" minOccurs="one" maxOccurs="one" type="string"/>
+					<hasDataType xsi:type="gidl:SimpleType" name="d" minOccurs="one" maxOccurs="one" type="string"/>
+				</hasDataType>
+		 </hasDataType>
+		 </hasDataType>
+        </hasDataType>
+      </outputData>
+    </hasOperations>
+  </hasInterfaces>
+</gidl:GIDLModel>

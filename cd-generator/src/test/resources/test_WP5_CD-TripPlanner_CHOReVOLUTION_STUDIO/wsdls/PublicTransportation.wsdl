@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="PublicTransportationService"
+	targetNamespace="http://it.softeco.chorevolution.smt/publictransportation" 
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:tns="http://it.softeco.chorevolution.smt/publictransportation"
+	xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+	<types>
+		<xsd:schema targetNamespace="http://it.softeco.chorevolution.smt/publictransportation">
+			<xsd:element name="getInfoTransportationRequest" type="tns:getInfoTransportationRequest" />
+			<xsd:element name="getInfoTransportationResponse" type="tns:getInfoTransportationResponse" />
+			<xsd:complexType name="getInfoTransportationRequest">
+				<xsd:sequence>
+					<xsd:element name="session" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="getInfoTransportationResponse">
+				<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+					<xsd:element name="InfoItem" type="tns:InfoItemType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="InfoItemType">
+				<xsd:sequence>
+					<xsd:element name="title" type="xsd:string" />
+					<xsd:element name="issueDate" type="xsd:string" />
+					<xsd:element name="text" type="xsd:string" />
+					<xsd:element name="validityDate" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</types>
+	<message name="getInfoTransportationRequest">
+		<part name="parameters" element="tns:getInfoTransportationRequest">
+		</part>
+	</message>
+	<message name="getInfoTransportationResponse">
+		<part name="parameters" element="tns:getInfoTransportationResponse">
+		</part>
+	</message>
+	<portType name="PublicTransportationPT">
+		<operation name="getInfo">
+			<input message="tns:getInfoTransportationRequest"
+				wsam:Action="http://it.softeco.chorevolution.smt/publictransportation/getInfoTransportationRequest">
+			</input>
+			<output message="tns:getInfoTransportationResponse"
+				wsam:Action="http://it.softeco.chorevolution.smt/publictransportation/getInfoTransportationResponse">
+			</output>
+		</operation>
+	</portType>
+	<binding name="PublicTransportationBinding" type="tns:PublicTransportationPT">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="getInfo">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="PublicTransportationService">
+		<port name="PublicTransportationPort" binding="tns:PublicTransportationBinding">
+			<soap:address
+				location="http://localhost:9090/publictransportation/publictransportation" />
+		</port>
+	</service>
+</definitions>

@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://eu.chorevolution.urbantrafficcoordination.seada/seadatraffic" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="seadatraffic" targetNamespace="http://eu.chorevolution.urbantrafficcoordination.seada/seadatraffic">
+  <wsdl:types>
+    <xsd:schema xmlns="http://eu.chorevolution.urbantrafficcoordination.seada/seadatraffic" elementFormDefault="unqualified" targetNamespace="http://eu.chorevolution.urbantrafficcoordination.seada/seadatraffic">
+    <xsd:complexType name="ecoRoutesRequest">
+        <xsd:sequence>
+            <xsd:element name="origin" type="waypoint"/>
+            <xsd:element name="destination" type="waypoint"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="waypoint">
+        <xsd:sequence>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="routesRequest">
+        <xsd:sequence>
+            <xsd:element name="origin" type="waypoint"/>
+            <xsd:element name="destination" type="waypoint"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="routesSuggestion">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="routes" type="route"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="route">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:sequence maxOccurs="unbounded">
+                <xsd:element name="waypoints" type="waypointInfo"/>
+            </xsd:sequence>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="waypointInfo">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="waypoint" type="waypoint"/>
+            <xsd:element name="instruction" type="xsd:string"/>
+            <xsd:element name="type" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRoutesInformationRequest">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="routes" type="route"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRoutesInformationResponse">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="ecoSpeedRoutesInformation" type="ecoSpeedRouteInformation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRouteInformation">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="ecoSpeedRouteSegmentsInformation" type="ecoSpeedRouteSegmentInformation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRouteSegmentInformation">
+        <xsd:sequence>
+            <xsd:element name="routeSegment" type="routeSegment"/>
+            <xsd:element name="congestionLevel" type="xsd:int"/>
+            <xsd:element name="weatherCondition" type="weatherCondition"/>
+            <xsd:element name="extraDataWaypoints" type="extraDataWaypoints"/>
+            <xsd:element name="ecoLevel" type="xsd:int"/>
+            <xsd:element name="ecoSpeed" type="xsd:int"/>
+            <xsd:element name="estimatedEmission" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="trafficRouteInformationRequest">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="routeSegments" type="routeSegment"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="trafficRouteInformationResponse">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="trafficRouteInformation" type="trafficRouteSegmentInformation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="trafficRouteSegmentInformation">
+        <xsd:sequence>
+            <xsd:element name="routeSegment" type="routeSegment"/>
+            <xsd:element name="congestionLevel" type="xsd:int"/>
+            <xsd:element name="weatherCondition" type="weatherCondition"/>
+            <xsd:element name="extraDataWaypoints" type="extraDataWaypoints"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="extraDataWaypoints">
+        <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+            <xsd:element name="extraDataWaypointsInformation" type="extraDataWaypoint"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="extraDataWaypoint">
+        <xsd:sequence>
+            <xsd:element name="latitude" type="xsd:double"/>
+            <xsd:element name="longitude" type="xsd:double"/>
+            <xsd:element name="situationType" type="situationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="situationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ferry"/>
+            <xsd:enumeration value="obstacle"/>
+            <xsd:enumeration value="accident"/>
+            <xsd:enumeration value="restriction"/>
+            <xsd:enumeration value="trafficinfo"/>
+            <xsd:enumeration value="roadworks"/>
+            <xsd:enumeration value="roadconditions"/>
+            <xsd:enumeration value="other"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="weatherCondition">
+        <xsd:sequence>
+            <xsd:element name="roadTemperature" type="xsd:double"/>
+            <xsd:element name="airTemperature" type="xsd:double"/>
+            <xsd:element name="airRelativeHumidity" type="xsd:double"/>
+            <xsd:element name="windForce" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="routeSegment">
+        <xsd:sequence>
+            <xsd:element name="start" type="waypoint"/>
+            <xsd:element name="end" type="waypoint"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="congestionStatusRequest">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="routeSegments" type="routeSegmentData"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="routeSegmentData">
+        <xsd:sequence>
+            <xsd:element name="routeSegment" type="routeSegment"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="congestionStatusResponse">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="routeSegmentsCongestionStatus" type="routeSegmentCongestionStatusData"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="routeSegmentCongestionStatusData">
+        <xsd:sequence>
+            <xsd:element name="routeSegmentCongestionStatus" type="routeSegmentCongestionStatus"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="routeSegmentCongestionStatus">
+        <xsd:sequence>
+            <xsd:element name="routeSegment" type="routeSegment"/>
+            <xsd:element name="congestionLevel" type="xsd:int"/>
+            <xsd:element name="speed" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="bridgeStatusInformationRequest">
+        <xsd:sequence>
+            <xsd:element name="origin" type="waypoint"/>
+            <xsd:element name="destination" type="waypoint"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="bridgeStatusInformationResponse">
+        <xsd:sequence>
+            <xsd:element name="closureStatus" type="closureStatus"/>
+            <xsd:element name="nextClosure" type="nextClosure"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="closureStatus">
+        <xsd:sequence>
+            <xsd:element name="isClosed" type="xsd:boolean"/>
+            <xsd:element name="opensAtTimeMillis" type="xsd:long"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="nextClosure">
+        <xsd:sequence>
+            <xsd:element name="fromMillis" type="xsd:long"/>
+            <xsd:element name="toMillis" type="xsd:long"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="accidentInformationRequest">
+        <xsd:sequence>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="accidentInformationResponse">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="accidents" type="accidentInformationData"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="accidentInformationData">
+        <xsd:sequence>
+            <xsd:element name="accidentInformation" type="accidentInformation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="accidentInformation">
+        <xsd:sequence>
+            <xsd:element name="longitude" type="xsd:double"/>
+            <xsd:element name="latitude" type="xsd:double"/>
+            <xsd:element name="messageCodeValue" type="xsd:string"/>
+            <xsd:element name="messageTypeValue" type="xsd:string"/>
+            <xsd:element name="severityCode" type="xsd:string"/>
+            <xsd:element name="description" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="weatherInformationRequest">
+        <xsd:sequence>
+            <xsd:element name="lat" type="xsd:double"/>
+            <xsd:element name="lon" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="weatherInformationResponse">
+        <xsd:sequence>
+            <xsd:element name="roadTemperature" type="xsd:double"/>
+            <xsd:element name="airTemperature" type="xsd:double"/>
+            <xsd:element name="airRelativeHumidity" type="xsd:double"/>
+            <xsd:element name="windForce" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoRoutesResponse">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="ecoSpeedRoutesInformation" type="ecoSpeedRouteInformation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRouteInformationRequest">
+        <xsd:sequence>
+            <xsd:element name="route" type="route"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ecoSpeedRouteInformationResponse">
+        <xsd:sequence>
+            <xsd:element name="ecoSpeedRouteInformation" type="ecoSpeedRouteInformation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="trafficRouteInformationRequestType">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="inputMessageName" type="xsd:string"/>
+            <xsd:element name="inputMessageData" type="trafficRouteInformationRequest"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="trafficRouteInformationRequestElementRequest" type="trafficRouteInformationRequestType"/>
+    <xsd:element name="trafficRouteInformationRequestElementResponse" type="trafficRouteInformationRequestReturnType"/>
+    <xsd:complexType name="trafficRouteInformationRequestReturnType">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:complexType name="choreographyInstanceRequest">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="sendRequestTypeWithLoop">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="inputMessageName" type="xsd:string"/>
+            <xsd:element name="loopIndexes" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sendTrafficRouteInformationResponseElementRequest" type="sendRequestTypeWithLoop"/>
+    <xsd:complexType name="trafficRouteInformationResponseReturnType">
+        <xsd:sequence>
+            <xsd:element name="inputMessageData" type="trafficRouteInformationResponse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sendTrafficRouteInformationResponseElementResponse" type="trafficRouteInformationResponseReturnType"/>
+    <xsd:element name="sendCongestionStatusRequestElementRequest" type="sendRequestTypeWithLoop"/>
+    <xsd:complexType name="congestionStatusRequestReturnType">
+        <xsd:sequence>
+            <xsd:element name="inputMessageData" type="congestionStatusRequest"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sendCongestionStatusRequestElementResponse" type="congestionStatusRequestReturnType"/>
+    <xsd:complexType name="receiveCongestionStatusResponseType">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="outputMessageName" type="xsd:string"/>
+            <xsd:element name="outputMessageData" type="congestionStatusResponse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="receiveCongestionStatusResponseReturnType">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:element name="receiveCongestionStatusResponseElementRequest" type="receiveCongestionStatusResponseType"/>
+    <xsd:element name="receiveCongestionStatusResponseElementResponse" type="receiveCongestionStatusResponseReturnType"/>
+    <xsd:element name="sendBridgeStatusInformationRequestElementRequest" type="sendRequestTypeWithLoop"/>
+    <xsd:complexType name="bridgeStatusInformationRequestReturnType">
+        <xsd:sequence>
+            <xsd:element name="inputMessageData" type="bridgeStatusInformationRequest"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sendBridgeStatusInformationRequestElementResponse" type="bridgeStatusInformationRequestReturnType"/>
+    <xsd:complexType name="receiveBridgeStatusInformationResponseType">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="outputMessageName" type="xsd:string"/>
+            <xsd:element name="outputMessageData" type="bridgeStatusInformationResponse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="receiveBridgeStatusInformationResponseReturnType">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:element name="receiveBridgeStatusInformationResponseElementRequest" type="receiveBridgeStatusInformationResponseType"/>
+    <xsd:element name="receiveBridgeStatusInformationResponseElementResponse" type="receiveBridgeStatusInformationResponseReturnType"/>
+    <xsd:element name="sendOriginAccidentInformationRequestElementRequest" type="sendRequestTypeWithLoop"/>
+    <xsd:complexType name="accidentInformationRequestReturnType">
+        <xsd:sequence>
+            <xsd:element name="inputMessageData" type="accidentInformationRequest"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sendOriginAccidentInformationRequestElementResponse" type="accidentInformationRequestReturnType"/>
+    <xsd:complexType name="receiveOriginAccidentInformationResponseType">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="outputMessageName" type="xsd:string"/>
+            <xsd:element name="outputMessageData" type="accidentInformationResponse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="receiveOriginAccidentInformationResponseReturnType">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:element name="receiveOriginAccidentInformationResponseElementRequest" type="receiveOriginAccidentInformationResponseType"/>
+    <xsd:element name="receiveOriginAccidentInformationResponseElementResponse" type="receiveOriginAccidentInformationResponseReturnType"/>
+    <xsd:element name="sendOriginWeatherInformationRequestElementRequest" type="sendRequestTypeWithLoop"/>
+    <xsd:complexType name="weatherInformationRequestReturnType">
+        <xsd:sequence>
+            <xsd:element name="inputMessageData" type="weatherInformationRequest"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sendOriginWeatherInformationRequestElementResponse" type="weatherInformationRequestReturnType"/>
+    <xsd:complexType name="receiveOriginWeatherInformationResponseType">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="outputMessageName" type="xsd:string"/>
+            <xsd:element name="outputMessageData" type="weatherInformationResponse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="receiveOriginWeatherInformationResponseReturnType">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:element name="receiveOriginWeatherInformationResponseElementRequest" type="receiveOriginWeatherInformationResponseType"/>
+    <xsd:element name="receiveOriginWeatherInformationResponseElementResponse" type="receiveOriginWeatherInformationResponseReturnType"/>
+    <xsd:element name="sendDestinationAccidentInformationRequestElementRequest" type="sendRequestTypeWithLoop"/>
+    <xsd:element name="sendDestinationAccidentInformationRequestElementResponse" type="accidentInformationRequestReturnType"/>
+    <xsd:complexType name="receiveDestinationAccidentInformationResponseType">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="outputMessageName" type="xsd:string"/>
+            <xsd:element name="outputMessageData" type="accidentInformationResponse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="receiveDestinationAccidentInformationResponseReturnType">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:element name="receiveDestinationAccidentInformationResponseElementRequest" type="receiveDestinationAccidentInformationResponseType"/>
+    <xsd:element name="receiveDestinationAccidentInformationResponseElementResponse" type="receiveDestinationAccidentInformationResponseReturnType"/>
+    <xsd:element name="sendDestinationWeatherInformationRequestElementRequest" type="sendRequestTypeWithLoop"/>
+    <xsd:element name="sendDestinationWeatherInformationRequestElementResponse" type="weatherInformationRequestReturnType"/>
+    <xsd:complexType name="receiveDestinationWeatherInformationResponseType">
+        <xsd:sequence>
+            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
+            <xsd:element name="senderParticipantName" type="xsd:string"/>
+            <xsd:element name="receiverParticipantName" type="xsd:string"/>
+            <xsd:element name="choreographyTaskName" type="xsd:string"/>
+            <xsd:element name="outputMessageName" type="xsd:string"/>
+            <xsd:element name="outputMessageData" type="weatherInformationResponse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="receiveDestinationWeatherInformationResponseReturnType">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:element name="receiveDestinationWeatherInformationResponseElementRequest" type="receiveDestinationWeatherInformationResponseType"/>
+    <xsd:element name="receiveDestinationWeatherInformationResponseElementResponse" type="receiveDestinationWeatherInformationResponseReturnType"/>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="sendOriginAccidentInformationRequestMessageResponse">
+    <wsdl:part element="tns:sendOriginAccidentInformationRequestElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendTrafficRouteInformationResponseMessageResponse">
+    <wsdl:part element="tns:sendTrafficRouteInformationResponseElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="receiveCongestionStatusResponseMessageResponse">
+    <wsdl:part element="tns:receiveCongestionStatusResponseElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="receiveDestinationAccidentInformationResponseMessageRequest">
+    <wsdl:part element="tns:receiveDestinationAccidentInformationResponseElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="receiveOriginWeatherInformationResponseMessageRequest">
+    <wsdl:part element="tns:receiveOriginWeatherInformationResponseElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="receiveDestinationAccidentInformationResponseMessageResponse">
+    <wsdl:part element="tns:receiveDestinationAccidentInformationResponseElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendCongestionStatusRequestMessageResponse">
+    <wsdl:part element="tns:sendCongestionStatusRequestElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendDestinationAccidentInformationRequestMessageRequest">
+    <wsdl:part element="tns:sendDestinationAccidentInformationRequestElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendDestinationWeatherInformationRequestMessageResponse">
+    <wsdl:part element="tns:sendDestinationWeatherInformationRequestElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="receiveBridgeStatusInformationResponseMessageResponse">
+    <wsdl:part element="tns:receiveBridgeStatusInformationResponseElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="trafficRouteInformationRequestMessageRequest">
+    <wsdl:part element="tns:trafficRouteInformationRequestElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendBridgeStatusInformationRequestMessageRequest">
+    <wsdl:part element="tns:sendBridgeStatusInformationRequestElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="receiveBridgeStatusInformationResponseMessageRequest">
+    <wsdl:part element="tns:receiveBridgeStatusInformationResponseElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendTrafficRouteInformationResponseMessageRequest">
+    <wsdl:part element="tns:sendTrafficRouteInformationResponseElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="receiveDestinationWeatherInformationResponseMessageRequest">
+    <wsdl:part element="tns:receiveDestinationWeatherInformationResponseElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendDestinationWeatherInformationRequestMessageRequest">
+    <wsdl:part element="tns:sendDestinationWeatherInformationRequestElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="trafficRouteInformationRequestMessageResponse">
+    <wsdl:part element="tns:trafficRouteInformationRequestElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="receiveDestinationWeatherInformationResponseMessageResponse">
+    <wsdl:part element="tns:receiveDestinationWeatherInformationResponseElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendDestinationAccidentInformationRequestMessageResponse">
+    <wsdl:part element="tns:sendDestinationAccidentInformationRequestElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendOriginWeatherInformationRequestMessageRequest">
+    <wsdl:part element="tns:sendOriginWeatherInformationRequestElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="receiveCongestionStatusResponseMessageRequest">
+    <wsdl:part element="tns:receiveCongestionStatusResponseElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="receiveOriginAccidentInformationResponseMessageResponse">
+    <wsdl:part element="tns:receiveOriginAccidentInformationResponseElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="receiveOriginWeatherInformationResponseMessageResponse">
+    <wsdl:part element="tns:receiveOriginWeatherInformationResponseElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendOriginWeatherInformationRequestMessageResponse">
+    <wsdl:part element="tns:sendOriginWeatherInformationRequestElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendBridgeStatusInformationRequestMessageResponse">
+    <wsdl:part element="tns:sendBridgeStatusInformationRequestElementResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendOriginAccidentInformationRequestMessageRequest">
+    <wsdl:part element="tns:sendOriginAccidentInformationRequestElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="receiveOriginAccidentInformationResponseMessageRequest">
+    <wsdl:part element="tns:receiveOriginAccidentInformationResponseElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendCongestionStatusRequestMessageRequest">
+    <wsdl:part element="tns:sendCongestionStatusRequestElementRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SEADA-TRAFFICPT">
+    <wsdl:operation name="getRouteTrafficInformation">
+      <wsdl:input message="tns:trafficRouteInformationRequestMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:trafficRouteInformationRequestMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendTrafficRouteInformationResponse">
+      <wsdl:input message="tns:sendTrafficRouteInformationResponseMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendTrafficRouteInformationResponseMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendCongestionStatusRequest">
+      <wsdl:input message="tns:sendCongestionStatusRequestMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendCongestionStatusRequestMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveCongestionStatusResponse">
+      <wsdl:input message="tns:receiveCongestionStatusResponseMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:receiveCongestionStatusResponseMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBridgeStatusInformationRequest">
+      <wsdl:input message="tns:sendBridgeStatusInformationRequestMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendBridgeStatusInformationRequestMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveBridgeStatusInformationResponse">
+      <wsdl:input message="tns:receiveBridgeStatusInformationResponseMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:receiveBridgeStatusInformationResponseMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendOriginAccidentInformationRequest">
+      <wsdl:input message="tns:sendOriginAccidentInformationRequestMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendOriginAccidentInformationRequestMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveOriginAccidentInformationResponse">
+      <wsdl:input message="tns:receiveOriginAccidentInformationResponseMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:receiveOriginAccidentInformationResponseMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendOriginWeatherInformationRequest">
+      <wsdl:input message="tns:sendOriginWeatherInformationRequestMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendOriginWeatherInformationRequestMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveOriginWeatherInformationResponse">
+      <wsdl:input message="tns:receiveOriginWeatherInformationResponseMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:receiveOriginWeatherInformationResponseMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendDestinationAccidentInformationRequest">
+      <wsdl:input message="tns:sendDestinationAccidentInformationRequestMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendDestinationAccidentInformationRequestMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveDestinationAccidentInformationResponse">
+      <wsdl:input message="tns:receiveDestinationAccidentInformationResponseMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:receiveDestinationAccidentInformationResponseMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendDestinationWeatherInformationRequest">
+      <wsdl:input message="tns:sendDestinationWeatherInformationRequestMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendDestinationWeatherInformationRequestMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveDestinationWeatherInformationResponse">
+      <wsdl:input message="tns:receiveDestinationWeatherInformationResponseMessageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:receiveDestinationWeatherInformationResponseMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SEADA-TRAFFICBinding" type="tns:SEADA-TRAFFICPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getRouteTrafficInformation">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendTrafficRouteInformationResponse">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendCongestionStatusRequest">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveCongestionStatusResponse">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBridgeStatusInformationRequest">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveBridgeStatusInformationResponse">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendOriginAccidentInformationRequest">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveOriginAccidentInformationResponse">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendOriginWeatherInformationRequest">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveOriginWeatherInformationResponse">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendDestinationAccidentInformationRequest">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveDestinationAccidentInformationResponse">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendDestinationWeatherInformationRequest">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveDestinationWeatherInformationResponse">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SEADA-TRAFFICService">
+    <wsdl:port binding="tns:SEADA-TRAFFICBinding" name="SEADA-TRAFFICPort">
+      <soap:address location="http://localhost:9090/SEADA-TRAFFIC/SEADA-TRAFFIC"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

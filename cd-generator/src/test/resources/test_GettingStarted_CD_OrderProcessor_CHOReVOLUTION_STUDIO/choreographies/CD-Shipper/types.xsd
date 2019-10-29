@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns="http://eu.chorevolution.gettingstarted/types" xmlns:tns="http://eu.chorevolution.gettingstarted/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://eu.chorevolution.gettingstarted/types"> 
+
+  	<xsd:complexType name="orderRequest">
+       <xsd:sequence>
+           <xsd:element name="clientInfo" type="tns:clientDetails"/>        
+           <xsd:element name="orderInfo" type="tns:orderDetails"/>
+       </xsd:sequence>  	
+   	</xsd:complexType>
+
+  	<xsd:complexType name="orderDetails">
+       <xsd:sequence> 	      
+	       <xsd:sequence maxOccurs="unbounded" minOccurs="1">
+	           <xsd:element name="products" type="tns:productDetails"/>
+	       </xsd:sequence>
+           <xsd:element name="address" type="tns:addressDetails"/>	       
+           <xsd:element name="orderType" type="tns:orderType"/>	        	
+       </xsd:sequence> 		       
+   	</xsd:complexType>
+
+	<xsd:simpleType name="orderType">
+		<xsd:restriction base="xsd:string">
+    		<xsd:enumeration value="premium"/>		
+    		<xsd:enumeration value="fast"/>
+    		<xsd:enumeration value="normal"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+ 	
+    <xsd:complexType name="productDetails">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="quantity" type="xsd:int"/>
+            <xsd:element name="price" type="xsd:double"/>
+            <xsd:element name="weight" type="xsd:double"/>            
+        </xsd:sequence>
+    </xsd:complexType>
+	
+    <xsd:complexType name="clientDetails">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="surname" type="xsd:string"/>    
+            <xsd:element name="email" type="xsd:string"/>              
+            <xsd:element name="phone" type="xsd:string"/>                    
+            <xsd:element name="address" type="tns:addressDetails"/>          
+            <xsd:element name="credit_card" type="tns:creditCardDetails"/>            
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="creditCardDetails">
+        <xsd:sequence>
+            <xsd:element name="number" type="xsd:int"/>       
+            <xsd:element name="paymentCircuit" type="tns:circuitType"/>           
+        </xsd:sequence>
+    </xsd:complexType>	
+
+	<xsd:simpleType name="circuitType">
+		<xsd:restriction base="xsd:string">
+    		<xsd:enumeration value="mastercard"/>		
+    		<xsd:enumeration value="vpay"/>
+    		<xsd:enumeration value="maestro"/>
+      		<xsd:enumeration value="americanexpress"/>
+    		<xsd:enumeration value="visa"/>      		  		
+		</xsd:restriction>
+	</xsd:simpleType>
+
+    <xsd:complexType name="addressDetails">
+        <xsd:sequence>
+            <xsd:element name="city" type="xsd:string"/>       
+            <xsd:element name="street" type="xsd:string"/>
+            <xsd:element name="postcode" type="xsd:int"/>            
+        </xsd:sequence>
+    </xsd:complexType>	
+	
+   	<xsd:complexType name="scheduleRequest">
+       <xsd:sequence> 	
+		    <xsd:element name="orderID" type="xsd:string"/>    		
+		    <xsd:sequence maxOccurs="unbounded" minOccurs="1">
+		       <xsd:element name="productsSchedule" type="tns:productScheduleDetails"/>
+		    </xsd:sequence>  
+		    <xsd:element name="address" type="tns:addressDetails"/>	                           
+		</xsd:sequence>			  	
+   	</xsd:complexType>
+
+  	<xsd:complexType name="scheduleResponse">
+       <xsd:sequence>
+		   <xsd:element name="orderID" type="xsd:string"/>          
+           <xsd:element name="scheduleDetails" type="tns:scheduleDetails"/>
+       </xsd:sequence>  	
+   	</xsd:complexType>
+   	
+    <xsd:complexType name="productScheduleDetails">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="quantity" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>   	
+
+  	<xsd:complexType name="scheduleDetails">
+     	<xsd:sequence>	
+           <xsd:element name="address" type="tns:addressDetails"/>	
+           <xsd:element name="departureDate" type="xsd:date"/>	  
+           <xsd:element name="arrivalDate" type="xsd:date"/>	                                      
+	    </xsd:sequence>  		
+   	</xsd:complexType>	
+
+  	<xsd:complexType name="paymentInformation">
+  		<xsd:sequence>
+           <xsd:element name="clientInfo" type="tns:clientDetails"/>             
+           <xsd:element name="totalAmount" type="xsd:double"/>                     			
+  		</xsd:sequence>  		
+  	</xsd:complexType>
+
+  	<xsd:complexType name="invoiceRequest">
+  		<xsd:sequence>
+ 		   <xsd:element name="orderID" type="xsd:string"/>   			
+	       <xsd:sequence maxOccurs="unbounded" minOccurs="1">
+	       		<xsd:element name="productsInvoice" type="tns:productInvoiceDetails"/>
+	       </xsd:sequence>  
+	       <xsd:element name="orderType" type="tns:orderType"/>			   
+           <xsd:element name="clientInfo" type="tns:clientDetails"/>
+           <xsd:element name="totalAmount" type="xsd:double"/>             
+		</xsd:sequence>		                    		
+  	</xsd:complexType>  
+  	
+  	<xsd:complexType name="productInvoiceDetails">
+        <xsd:sequence>
+           <xsd:element name="id" type="xsd:int"/>
+           <xsd:element name="quantity" type="xsd:int"/>
+           <xsd:element name="price" type="xsd:double"/>            
+        </xsd:sequence>
+    </xsd:complexType>   	
+   	
+  	<xsd:complexType name="invoice">
+  		<xsd:sequence>
+  		   <xsd:element name="invoiceNumber" type="xsd:string"/> 
+   		   <xsd:element name="invoiceDate" type="xsd:date"/>  		   		
+ 		   <xsd:element name="orderID" type="xsd:string"/>   			
+	       <xsd:sequence maxOccurs="unbounded" minOccurs="1">
+	       		<xsd:element name="productsInvoice" type="tns:productInvoiceDetails"/>
+	       </xsd:sequence>  
+	       <xsd:element name="orderType" type="tns:orderType"/>			   
+           <xsd:element name="clientInfo" type="tns:clientDetails"/>
+           <xsd:element name="vatPercentage" type="xsd:double"/> 
+           <xsd:element name="vatAmount" type="xsd:double"/>    
+           <xsd:element name="orderTypePrice" type="xsd:double"/>            
+           <xsd:element name="totalAmount" type="xsd:double"/>            
+		</xsd:sequence>		                    		
+  	</xsd:complexType>    
+
+  	<xsd:complexType name="shippingRequest">
+   		<xsd:sequence>
+		   <xsd:element name="orderID" type="xsd:string"/>    		
+           <xsd:element name="packagesNumber" type="xsd:int"/> 
+ 	  	   <xsd:sequence maxOccurs="unbounded" minOccurs="1">
+           		<xsd:element name="packagesDetails" type="tns:packageDetails"/>		           		  	   		
+ 	  	   </xsd:sequence>           		
+           <xsd:element name="address" type="tns:addressDetails"/> 	  	   
+           <xsd:element name="departureDate" type="xsd:date"/>	  
+           <xsd:element name="arrivalDate" type="xsd:date"/>	    		
+   		</xsd:sequence> 		
+  	</xsd:complexType>
+
+  	<xsd:complexType name="packageDetails">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>        
+            <xsd:element name="weight" type="xsd:double"/>
+            <xsd:element name="dimensions" type="tns:dimensionsType"/>            
+        </xsd:sequence>
+    </xsd:complexType> 
+  
+  	<xsd:complexType name="dimensionsType">
+        <xsd:sequence>
+            <xsd:element name="width" type="xsd:double"/>
+            <xsd:element name="height" type="xsd:double"/>            
+            <xsd:element name="depth" type="xsd:double"/>                
+        </xsd:sequence>  	
+  	</xsd:complexType>  
+
+  	<xsd:complexType name="deliveryPlan">
+   		<xsd:sequence>
+           <xsd:element name="trackingNumber" type="xsd:string"/>    
+           <xsd:element name="packagesNumber" type="xsd:int"/> 
+ 	  	   <xsd:sequence maxOccurs="unbounded" minOccurs="1">
+           		<xsd:element name="packagesDetails" type="tns:packageDetails"/>	         		       		  	   		
+ 	  	   </xsd:sequence>           			
+       	   <xsd:element name="address" type="tns:addressDetails"/>    
+           <xsd:element name="deliveryService" type="tns:deliveryServiceType"/>   	  	   
+           <xsd:element name="departureDate" type="xsd:date"/>	  
+           <xsd:element name="arrivalDate" type="xsd:date"/>	                        		
+   		</xsd:sequence>
+   	</xsd:complexType>
+
+	<xsd:simpleType name="deliveryServiceType">
+		<xsd:restriction base="xsd:string">
+    		<xsd:enumeration value="morning"/>		
+    		<xsd:enumeration value="afternoon"/>    		  		
+		</xsd:restriction>
+	</xsd:simpleType>
+
+  	<xsd:complexType name="shippingResponse">
+   		<xsd:sequence>
+ 			<xsd:element name="orderID" type="xsd:string"/>   
+            <xsd:element name="trackingNumber" type="xsd:string"/>   
+   			<xsd:element name="packagesNumber" type="xsd:int"/> 
+			<xsd:sequence maxOccurs="unbounded" minOccurs="1">
+   				<xsd:element name="packagesDetails" type="tns:packageDetails"/>	         		       		  	   		
+			</xsd:sequence>              
+            <xsd:element name="deliveryService" type="tns:deliveryServiceType"/> 					
+   		</xsd:sequence>
+   	</xsd:complexType>	
+
+  	<xsd:complexType name="orderResponse">
+   		<xsd:sequence>		
+  			<xsd:element name="order" type="tns:orderData"/>
+  			<xsd:element name="shipping" type="tns:shippingData"/>
+   			<xsd:element name="delivery" type="tns:deliveryData"/> 
+   			<xsd:element name="invoice" type="tns:invoice"/> 	   						  			 							 			   			
+   		</xsd:sequence>
+   	</xsd:complexType>	 
+ 
+   	<xsd:complexType name="orderData">
+   		<xsd:sequence>
+   			<xsd:element name="orderID" type="xsd:string"/>
+            <xsd:element name="clientInfo" type="tns:clientDetails"/>   			
+			<xsd:sequence maxOccurs="unbounded" minOccurs="1">
+		    	<xsd:element name="products" type="tns:productDetails"/>
+		 	</xsd:sequence>   
+		    <xsd:element name="orderType" type="tns:orderType"/>	  			
+   		</xsd:sequence>
+   	</xsd:complexType>	
+ 
+  	<xsd:complexType name="shippingData">
+   		<xsd:sequence> 
+            <xsd:element name="trackingNumber" type="xsd:string"/>   
+            <xsd:element name="deliveryService" type="tns:deliveryServiceType"/> 	
+            <xsd:element name="shippedPackages" type="tns:packagesData"/>             				
+   		</xsd:sequence>
+   	</xsd:complexType>
+ 
+   	<xsd:complexType name="packagesData">
+   		<xsd:sequence> 
+   			<xsd:element name="packagesNumber" type="xsd:int"/> 
+			<xsd:sequence maxOccurs="unbounded" minOccurs="1">
+	   			<xsd:element name="packagesDetails" type="tns:packageDetails"/>		   		     		  	   		
+			</xsd:sequence>   					
+   		</xsd:sequence>
+   	</xsd:complexType>
+   	
+    <xsd:complexType name="deliveryData">
+   		<xsd:sequence> 
+   			<xsd:element name="deliveryService" type="tns:deliveryServiceType"/> 				
+			<xsd:element name="departureDate" type="xsd:date"/>	  
+   			<xsd:element name="arrivalDate" type="xsd:date"/>	 					
+   		</xsd:sequence>
+   	</xsd:complexType>  	
+      
+</xsd:schema>
