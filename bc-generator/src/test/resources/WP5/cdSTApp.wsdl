@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://eu.chorevolution.smartmobilitytourism/cdstapp" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="cdstapp" targetNamespace="http://eu.chorevolution.smartmobilitytourism/cdstapp">
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="cdstapp" targetNamespace="http://eu.chorevolution.smartmobilitytourism/cdstapp" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:tns="http://eu.chorevolution.smartmobilitytourism/cdstapp" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
   <wsdl:types>
-    <xsd:schema xmlns="http://eu.chorevolution.smartmobilitytourism/cdstapp" elementFormDefault="unqualified" targetNamespace="http://eu.chorevolution.smartmobilitytourism/cdstapp">
+    <xsd:schema elementFormDefault="unqualified" targetNamespace="http://eu.chorevolution.smartmobilitytourism/cdstapp" xmlns="http://eu.chorevolution.smartmobilitytourism/cdstapp" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <xsd:complexType name="getTouristicGuideRequest">
         <xsd:sequence>
             <xsd:element name="upperRightLat" type="xsd:double"/>
@@ -179,9 +179,9 @@
             <xsd:element name="humidity" type="xsd:integer"/>
             <xsd:element name="lat" type="xsd:double"/>
             <xsd:element name="lon" type="xsd:double"/>
-            <xsd:element name="pressure" type="xsd:float"/>
-            <xsd:element name="windSpeed" type="xsd:float"/>
-            <xsd:element name="rain" type="xsd:float"/>
+            <xsd:element name="pressure" type="xsd:double"/>
+            <xsd:element name="windSpeed" type="xsd:double"/>
+            <xsd:element name="rain" type="xsd:double"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="poiRequest">
@@ -254,15 +254,15 @@
 </xsd:schema>
   </wsdl:types>
   <wsdl:message name="getTouristicGuideRequestMessageRequest">
-    <wsdl:part element="tns:getTouristicGuideRequestElementRequest" name="parameters">
+    <wsdl:part name="parameters" element="tns:getTouristicGuideRequestElementRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getTouristicGuideResponseMessageRequest">
-    <wsdl:part element="tns:getTouristicGuideResponseElementRequest" name="parameters">
+    <wsdl:part name="parameters" element="tns:getTouristicGuideResponseElementRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getTouristicGuideResponseMessageResponse">
-    <wsdl:part element="tns:getTouristicGuideResponseElementResponse" name="parameters">
+    <wsdl:part name="parameters" element="tns:getTouristicGuideResponseElementResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="STAppPT">
@@ -301,12 +301,12 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="TouristAgentSTAppService">
-    <wsdl:port binding="tns:TouristAgentSTAppBinding" name="TouristAgentSTAppPort">
+    <wsdl:port name="TouristAgentSTAppPort" binding="tns:TouristAgentSTAppBinding">
       <soap:address location="http://localhost:8080/ode/processes/TouristAgentSTApp"/>
     </wsdl:port>
   </wsdl:service>
   <wsdl:service name="STAppService">
-    <wsdl:port binding="tns:STAppBinding" name="STAppPort">
+    <wsdl:port name="STAppPort" binding="tns:STAppBinding">
       <soap:address location="http://localhost:8080/ode/processes/STApp"/>
     </wsdl:port>
   </wsdl:service>

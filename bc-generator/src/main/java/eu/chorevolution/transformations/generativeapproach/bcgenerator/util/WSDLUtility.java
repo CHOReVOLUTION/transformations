@@ -181,7 +181,6 @@ public class WSDLUtility {
 
 				RequestElementInfo elementInfo = new RequestElementInfo();
 				elementInfo.setName(elementName);
-
 				if ("xsd:string".equals(elementType)) {
 					elementType = "String";
 				} else if ("xsd:integer".equals(elementType)) {
@@ -194,7 +193,7 @@ public class WSDLUtility {
 					elementType = elementType.substring(4, elementType.length());
 				}
 
-				if(!("boolean".equals(elementType) || "int".equals(elementType) || "integer".equals(elementType) || "long".equals(elementType) || "float".equals(elementType) || "double".equals(elementType))) {
+				if(!("boolean".equals(elementType) || "int".equals(elementType) || "integer".equals(elementType) || "long".equals(elementType) || "float".equals(elementType) || "double".equals(elementType) || "String".equals(elementType))) {
 					elementInfo.setEnumeration(true);
 				} else {
 					elementInfo.setEnumeration(false);

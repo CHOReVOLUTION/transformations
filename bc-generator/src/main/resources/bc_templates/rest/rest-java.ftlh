@@ -56,7 +56,7 @@ public class ${bcData.servicename?cap_first}REST {
 			${inputRootItem?cap_first} requestType = new ${inputRootItem?cap_first}();
 			requestType.set${requestValues.requestWrapperParameterName?cap_first}(request);
 
-			${outputRootItem?cap_first} response = cd${bcData.roleName?cap_first}PT.getTouristGuide(requestType);
+			${outputRootItem?cap_first} response = cd${bcData.roleName?cap_first}PT.${operationName}(requestType);
 
 			// convert the planResponse to json
 			ObjectMapper mapper = new ObjectMapper();
