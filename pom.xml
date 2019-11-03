@@ -15,20 +15,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-   <groupId>eu.chorevolution.transformations.generativeapproach</groupId>
-   <artifactId>parent</artifactId>
-   <version>2.2.0-SNAPSHOT</version>
+	<groupId>eu.chorevolution.transformations.generativeapproach</groupId>
+	<artifactId>parent</artifactId>
+	<version>2.2.0-SNAPSHOT</version>
 
-   <name>CHOReVOLUTION Transformations</name>
+	<name>CHOReVOLUTION Transformations</name>
 
-   <description>CHOReVOLUTION Transformations</description>
+	<description>CHOReVOLUTION Transformations</description>
 
-   <packaging>pom</packaging>
+	<packaging>pom</packaging>
 
-   <properties>
-   		<skipTests>true</skipTests>
+	<properties>
+		<skipTests>true</skipTests>
 		<java.version>1.8</java.version>
 		<commons-compress.version>1.12</commons-compress.version>
 		<commons-lang3.version>3.4</commons-lang3.version>
@@ -43,47 +43,75 @@ limitations under the License.
 		<wsdl4j.version>1.6.3</wsdl4j.version>
 		<shrinkwrap.version>3.0.0</shrinkwrap.version>
 		<junit.version>4.12</junit.version>
-   </properties>
-   <organization>
-      <name>The CHOReVOLUTION project</name>
-      <url>http://www.chorevolution.eu</url>
-   </organization>
+	</properties>
 
-   <url>http://www.chorevolution.eu</url>
+	<organization>
+	  <name>The CHOReVOLUTION project</name>
+	  <url>http://www.chorevolution.eu</url>
+	</organization>
 
+	<url>http://www.chorevolution.eu</url>
+
+	<licenses>
+	  <license>
+		 <name>The Apache Software License, Version 2.0</name>
+		 <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		 <distribution>repo</distribution>
+	  </license>
+	</licenses>
+
+<!--   
    <scm>
-      <connection>scm:git:ssh://git@gitlab.ow2.org/chorevolution/transformations.git</connection>
-      <developerConnection>scm:git:ssh://git@gitlab.ow2.org/chorevolution/transformations.git</developerConnection>
-      <url>https://gitlab.ow2.org/chorevolution/transformations</url>
-      <tag>HEAD</tag>
+      <connection>scm:git:https://maven.pkg.github.com/CHOReVOLUTION/validations.git</connection>
+      <developerConnection>scm:git:https://maven.pkg.github.com/CHOReVOLUTION/validations.git</developerConnection>
+      <url>https://maven.pkg.github.com/CHOReVOLUTION/validations</url>
+	  <tag>HEAD</tag>
    </scm>
+-->
 
-   <issueManagement>
-      <system>jira</system>
-      <url>https://jira.ow2.org/browse/CRV</url>
-   </issueManagement>
-
-   <licenses>
-      <license>
-         <name>The Apache Software License, Version 2.0</name>
-         <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-         <distribution>repo</distribution>
-      </license>
-   </licenses>
-
-   <distributionManagement>
-      <repository>
-         <id>ow2-nexus-releases</id>
-         <name>OW2 Release Repository</name>
-         <url>http://repository.ow2.org/nexus/service/local/staging/deploy/maven2/</url>
-      </repository>
-      <snapshotRepository>
-         <id>ow2-nexus-snapshots</id>
-         <name>OW2 Snapshots Repository</name>
-         <url>http://repository.ow2.org/nexus/content/repositories/snapshots/</url>
-      </snapshotRepository>
-   </distributionManagement>
-
+	<distributionManagement>
+	  <repository>
+		 <id>disim-nexus-releases</id>
+		 <name>DISIM Univaq Release Repository</name>
+		 <url>http://nexus.disim.univaq.it/content/repositories/releases/</url>
+	  </repository>
+	  <snapshotRepository>
+		 <id>disim-nexus-snapshots</id>
+		 <name>DISIM Univaq Snapshots Repository</name>
+		 <url>http://nexus.disim.univaq.it/content/repositories/snapshots/</url>
+	  </snapshotRepository>
+	</distributionManagement>
+	
+	<repositories>
+		<repository>
+			<id>disim-nexus-releases</id>
+			<url>http://nexus.disim.univaq.it/content/repositories/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>	
+		<repository>
+			<id>disim-nexus-3rd-party</id>
+			<url>http://nexus.disim.univaq.it/content/repositories/thirdparty/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>		
+		<repository>
+			<id>disim-nexus-snapshots</id>
+			<url>http://nexus.disim.univaq.it/content/repositories/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
    <modules>
       <module>adapter-generator</module>
       <module>bc-generator</module>

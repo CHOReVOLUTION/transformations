@@ -39,29 +39,6 @@ limitations under the License.
       	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
    </properties>
 
-   <organization>
-      <name>The CHOReVOLUTION project</name>
-      <url>http://www.chorevolution.eu</url>
-   </organization>
-
-   <licenses>
-      <license>
-         <name>The Apache Software License, Version 2.0</name>
-         <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-         <distribution>repo</distribution>
-      </license>
-   </licenses>
-
-   <repositories>
-      <repository>
-         <id>ow2-nexus-3rd-party</id>
-         <url>http://repository.ow2.org/nexus/content/repositories/3rd-party/</url>
-         <releases>
-            <enabled>true</enabled>
-         </releases>
-      </repository>
-   </repositories>
-
    <dependencies>
       <!-- org.eclipse.emf -->
       <dependency>
