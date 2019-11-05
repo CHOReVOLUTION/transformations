@@ -74,10 +74,11 @@ public class BCGeneratorImpl implements BCGenerator {
 			throws BCGeneratorException {
 
 		String artifactName = bcName;
+		/*
 		if (protocol.equals(BCProtocolType.REST)) {
 			bcName = bcName.startsWith("bc") ? bcName.substring(2) : bcName;
 		}
-
+		*/
 		BCData bcData = new BCData();
 		bcData.setName(Utility.createName(bcName));
 		bcData.setRoleName(bcName.startsWith("bc") ? StringUtils.capitalize(bcName.substring(2)) : bcName);
@@ -201,7 +202,6 @@ public class BCGeneratorImpl implements BCGenerator {
 			String securityHelperJavaFilePath = businessImplPackageFolder + File.separatorChar + "SecurityHelper.java";
 			BCFileGeneratorUtility.generateSecurityHelperJavaFile(bcData, securityHelperJavaFilePath);
 		}
-
 	}
 
 	public void generateRest(BCData bcData, WSDLInfo wsdlModel, byte[] wsdl, String bcTempFolderPath)
@@ -267,8 +267,8 @@ public class BCGeneratorImpl implements BCGenerator {
 				+ SET_INVOCATION_ADDRES_UTILS_FILE_NAME;
 		String artifactEndpointDataJavaFilePath = businessModelPackageFolder + File.separatorChar
 				+ ARTIFACT_ENDPOINT_DATA_FILE_NAME;
-		String restJavaFilePath = basePackageFolder + File.separatorChar + bcData.getServicename() + "REST.java";
-
+		String restJavaFilePath = basePackageFolder + File.separatorChar +  Character.toUpperCase(bcData.getServicename().charAt(0)) + bcData.getServicename().substring(1) + "REST.java";
+		
 		BCFileGeneratorUtility.generateConfigurableServiceImplJavaFile(bcData, configurableServiceImplJavaFilePath);
 		BCFileGeneratorUtility.generateBusinessExceptionJavaFile(bcData, businessExceptionJavaFilePath);
 		BCFileGeneratorUtility.generateSetInvocationAddressUtilsJavaFile(bcData, setInvocationAddressUtilsJavaFilePath);
