@@ -19,7 +19,7 @@ limitations under the License.
    <parent>
       <groupId>eu.chorevolution.transformations.generativeapproach</groupId>
       <artifactId>parent</artifactId>
-      <version>2.2.0-SNAPSHOT</version>
+      <version>2.2.0</version>
       <relativePath>../pom.xml</relativePath>
    </parent>
    <artifactId>gidl-generator</artifactId>
