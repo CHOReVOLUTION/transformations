@@ -10,7 +10,7 @@ In particular these transformations are used by the synthesis processor for gene
 
 ### Building
 
-To build the project and generate the bundle use Maven
+To build the project and generate the bundle use the following Maven command
 
     mvn clean package
 
