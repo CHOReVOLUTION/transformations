@@ -19,7 +19,7 @@ limitations under the License.
 
 	<groupId>eu.chorevolution.transformations.generativeapproach</groupId>
 	<artifactId>parent</artifactId>
-	<version>2.2.0</version>
+	<version>2.3.0-SNAPSHOT</version>
 
 	<name>CHOReVOLUTION Transformations</name>
 
@@ -35,8 +35,10 @@ limitations under the License.
 		<commons-io.version>2.5</commons-io.version>
 		<freemarker.version>2.3.25-incubating</freemarker.version>
 		<maven-invoker.version>3.0.0</maven-invoker.version>
-		<eclipse.version>2.12.0</eclipse.version>
-		<bpmn2.version>1.3.0.Final</bpmn2.version>
+		<eclipse-emf-common.version>2.22.0</eclipse-emf-common.version>
+		<eclipse-emf-core.version>2.23.0</eclipse-emf-core.version>
+		<eclipse-emf-xmi.version>2.16.0</eclipse-emf-xmi.version>
+		<bpmn2.version>1.5.1.Final</bpmn2.version>
 		<slf4j-api.version>1.7.12</slf4j-api.version>
 		<slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
 		<slf4j-ext.version>1.7.12</slf4j-ext.version>
